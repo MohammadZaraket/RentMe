@@ -15,6 +15,19 @@ class CreateApartmentsTable extends Migration
     {
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('bathrooms');
+            $table->integer('bedrooms');
+            $table->integer('price');
+            $table->integer('space');
+            $table->text("description");
+
+            $table->string('longitude');
+            $table->string('latitude');
+
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            
             $table->timestamps();
         });
     }

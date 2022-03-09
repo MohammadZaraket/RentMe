@@ -15,6 +15,21 @@ class CreateToursTable extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name');
+            $table->string('phone');
+
+            $table->string('date');
+            $table->string('time');
+
+            $table->integer('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartments');
+
+            $table->string('approved');
+
+
+
+
             $table->timestamps();
         });
     }

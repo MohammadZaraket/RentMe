@@ -15,6 +15,14 @@ class CreateAvailabilitiesTable extends Migration
     {
         Schema::create('availabilities', function (Blueprint $table) {
             $table->id();
+
+
+            $table->integer('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartments');
+
+            $table->string('date');
+            $table->string('time');
+
             $table->timestamps();
         });
     }
