@@ -25,9 +25,9 @@ class CreateApartmentsTable extends Migration
             $table->string('longitude');
             $table->string('latitude');
 
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            
+
             $table->timestamps();
         });
     }

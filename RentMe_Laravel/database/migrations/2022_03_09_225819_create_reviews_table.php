@@ -17,10 +17,10 @@ class CreateReviewsTable extends Migration
             $table->id();
 
  
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->integer('apartment_id');
+            $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')->references('id')->on('apartments');
 
             $table->text('review');

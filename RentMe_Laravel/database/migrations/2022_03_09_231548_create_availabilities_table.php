@@ -17,7 +17,7 @@ class CreateAvailabilitiesTable extends Migration
             $table->id();
 
 
-            $table->integer('apartment_id');
+            $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')->references('id')->on('apartments');
 
             $table->string('date');
