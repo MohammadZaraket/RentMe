@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\apartments;
 use Illuminate\Http\Request;
+use Validator;
 
 class ApartmentsController extends Controller
 {
@@ -36,6 +37,31 @@ class ApartmentsController extends Controller
     public function store(Request $request)
     {
         //
+        {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|between:2,100',
+                'bathrooms' => 'required|integer|',
+                'bedrooms' => 'required|integer|',
+                'price' => 'required|integer|',
+                'space' => 'required|integer|',
+                'description' => 'required',
+                'longitude' => 'required|string|between:2,100',
+                'latitude' => 'required|string|between:2,100',
+                'user_id' => 'required',
+                
+            ]);
+            if($validator->fails()){
+                return response()->json($validator->errors()->toJson(), 400);
+            }
+            $apartments = apartments::create(array_merge(
+                        $validator->validated(),
+                    ));
+                    return response()->json([
+                        'status' => 'Your Apartment Have Been Added!'
+                
+                    ], 201);
+        }
+    
     }
 
     /**
