@@ -161,8 +161,24 @@ class ApartmentsController extends Controller
      * @param  \App\Models\apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(apartments $apartments)
+    public function destroy(apartments $apartments,Request $request)
     {
-        //
+        {
+            $validator = Validator::make($request->all(), [
+                'id' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['status'=>false,'message'=>$validator->errors()]);
+            }
+
+            $id = $request->get('id');
+            $deleted = DB::table('apartments')->where('id', '=', $id)->delete();
+
+            if($deleted){
+                return response()->json(['status'=>true,'message'=>"Apartment Deleted Successfully!"]);
+            }
+            return response()->json(['status'=>true,'message'=>"No data found!"]);
+
+        }
     }
 }
