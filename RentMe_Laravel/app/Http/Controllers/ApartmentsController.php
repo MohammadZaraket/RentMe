@@ -103,9 +103,10 @@ class ApartmentsController extends Controller
      * @param  \App\Models\apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function edit(apartments $apartments)
+    public function edit(apartments $apartments,Request $request)
     {
-        //
+
+
     }
 
     /**
@@ -117,7 +118,41 @@ class ApartmentsController extends Controller
      */
     public function update(Request $request, apartments $apartments)
     {
-        //
+        {
+            $validator = Validator::make($request->all(), [
+                'id' => 'required',
+                'name' => 'required|string|between:2,100',
+                'bathrooms' => 'required|integer|',
+                'bedrooms' => 'required|integer|',
+                'price' => 'required|integer|',
+                'space' => 'required|integer|',
+                'description' => 'required',
+                'longitude' => 'required|string|between:2,100',
+                'latitude' => 'required|string|between:2,100',
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['status'=>false,'message'=>$validator->errors()]);
+            }
+            $id = $request->get('id');
+            $name = $request->get('name');
+            $bathrooms = $request->get('bathrooms');
+            $bedrooms = $request->get('bedrooms');
+            $price = $request->get('price');
+            $space = $request->get('space');
+            $description = $request->get('description');
+            $longitude = $request->get('longitude');
+            $latitude = $request->get('latitude');
+
+            $result = DB::table('apartments')
+            ->where('id','=',$id)
+            ->update(['name' => $name, 'bathrooms' => $bathrooms,'bedrooms' => $bedrooms,'price' => $price,'space' => $space,'description' => $description,'longitude' => $longitude,'latitude' => $latitude]);
+
+            if($result){
+                return response()->json(['status'=>true,'message'=>"Info Edited Successfully!"]);
+            }
+            return response()->json(['status'=>true,'message'=>"No data found!"]);
+
+        }
     }
 
     /**
