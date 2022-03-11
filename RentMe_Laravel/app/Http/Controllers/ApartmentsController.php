@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\apartments;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 class ApartmentsController extends Controller
 {
@@ -70,9 +71,30 @@ class ApartmentsController extends Controller
      * @param  \App\Models\apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function show(apartments $apartments)
+    public function show(apartments $apartments,Request $request)
     {
-        //
+        /*$apartments = DB::table('apartments')->where('user_id', '1');
+        return response()->json($apartments);*/
+{
+                $validator = Validator::make($request->all(), [
+                    'user_id' => 'required',
+                ]);
+                if ($validator->fails()) {
+                    return response()->json(['status'=>false,'message'=>$validator->errors()]);
+                }
+                $user_id = $request->get('user_id');
+
+                $result = DB::table('apartments')
+                ->where('user_id','=',$user_id)
+                ->select('apartments.*')
+                ->get();
+
+                if(count($result)>0){
+                    return response()->json($result);
+                }
+                return response()->json(['status'=>true,'message'=>"No data found!"]);
+
+            }
     }
 
     /**

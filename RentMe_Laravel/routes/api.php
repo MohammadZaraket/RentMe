@@ -26,5 +26,8 @@ Route::group([
 
 
     Route::post('/addApartment', [ApartmentsController::class, 'store']);
+    Route::post('/show', [ApartmentsController::class, 'show']);
+
+    
 
 });
