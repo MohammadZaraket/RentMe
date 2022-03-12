@@ -35,7 +35,7 @@ class ApartmentsController extends Controller
                             
                         ]);
                         if ($validator->fails()) {
-                            return response()->json(['status'=>false,'message'=>$validator->errors()]);
+                            return response()->json(['status'=>false,'message'=>'Please Enter A Specific Location To Start With']);
                         }
                         $longitude = $request->get('longitude');
                         $latitude = $request->get('latitude');
@@ -46,9 +46,9 @@ class ApartmentsController extends Controller
                             $price = $request->get('price');
 
                             $query  = DB::table('apartments')
-                            ->select(['id', 'name','bedrooms','price','space'])
-                            ->selectRaw("( 3959 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
-                            ->having("distance", "<", "28")
+                            ->select(['id', 'name','bedrooms','bathrooms','price','space','description'])
+                            ->selectRaw("( 6371 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
+                            ->having("distance", "<", "25")
                             ->where("bedrooms", ">=", $bedrooms)
                             ->where("price", "<=", $price)
                             ->orderBy('distance', 'asc')
@@ -64,9 +64,9 @@ class ApartmentsController extends Controller
                             $bedrooms = $request->get('bedrooms');
 
                             $query  = DB::table('apartments')
-                            ->select(['id', 'name','bedrooms','price','space'])
-                            ->selectRaw("( 3959 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
-                            ->having("distance", "<", "28")
+                            ->select(['id', 'name','bedrooms','bathrooms','price','space','description'])
+                            ->selectRaw("( 6371 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
+                            ->having("distance", "<", "25")
                             ->where("bedrooms", ">=", $bedrooms)
                             ->orderBy('distance', 'asc')
                             ->offset(0)
@@ -80,9 +80,9 @@ class ApartmentsController extends Controller
                             $price = $request->get('price');
 
                             $query  = DB::table('apartments')
-                            ->select(['id', 'name','bedrooms','price','space'])
-                            ->selectRaw("( 3959 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
-                            ->having("distance", "<", "28")
+                            ->select(['id', 'name','bedrooms','bathrooms','price','space','description'])
+                            ->selectRaw("( 6371 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
+                            ->having("distance", "<", "25")
                             ->where("price", "<=", $price)
                             ->orderBy('distance', 'asc')
                             ->offset(0)
@@ -92,11 +92,10 @@ class ApartmentsController extends Controller
                         }
                         else{
 
-
                             $query  = DB::table('apartments')
-                            ->select(['id', 'name','bedrooms','price','space'])
-                            ->selectRaw("( 3959 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
-                            ->having("distance", "<", "28")
+                            ->select(['id', 'name','bedrooms','bathrooms','price','space','description'])
+                            ->selectRaw("( 6371 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
+                            ->having("distance", "<", "25")
                             ->orderBy('distance', 'asc')
                             ->offset(0)
                             ->limit(20);
@@ -108,7 +107,7 @@ class ApartmentsController extends Controller
                         if(count($result)>0){
                             return response()->json($result);
                         }
-                        return response()->json(['status'=>true,'message'=>"No data found!"]);
+                        return response()->json(['status'=>true,'message'=>"No Apartments found With Such Conditions!"]);
         
         }
         
