@@ -63,7 +63,7 @@ class ApartmentsController extends Controller
                     ], 201);
         }
     
-    }
+}
 
     /**
      * Display the specified resource.
@@ -161,7 +161,7 @@ class ApartmentsController extends Controller
      * @param  \App\Models\apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(apartments $apartments,Request $request)
+    public function destroy(Request $request)
     {
         {
             $validator = Validator::make($request->all(), [

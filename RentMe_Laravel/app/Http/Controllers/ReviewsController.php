@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\reviews;
 use Illuminate\Http\Request;
-
+use Validator;
 class ReviewsController extends Controller
 {
     /**
@@ -22,9 +22,25 @@ class ReviewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+            $validator = Validator::make($request->all(), [
+                'review' => 'required|string|between:2,100',
+                'rating' => 'required|integer',
+                'user_id' => 'required',
+                'apartment_id' => 'required',
+
+            ]);
+            if($validator->fails()){
+                return response()->json($validator->errors()->toJson(), 400);
+            }
+            $reviews = reviews::create(array_merge(
+                        $validator->validated(),
+                    ));
+                    return response()->json([
+                        'status' => 'Your Review Have Been Added!'
+                
+                    ], 201);
     }
 
     /**
@@ -35,7 +51,7 @@ class ReviewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -46,7 +62,27 @@ class ReviewsController extends Controller
      */
     public function show(reviews $reviews)
     {
-        //
+        {
+            $validator = Validator::make($request->all(), [
+                'apartment_id' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['status'=>false,'message'=>$validator->errors()]);
+            }
+            $apartment_id = $request->get('apartment_id');
+
+            $result = DB::table('reviews')
+            ->where('apartment_id','=',$apartment_id)
+            ->where('reviews.user_id','users.id')
+            ->select('reviews.rating','reviews.review','users.first_name')
+            ->get();
+
+            if(count($result)>0){
+                return response()->json($result);
+            }
+            return response()->json(['status'=>true,'message'=>"No Reviews found!"]);
+
+        }
     }
 
     /**

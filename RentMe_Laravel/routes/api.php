@@ -3,6 +3,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ApartmentsController;
+use App\Http\Controllers\ReviewsController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +32,9 @@ Route::group([
     Route::post('/showApartment', [ApartmentsController::class, 'show']);
     Route::post('/updateApartment', [ApartmentsController::class, 'update']);
     Route::post('/deleteApartment', [ApartmentsController::class, 'destroy']);
+
+
+    Route::post('/addReview', [ReviewsController::class, 'create']);
     
 
 });
