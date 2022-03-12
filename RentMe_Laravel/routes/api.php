@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ApartmentsController;
 use App\Http\Controllers\ReviewsController;
-
+use App\Http\Controllers\ImagesController;
 
 
 /*
@@ -34,12 +34,14 @@ Route::group([
     Route::post('/deleteApartment', [ApartmentsController::class, 'destroy']);
     Route::post('/searchApartment', [ApartmentsController::class, 'search']);
 
+    Route::post('/addImages', [ImagesController::class, 'addImages']);
+
 
     Route::post('/addReview', [ReviewsController::class, 'create']);
     Route::post('/showReview', [ReviewsController::class, 'show']);
     Route::post('/deleteReview', [ReviewsController::class, 'destroy']);
     
 
-    
+ 
 
 });
