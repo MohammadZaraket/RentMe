@@ -24,9 +24,31 @@ class ApartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function search()
     {
-        //
+        {
+                        $validator = Validator::make($request->all(), [
+                            'longitude' => 'required',
+                            'latitude' => 'required',
+                            
+                        ]);
+                        if ($validator->fails()) {
+                            return response()->json(['status'=>false,'message'=>$validator->errors()]);
+                        }
+                        $user_id = $request->get('user_id');
+        
+                        $result = DB::table('apartments')
+                        ->where('user_id','=',$user_id)
+                        ->select('apartments.*')
+                        ->get();
+        
+                        if(count($result)>0){
+                            return response()->json($result);
+                        }
+                        return response()->json(['status'=>true,'message'=>"No data found!"]);
+        
+                    }
+        
     }
 
     /**

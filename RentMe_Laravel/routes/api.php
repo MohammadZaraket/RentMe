@@ -32,6 +32,7 @@ Route::group([
     Route::post('/showApartment', [ApartmentsController::class, 'show']);
     Route::post('/updateApartment', [ApartmentsController::class, 'update']);
     Route::post('/deleteApartment', [ApartmentsController::class, 'destroy']);
+    Route::post('/searchApartment', [ApartmentsController::class, 'search']);
 
 
     Route::post('/addReview', [ReviewsController::class, 'create']);
