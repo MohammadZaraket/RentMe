@@ -58,24 +58,57 @@ class ApartmentsController extends Controller
                             $result = $query->get();
 
                         }
+
                         elseif($request->has('bedrooms')){
 
-                            return response()->json(['status'=>true,'message'=>"only bedrooms sent"]);
-                            
-    
+                            $bedrooms = $request->get('bedrooms');
+
+                            $query  = DB::table('apartments')
+                            ->select(['id', 'name','bedrooms','price','space'])
+                            ->selectRaw("( 3959 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
+                            ->having("distance", "<", "28")
+                            ->where("bedrooms", ">=", $bedrooms)
+                            ->orderBy('distance', 'asc')
+                            ->offset(0)
+                            ->limit(20);
+                
+                            $result = $query->get();  
+                        }
+
+                        elseif($request->has('price')){
+
+                            $price = $request->get('price');
+
+                            $query  = DB::table('apartments')
+                            ->select(['id', 'name','bedrooms','price','space'])
+                            ->selectRaw("( 3959 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
+                            ->having("distance", "<", "28")
+                            ->where("price", "<=", $price)
+                            ->orderBy('distance', 'asc')
+                            ->offset(0)
+                            ->limit(20);
+                
+                            $result = $query->get();
                         }
                         else{
 
-                            return response()->json(['status'=>true,'message'=>"only price sent"]);
-                        }
 
-                            
+                            $query  = DB::table('apartments')
+                            ->select(['id', 'name','bedrooms','price','space'])
+                            ->selectRaw("( 3959 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
+                            ->having("distance", "<", "28")
+                            ->orderBy('distance', 'asc')
+                            ->offset(0)
+                            ->limit(20);
+                
+                            $result = $query->get();
+                        }
+                     
+                     
                         if(count($result)>0){
                             return response()->json($result);
                         }
                         return response()->json(['status'=>true,'message'=>"No data found!"]);
-
-   
         
         }
         
