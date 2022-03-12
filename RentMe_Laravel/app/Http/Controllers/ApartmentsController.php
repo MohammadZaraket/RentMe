@@ -24,7 +24,7 @@ class ApartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function search()
+    public function search(Request $request)
     {
         {
                         $validator = Validator::make($request->all(), [
@@ -35,13 +35,21 @@ class ApartmentsController extends Controller
                         if ($validator->fails()) {
                             return response()->json(['status'=>false,'message'=>$validator->errors()]);
                         }
-                        $user_id = $request->get('user_id');
+                        $longitude = $request->get('longitude');
+                        $latitude = $request->get('latitude');
         
-                        $result = DB::table('apartments')
-                        ->where('user_id','=',$user_id)
-                        ->select('apartments.*')
-                        ->get();
-        
+
+                        $query  = DB::table('apartments')
+                        ->select(['id', 'name'])
+                        ->selectRaw("( 3959 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
+                        ->having("distance", "<", "28")
+                        ->orderBy('distance', 'asc')
+                        ->offset(0)
+                        ->limit(20);
+            
+                        $result = $query->get();
+
+
                         if(count($result)>0){
                             return response()->json($result);
                         }
