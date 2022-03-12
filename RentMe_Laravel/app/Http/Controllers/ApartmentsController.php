@@ -30,6 +30,8 @@ class ApartmentsController extends Controller
                         $validator = Validator::make($request->all(), [
                             'longitude' => 'required',
                             'latitude' => 'required',
+                            'bedrooms' => 'integer',
+                            'price' => 'integer',
                             
                         ]);
                         if ($validator->fails()) {
@@ -38,24 +40,44 @@ class ApartmentsController extends Controller
                         $longitude = $request->get('longitude');
                         $latitude = $request->get('latitude');
         
+                        if ($request->has('bedrooms') && $request->has('price') ) {
+                      
+                            $bedrooms = $request->get('bedrooms');
+                            $price = $request->get('price');
 
-                        $query  = DB::table('apartments')
-                        ->select(['id', 'name'])
-                        ->selectRaw("( 3959 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
-                        ->having("distance", "<", "28")
-                        ->orderBy('distance', 'asc')
-                        ->offset(0)
-                        ->limit(20);
-            
-                        $result = $query->get();
+                            $query  = DB::table('apartments')
+                            ->select(['id', 'name','bedrooms','price','space'])
+                            ->selectRaw("( 3959 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
+                            ->having("distance", "<", "28")
+                            ->where("bedrooms", ">=", $bedrooms)
+                            ->where("price", "<=", $price)
+                            ->orderBy('distance', 'asc')
+                            ->offset(0)
+                            ->limit(20);
+                
+                            $result = $query->get();
 
+                        }
+                        elseif($request->has('bedrooms')){
 
+                            return response()->json(['status'=>true,'message'=>"only bedrooms sent"]);
+                            
+    
+                        }
+                        else{
+
+                            return response()->json(['status'=>true,'message'=>"only price sent"]);
+                        }
+
+                            
                         if(count($result)>0){
                             return response()->json($result);
                         }
                         return response()->json(['status'=>true,'message'=>"No data found!"]);
+
+   
         
-                    }
+        }
         
     }
 
