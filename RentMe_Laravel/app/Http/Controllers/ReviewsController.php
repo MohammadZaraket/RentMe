@@ -116,8 +116,25 @@ class ReviewsController extends Controller
      * @param  \App\Models\reviews  $reviews
      * @return \Illuminate\Http\Response
      */
-    public function destroy(reviews $reviews)
+
+    public function destroy(Request $request)
     {
-        //
+        {
+            $validator = Validator::make($request->all(), [
+                'id' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['status'=>false,'message'=>$validator->errors()]);
+            }
+
+            $id = $request->get('id');
+            $deleted = DB::table('reviews')->where('id', '=', $id)->delete();
+
+            if($deleted){
+                return response()->json(['status'=>true,'message'=>"Review Deleted Successfully!"]);
+            }
+            return response()->json(['status'=>true,'message'=>"No Review found!"]);
+
+        }
     }
 }
