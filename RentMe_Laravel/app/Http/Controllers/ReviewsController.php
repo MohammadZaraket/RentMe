@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\reviews;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\DB;
 class ReviewsController extends Controller
 {
     /**
@@ -60,9 +61,8 @@ class ReviewsController extends Controller
      * @param  \App\Models\reviews  $reviews
      * @return \Illuminate\Http\Response
      */
-    public function show(reviews $reviews)
+    public function show(Request $request)
     {
-        {
             $validator = Validator::make($request->all(), [
                 'apartment_id' => 'required',
             ]);
@@ -72,17 +72,19 @@ class ReviewsController extends Controller
             $apartment_id = $request->get('apartment_id');
 
             $result = DB::table('reviews')
+            ->join('users', 'users.id', '=', 'reviews.user_id')
             ->where('apartment_id','=',$apartment_id)
-            ->where('reviews.user_id','users.id')
-            ->select('reviews.rating','reviews.review','users.first_name')
+            ->select('reviews.rating','reviews.review','users.first_name','users.last_name')
             ->get();
 
             if(count($result)>0){
                 return response()->json($result);
             }
-            return response()->json(['status'=>true,'message'=>"No Reviews found!"]);
-
-        }
+            else{
+                return response()->json(['status'=>true,'message'=>"No Reviews found!"]);
+            }
+    
+        
     }
 
     /**

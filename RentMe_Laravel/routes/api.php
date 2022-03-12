@@ -35,6 +35,7 @@ Route::group([
 
 
     Route::post('/addReview', [ReviewsController::class, 'create']);
+    Route::post('/showReview', [ReviewsController::class, 'show']);
     
 
 });
