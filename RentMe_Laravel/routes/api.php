@@ -40,6 +40,7 @@ Route::group([
     Route::post('/showImages', [ImagesController::class, 'show']);
     
     Route::post('/addTour', [ToursController::class, 'store']);
+    Route::post('/acceptTour', [ToursController::class, 'update']);
     
 
     Route::post('/addReview', [ReviewsController::class, 'create']);

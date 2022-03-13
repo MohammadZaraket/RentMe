@@ -91,9 +91,24 @@ class ToursController extends Controller
      * @param  \App\Models\tours  $tours
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tours $tours)
+    public function update(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['status'=>false,'message'=>$validator->errors()]);
+        }
+        $id = $request->get('id');
+
+        $result = DB::table('tours')
+        ->where('id','=',$id)
+        ->update(['approved' => 'yes']);
+
+        if($result){
+            return response()->json(['status'=>true,'message'=>"Tour Accepted!"]);
+        }
+        return response()->json(['status'=>true,'message'=>"No data found!"]);
     }
 
     /**
