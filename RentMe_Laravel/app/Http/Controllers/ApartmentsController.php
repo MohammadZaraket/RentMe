@@ -149,7 +149,7 @@ class ApartmentsController extends Controller
                     $img = $imgDoc;
                     $randomNum=substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ"), 0, 16);
                     // $folderPath = "C:/Users/USER/Desktop/SE FACTORY/FSW/Final Project/RentMe/RentMe_Laravel/app/assets/";
-                    $folderPath = public_path().'/files/'; //path location
+                    $folderPath = public_path().'/Images/'; //path location
                     $image_parts = explode(";base64,", $img);
                     $image_type_aux = explode("image/", $image_parts[0]);
                     $image_type = $image_type_aux[1];
@@ -166,6 +166,7 @@ class ApartmentsController extends Controller
                     ]);
     
                 }
+                
                 return response()->json(['status' => 'Your Apartment Have Been Added!'], 201);
             }
 

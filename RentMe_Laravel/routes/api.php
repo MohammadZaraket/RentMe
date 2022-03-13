@@ -34,7 +34,6 @@ Route::group([
     Route::post('/deleteApartment', [ApartmentsController::class, 'destroy']);
     Route::post('/searchApartment', [ApartmentsController::class, 'search']);
 
-    Route::post('/addImages', [ImagesController::class, 'addImages']);
 
 
     Route::post('/addReview', [ReviewsController::class, 'create']);
