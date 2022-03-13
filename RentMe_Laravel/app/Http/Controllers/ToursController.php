@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\tours;
 use Illuminate\Http\Request;
+use Validator;
+use Illuminate\Support\Facades\DB;
 
 class ToursController extends Controller
 {
@@ -35,7 +37,29 @@ class ToursController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|between:2,100',
+                'phone' => 'required|string|between:2,100',
+                'date' => 'required|string|between:2,100',
+                'time' => 'required|string|between:2,100',
+                'apartment_id' => 'required',
+                
+            ]);
+            if($validator->fails()){
+                return response()->json($validator->errors()->toJson(), 400);
+            }
+            $tours = tours::create(array_merge(
+                $validator->validated(),
+            ));
+            
+         
+            return response()->json(['status' => 'Your Request Have Been Sent!'], 201);
+            
+
+            
+           
+        }
     }
 
     /**

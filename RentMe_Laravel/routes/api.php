@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ApartmentsController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\ToursController;
 
 
 /*
@@ -38,7 +39,8 @@ Route::group([
 
     Route::post('/showImages', [ImagesController::class, 'show']);
     
-
+    Route::post('/addTour', [ToursController::class, 'store']);
+    
 
     Route::post('/addReview', [ReviewsController::class, 'create']);
     Route::post('/showReview', [ReviewsController::class, 'show']);
