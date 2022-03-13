@@ -68,9 +68,29 @@ class ToursController extends Controller
      * @param  \App\Models\tours  $tours
      * @return \Illuminate\Http\Response
      */
-    public function show(tours $tours)
+    public function show(tours $tours, Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['status'=>false,'message'=>$validator->errors()]);
+        }
+        $user_id = $request->get('user_id');
+
+        $result = DB::table('apartments')
+        ->join('tours', 'tours.apartment_id', '=', 'apartments.id')
+        ->where('user_id','=',$user_id)
+        ->select('tours.name as requested_by','tours.phone','tours.date','tours.time','apartments.name as for_apartment')
+        ->get();
+
+        if(count($result)>0){
+            return response()->json($result);
+        }
+        else{
+            return response()->json(['status'=>true,'message'=>"No Requested Tours found!"]);
+        }
+
     }
 
     /**
