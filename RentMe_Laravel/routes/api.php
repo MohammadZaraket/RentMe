@@ -36,6 +36,10 @@ Route::group([
 
 
 
+    Route::post('/showImages', [ImagesController::class, 'show']);
+    
+
+
     Route::post('/addReview', [ReviewsController::class, 'create']);
     Route::post('/showReview', [ReviewsController::class, 'show']);
     Route::post('/deleteReview', [ReviewsController::class, 'destroy']);

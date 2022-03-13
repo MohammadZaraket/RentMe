@@ -167,6 +167,9 @@ class ApartmentsController extends Controller
     
                 }
                 
+
+
+
                 return response()->json(['status' => 'Your Apartment Have Been Added!'], 201);
             }
 

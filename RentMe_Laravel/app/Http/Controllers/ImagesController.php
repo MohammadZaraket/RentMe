@@ -49,9 +49,26 @@ class ImagesController extends Controller
      * @param  \App\Models\images  $images
      * @return \Illuminate\Http\Response
      */
-    public function show(images $images)
+    public function show(Request $request)
     {
-        //
+       
+        $validator = Validator::make($request->all(), [
+            'apartment_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['status'=>false,'message'=>$validator->errors()]);
+        }
+        $apartment_id = $request->get('apartment_id');
+
+        $result = DB::table('images')
+        ->where('apartment_id','=',$apartment_id)
+        ->select('images.image')
+        ->get();
+
+        if(count($result)>0){
+            return response()->json($result);
+        }
+        return response()->json(['status'=>true,'message'=>"No Images found!"]);
     }
 
     /**
