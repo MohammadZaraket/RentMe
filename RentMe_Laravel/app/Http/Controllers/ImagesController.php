@@ -6,6 +6,7 @@ use App\Models\images;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ImagesController extends Controller
 {
@@ -24,27 +25,40 @@ class ImagesController extends Controller
     {
         
         $validator = Validator::make($request->all(), [
-            'data' => 'required',
+            'imgs' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json(['status'=>false,'message'=>'Please Enter A Specific Location To Start With']);
         }
 
+                    foreach($request->get('imgs') as $imgDoc){
+                        $img = $imgDoc;
+                        $randomNum=substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ"), 0, 16);
+                        // $folderPath = "C:/Users/USER/Desktop/SE FACTORY/FSW/Final Project/RentMe/RentMe_Laravel/app/assets/";
+                        $folderPath = public_path().'/files/'; //path location
+                        $image_parts = explode(";base64,", $img);
+                        $image_type_aux = explode("image/", $image_parts[0]);
+                        $image_type = $image_type_aux[1];
+                        $image_base64 = base64_decode($image_parts[1]);
+                        $uniqid = uniqid();
+                        //$uniqid = "testimagename";
+                        $file_name = $randomNum."__". $uniqid . '.'.$image_type;
+                        $file = $folderPath . $file_name;
+                        file_put_contents($file, $image_base64);
+                        DB::table('images')->insert([
+                            'image'=>$file_name,
+                            'apartment_id'=>2,
+                          
+                        ]);
 
-        if($request->data){
+                    }
+               
 
-            $img = $request->data;
-            $folderPath = "C:/Users/USER/Desktop/SE FACTORY/FSW/Final Project/RentMe/RentMe_Laravel/app/assets/"; //path location
-            
-            $image_parts = explode(";base64,", $img);
-            $image_type_aux = explode("image/", $image_parts[0]);
-            $image_type = $image_type_aux[1];
-            $image_base64 = base64_decode($image_parts[1]);
-            $uniqid = uniqid();
-            $file = $folderPath . $uniqid . '.'.$image_type;
-            file_put_contents($file, $image_base64);
+          
 
-        }
+   
+
+        // }
 
 
            /* $image_64 = $request->get('image');//your base64 encoded data

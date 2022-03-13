@@ -41,7 +41,7 @@ class ApartmentsController extends Controller
                         $longitude = $request->get('longitude');
                         $latitude = $request->get('latitude');
         
-                        if ($request->has('bedrooms') && $request->has('price') ) {
+                        if ($request->has('bedrooms') && $request->has('price') && count($request->all())>0) {
                       
                             $bedrooms = $request->get('bedrooms');
                             $price = $request->get('price');
@@ -55,7 +55,7 @@ class ApartmentsController extends Controller
                             ->orderBy('distance', 'asc')
                             ->offset(0)
                             ->limit(20);
-                
+                            //->paginate()
                             $result = $query->get();
 
                         }
@@ -134,18 +134,43 @@ class ApartmentsController extends Controller
                 'longitude' => 'required|string|between:2,100',
                 'latitude' => 'required|string|between:2,100',
                 'user_id' => 'required',
+                'imgs' => 'required',
                 
             ]);
             if($validator->fails()){
                 return response()->json($validator->errors()->toJson(), 400);
             }
             $apartments = apartments::create(array_merge(
-                        $validator->validated(),
-                    ));
-                    return response()->json([
-                        'status' => 'Your Apartment Have Been Added!'
-                
-                    ], 201);
+                $validator->validated(),
+            ));
+            
+            if( $apartments->id){
+                foreach($request->get('imgs') as $imgDoc){
+                    $img = $imgDoc;
+                    $randomNum=substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ"), 0, 16);
+                    // $folderPath = "C:/Users/USER/Desktop/SE FACTORY/FSW/Final Project/RentMe/RentMe_Laravel/app/assets/";
+                    $folderPath = public_path().'/files/'; //path location
+                    $image_parts = explode(";base64,", $img);
+                    $image_type_aux = explode("image/", $image_parts[0]);
+                    $image_type = $image_type_aux[1];
+                    $image_base64 = base64_decode($image_parts[1]);
+                    $uniqid = uniqid();
+                    //$uniqid = "testimagename";
+                    $file_name =  $randomNum."__".$uniqid . '.'.$image_type;
+                    $file = $folderPath . $file_name;
+                    file_put_contents($file, $image_base64);
+                    DB::table('images')->insert([
+                        'image'=>$file_name,
+                        'apartment_id'=>$apartments->id,
+                      
+                    ]);
+    
+                }
+                return response()->json(['status' => 'Your Apartment Have Been Added!'], 201);
+            }
+
+            
+           
         }
     
 }
