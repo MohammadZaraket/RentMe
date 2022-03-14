@@ -31,8 +31,6 @@ class AvailabilitiesController extends Controller
 
 
 
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +39,6 @@ class AvailabilitiesController extends Controller
      */
     public function store(Request $request)
     {
-        
         $validator = Validator::make($request->all(), [
             'date' => 'required',
             'from' => 'required',
@@ -53,48 +50,32 @@ class AvailabilitiesController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
 
-
-        /*foreach($request->get('time') as $avtimes){
-            $avtime = $avtimes;
-
-        }*/
-
         $apartment_id = $request->get('apartment_id');
         $date = $request->get('date');
              
         $StartTime = $request->get('from') ;
         $EndTime = $request->get('to') ;
-        $Duration="20";
-        $ReturnArray = array ();// Define output
-        $StartTime    = strtotime ($StartTime); //Get Timestamp
-        $EndTime      = strtotime ($EndTime); //Get Timestamp
+        $Duration="30";
+        $ReturnArray = array ();
+        $StartTime    = strtotime ($StartTime);
+        $EndTime      = strtotime ($EndTime); 
         $AddMins  = $Duration * 60;
     
-        while ($StartTime <= $EndTime) //Run loop
+        while ($StartTime <= $EndTime)
         {
             $ReturnArray[] = date ("G:i", $StartTime);
-            $StartTime += $AddMins; //Endtime check
+            $StartTime += $AddMins;
         }
 
-        //return response()->json(['status' => $ReturnArray ], 201);
-        //return($ReturnArray);
-
-        foreach($ReturnArray as $timeslot){
-            DB::table('availabilities')->insert([
-                'apartment_id'=>$apartment_id,
-                'date'=>$date,
-                'time'=>$timeslot,
-            ]);
-         }
-
-          /*  DB::table('availabilities')->insert([
-                'apartment_id'=>$apartments->id,
-                'date'=>$file_name,
-                'date'=>$file_name,
-              
-            ]);*/
-
-       
+        foreach($date as $day){
+            foreach($ReturnArray as $timeslot){
+                DB::table('availabilities')->insert([
+                    'apartment_id'=>$apartment_id,
+                    'date'=>$day,
+                    'time'=>$timeslot,
+                ]);
+             }
+        }
     }
 
 
