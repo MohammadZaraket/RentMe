@@ -134,8 +134,23 @@ class AvailabilitiesController extends Controller
      * @param  \App\Models\availabilities  $availabilities
      * @return \Illuminate\Http\Response
      */
-    public function destroy(availabilities $availabilities)
+    public function destroy(Request $request)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'apartment_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['status'=>false,'message'=>$validator->errors()]);
+        }
+
+        $apartment_id = $request->get('apartment_id');
+        $deleted = DB::table('availabilities')->where('apartment_id', '=', $apartment_id)->delete();
+
+        if($deleted){
+            return response()->json(['status'=>true,'message'=>"Available Times Deleted Successfully!"]);
+        }
+        return response()->json(['status'=>true,'message'=>"No Available Time found!"]);
+
     }
 }
