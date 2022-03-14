@@ -39,43 +39,6 @@ class AvailabilitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'date' => 'required',
-            'from' => 'required',
-            'to' => 'required',
-            'apartment_id' => 'required',
-            
-        ]);
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
-        }
-
-        $apartment_id = $request->get('apartment_id');
-        $date = $request->get('date');
-             
-        $StartTime = $request->get('from') ;
-        $EndTime = $request->get('to') ;
-        $Duration="30";
-        $ReturnArray = array ();
-        $StartTime    = strtotime ($StartTime);
-        $EndTime      = strtotime ($EndTime); 
-        $AddMins  = $Duration * 60;
-    
-        while ($StartTime <= $EndTime)
-        {
-            $ReturnArray[] = date ("G:i", $StartTime);
-            $StartTime += $AddMins;
-        }
-
-        foreach($date as $day){
-            foreach($ReturnArray as $timeslot){
-                DB::table('availabilities')->insert([
-                    'apartment_id'=>$apartment_id,
-                    'date'=>$day,
-                    'time'=>$timeslot,
-                ]);
-             }
-        }
     }
 
 

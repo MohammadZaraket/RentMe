@@ -135,10 +135,13 @@ class ApartmentsController extends Controller
                 'latitude' => 'required|string|between:2,100',
                 'user_id' => 'required',
                 'imgs' => 'required',
-                
+
+                'date' => 'required',
+                'from' => 'required',
+                'to' => 'required',
             ]);
             if($validator->fails()){
-                return response()->json($validator->errors()->toJson(), 400);
+                return response()->json(['status' =>$validator->errors()], 400);
             }
             $apartments = apartments::create(array_merge(
                 $validator->validated(),
@@ -155,7 +158,6 @@ class ApartmentsController extends Controller
                     $image_type = $image_type_aux[1];
                     $image_base64 = base64_decode($image_parts[1]);
                     $uniqid = uniqid();
-                    //$uniqid = "testimagename";
                     $file_name =  $randomNum."__".$uniqid . '.'.$image_type;
                     $file = $folderPath . $file_name;
                     file_put_contents($file, $image_base64);
@@ -164,19 +166,37 @@ class ApartmentsController extends Controller
                         'apartment_id'=>$apartments->id,
                       
                     ]);
-    
                 }
+
+                    $date = $request->get('date');  
+                    $StartTime = $request->get('from') ;
+                    $EndTime = $request->get('to') ;
+                    $Duration="30";
+                    $ReturnArray = array ();
+                    $StartTime  = strtotime ($StartTime);
+                    $EndTime = strtotime ($EndTime); 
+                    $AddMins = $Duration * 60;
                 
-
-
-
-                return response()->json(['status' => 'Your Apartment Have Been Added!'], 201);
-            }
-
+                    while ($StartTime <= $EndTime)
+                    {
+                        $ReturnArray[] = date ("G:i", $StartTime);
+                        $StartTime += $AddMins;
+                    }
             
-           
-        }
+                    foreach($date as $day){
+                        foreach($ReturnArray as $timeslot){
+                            DB::table('availabilities')->insert([
+                                'apartment_id'=>$apartments->id,
+                                'date'=>$day,
+                                'time'=>$timeslot,
+                            ]);
+                         }
+                    }
+
+                    return response()->json(['status' => 'Your Apartment Have Been Added!'], 201);
+            }
     
+        }   
 }
 
     /**
