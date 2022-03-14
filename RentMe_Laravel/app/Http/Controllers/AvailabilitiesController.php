@@ -125,7 +125,44 @@ class AvailabilitiesController extends Controller
      */
     public function update(Request $request, availabilities $availabilities)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'apartment_id' => 'required',
+            'date' => 'required',
+            'from' => 'required',
+            'to' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json(['status' =>$validator->errors()], 400);
+        }
+        $apartment_id = $request->get('apartment_id');
+        
+                $date = $request->get('date');  
+                $StartTime = $request->get('from') ;
+                $EndTime = $request->get('to') ;
+                $Duration="30";
+                $ReturnArray = array ();
+                $StartTime  = strtotime ($StartTime);
+                $EndTime = strtotime ($EndTime); 
+                $AddMins = $Duration * 60;
+            
+                while ($StartTime <= $EndTime)
+                {
+                    $ReturnArray[] = date ("G:i", $StartTime);
+                    $StartTime += $AddMins;
+                }
+        
+                foreach($date as $day){
+                    foreach($ReturnArray as $timeslot){
+                        DB::table('availabilities')->insert([
+                            'apartment_id'=>$apartment_id,
+                            'date'=>$day,
+                            'time'=>$timeslot,
+                        ]);
+                     }
+                }
+
+                return response()->json(['status' => 'Your Available Time Have Been Added!'], 201);
+        
     }
 
     /**

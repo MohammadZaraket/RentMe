@@ -46,7 +46,10 @@ Route::group([
     Route::post('/availableDate', [AvailabilitiesController::class, 'showDate']);
     Route::post('/availableTime', [AvailabilitiesController::class, 'showTime']);
     Route::post('/deleteAvailable', [AvailabilitiesController::class, 'destroy']);
+    Route::post('/addAvailable', [AvailabilitiesController::class, 'update']);
 
+
+    
     
     Route::post('/showTour', [ToursController::class, 'show']);
     Route::post('/addTour', [ToursController::class, 'store']);
