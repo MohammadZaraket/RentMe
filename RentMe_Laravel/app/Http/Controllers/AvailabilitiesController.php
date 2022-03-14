@@ -37,10 +37,34 @@ class AvailabilitiesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function showTime(Request $request)
     {
-    }
 
+        
+        $validator = Validator::make($request->all(), [
+            'apartment_id' => 'required',
+            'date' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['status'=>false,'message'=>$validator->errors()]);
+        }
+        $apartment_id = $request->get('apartment_id');
+        $date = $request->get('date');
+
+        $result = DB::table('availabilities')
+        ->where('apartment_id','=',$apartment_id)
+        ->where('date','=',$date)
+        ->select('availabilities.time')
+        ->distinct()
+        ->get();
+
+        if(count($result)>0){
+            return ($result);
+        }
+        return response()->json(['status'=>true,'message'=>"No Available Times found!"]);
+
+        
+    }
 
     
 
@@ -51,9 +75,26 @@ class AvailabilitiesController extends Controller
      * @param  \App\Models\availabilities  $availabilities
      * @return \Illuminate\Http\Response
      */
-    public function show(availabilities $availabilities)
+    public function showDate(Request $request)
     {
-        //
+              $validator = Validator::make($request->all(), [
+                    'apartment_id' => 'required',
+                ]);
+                if ($validator->fails()) {
+                    return response()->json(['status'=>false,'message'=>$validator->errors()]);
+                }
+                $apartment_id = $request->get('apartment_id');
+
+                $result = DB::table('availabilities')
+                ->where('apartment_id','=',$apartment_id)
+                ->select('availabilities.date')
+                ->distinct()
+                ->get();
+
+                if(count($result)>0){
+                    return ($result);
+                }
+                return response()->json(['status'=>true,'message'=>"No Available Date found!"]);
     }
 
     /**

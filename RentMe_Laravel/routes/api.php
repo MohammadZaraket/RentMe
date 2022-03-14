@@ -40,8 +40,9 @@ Route::group([
 
     Route::post('/showImages', [ImagesController::class, 'show']);
 
-    
-    Route::post('/availableTime', [AvailabilitiesController::class, 'store']);
+    Route::post('/availableDate', [AvailabilitiesController::class, 'showDate']);
+    Route::post('/availableTime', [AvailabilitiesController::class, 'showTime']);
+
     
     Route::post('/showTour', [ToursController::class, 'show']);
     Route::post('/addTour', [ToursController::class, 'store']);
