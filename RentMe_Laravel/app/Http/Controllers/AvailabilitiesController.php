@@ -59,7 +59,11 @@ class AvailabilitiesController extends Controller
         ->get();
 
         if(count($result)>0){
-            return ($result);
+           $ReturnArray = array ();
+           foreach($result as $time){
+            $ReturnArray[] = $time->time;
+           }
+           return($ReturnArray);
         }
         return response()->json(['status'=>true,'message'=>"No Available Times found!"]);
 
@@ -92,8 +96,12 @@ class AvailabilitiesController extends Controller
                 ->get();
 
                 if(count($result)>0){
-                    return ($result);
-                }
+                    $ReturnArray = array ();
+                    foreach($result as $time){
+                     $ReturnArray[] = $time->date;
+                    }
+                    return($ReturnArray);
+                 }
                 return response()->json(['status'=>true,'message'=>"No Available Date found!"]);
     }
 
