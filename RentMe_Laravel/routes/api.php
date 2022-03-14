@@ -6,6 +6,7 @@ use App\Http\Controllers\ApartmentsController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\ToursController;
+use App\Http\Controllers\AvailabilitiesController;
 
 
 /*
@@ -38,6 +39,9 @@ Route::group([
 
 
     Route::post('/showImages', [ImagesController::class, 'show']);
+
+    
+    Route::post('/availableTime', [AvailabilitiesController::class, 'store']);
     
     Route::post('/showTour', [ToursController::class, 'show']);
     Route::post('/addTour', [ToursController::class, 'store']);
