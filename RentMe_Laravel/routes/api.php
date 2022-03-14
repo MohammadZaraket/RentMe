@@ -39,6 +39,9 @@ Route::group([
 
 
     Route::post('/showImages', [ImagesController::class, 'show']);
+    Route::post('/addImages', [ImagesController::class, 'update']);
+
+    
 
     Route::post('/availableDate', [AvailabilitiesController::class, 'showDate']);
     Route::post('/availableTime', [AvailabilitiesController::class, 'showTime']);
