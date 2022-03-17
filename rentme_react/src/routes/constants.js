@@ -1,6 +1,7 @@
 import AboutUs from "../pages/AboutUs";
 import ContactUs from "../pages/ContactUs";
 import Terms from "../pages/Terms";
+import Profile from "../pages/Profile";
 //import SignIn from "../pages/SignIn";
 
 
@@ -23,14 +24,18 @@ export const TERMS = {
     component:Terms
 }
 
-/*export const SIGNIN_ROUTE = {
-    path:'/SignIn',
-    name:'SignIn',
-    component:SignIn
-}*/
+export const PROFILE = {
+    path:'/Profile',
+    name:'Profile',
+    component:Profile
+}
+
+
 
 export const NAVBAR_ROUTE = [
-    TERMS,
+
     ABOUTUS_ROUTE,
-    CONTACTUS_ROUTE
+    TERMS,
+    CONTACTUS_ROUTE,
+    PROFILE
 ]

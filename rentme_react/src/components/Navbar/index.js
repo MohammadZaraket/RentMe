@@ -37,10 +37,10 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="Navbar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
+          <Typography className="homebtn"
             variant="h6"
             noWrap
             component="div"
@@ -86,21 +86,23 @@ const Navbar = () => {
               ))}
             </Menu>
           </Box>
-          <Typography
+          <Typography className="homebtn"
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }
+           }
           >
             RentMe
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className="navcontent">
           {NAVBAR_ROUTE.map(({name,path}) => (
              
             <Button
                 key={name}
                 onClick= {() => navigate(path)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                className="navbtn"
               >
                 {name}
               </Button>

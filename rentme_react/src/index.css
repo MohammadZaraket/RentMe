@@ -30,3 +30,25 @@ body, html {
   justify-content: center;
   align-items: center;
 }
+
+
+.Navbar {
+  background-color: #37323E !important;
+
+}
+
+.navcontent{
+
+  justify-content: right;
+}
+
+.navbtn{
+
+  padding-right: 50px !important;
+
+}
+
+
+.homebtn {
+  color: #DEB841;
+}

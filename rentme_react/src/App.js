@@ -6,7 +6,7 @@ import AboutUs from "./pages/AboutUs";
 import SignIn from "./pages/SignIn";
 import Terms from "./pages/Terms";
 import SignUp from "./pages/SignUp";
-
+import Main from "./pages/Main";
 
 function App({ children }) {
     return (
@@ -14,6 +14,7 @@ function App({ children }) {
            
             <Routes>
                 <Route path="/" element={<Landing />} />
+                <Route path="Main" element={<Main />} />
                 <Route path="ContactUs" element={<ContactUs />} />
                 <Route path="AboutUs" element={<AboutUs />} />
                 <Route path="SignIn" element={<SignIn />} />
@@ -26,7 +27,6 @@ function App({ children }) {
     function Landing() {
         return (
             <>
-            <h1>Test App Page</h1>
             <SignIn />
             </>
         );
