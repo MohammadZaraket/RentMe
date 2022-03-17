@@ -1,5 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
+import { Link } from "react-router-dom";
+
 
 
 
@@ -35,7 +37,13 @@ function SignInForm() {
                 </Grid>
                 <Grid item xs={12}>
                 <Typography variant="body2" color="textSecondary" component="p" gutterBottom  style={{textAlign:"center"}}>
-                    Don't Have An Account?<b>Sign Up</b>
+                    Don't Have An Account?
+                    <nav>
+                        <Link to="/SignUp">      
+                        <b>Sign Up</b>
+                        </Link>
+                    </nav>
+
                  </Typography> 
                 </Grid>
               </Grid>

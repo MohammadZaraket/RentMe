@@ -3,10 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import SignIn from './pages/SignIn'
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
+
+
+
+
 
 ReactDOM.render(
   <React.StrictMode>
+    <BrowserRouter>
+    
     <SignIn />
+
+    </BrowserRouter>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
