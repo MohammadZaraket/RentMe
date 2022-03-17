@@ -7,27 +7,37 @@ function SignInForm() {
 
   return (
     <div > 
-      <Grid>
-        <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 auto", backgroundColor:"#DEB841"}}>
+      <Grid  style={{margin: "20% 5%"}}>
+        <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 autos", backgroundColor:"#DEB841", borderRadius:"20px"}}>
           <CardContent>
-            <Typography gutterBottom variant="h5" color="blue">
-              SignIn
+          <Typography gutterBottom variant="p">
+            Welcome to <b>RentMe</b>
           </Typography> 
-            <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
-              So You Can Access The Dashboard To Edit Profile
+            <Typography gutterBottom variant="h4"  style={{margin:"20px 0 "}}>
+              <b>Sign In</b>
           </Typography> 
-            <form>
+            <form style={{padding:"0px"}}>
               <Grid container spacing={1}>
-                <Grid item xs={12}>
-                  <TextField type="email" placeholder="Enter email" label="Email" variant="outlined"  fullWidth required />
+                <Grid item xs={12} >
+                <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
+                   <b>Enter Your Email Address</b> 
+                 </Typography> 
+                  <TextField style={{backgroundColor:"white", marginBottom:"10px", borderRadius:"10px", borderWidth:"0px"}} type="email" placeholder="Enter email" label="Email Address" variant="outlined"  fullWidth required />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField  type="password" placeholder="Enter Password" label="password" variant="outlined" fullWidth required />
+                <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
+                    <b>Enter Your Password</b>
+                 </Typography> 
+                  <TextField  style={{backgroundColor:"white", marginBottom:"10px",  borderRadius:"10px" }} type="password" placeholder="Enter Password" label="password" variant="outlined" fullWidth required />
                 </Grid>
                 <Grid item xs={12}>
                   <Button className="signbtn" type="submit" variant="contained" color="primary"  fullWidth>Sign In</Button>
                 </Grid>
-
+                <Grid item xs={12}>
+                <Typography variant="body2" color="textSecondary" component="p" gutterBottom  style={{textAlign:"center"}}>
+                    Don't Have An Account?<b>Sign Up</b>
+                 </Typography> 
+                </Grid>
               </Grid>
             </form>
           </CardContent>

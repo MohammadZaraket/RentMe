@@ -17,5 +17,17 @@
     background-position: 'center';
     background-color: rgba(55, 50, 62, 0.7);
 
+}
 
+
+.title{
+
+    font-weight: bold;
+    font-size: 60px;
+
+}
+
+.slogan{
+    font-weight: bold;
+    font-size: 24px;
 }
