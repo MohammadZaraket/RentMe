@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import SignIn from './pages/SignIn'
+import App from './App'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 
@@ -13,7 +14,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     
-    <SignIn />
+    <App />
 
     </BrowserRouter>
 
