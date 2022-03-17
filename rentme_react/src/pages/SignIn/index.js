@@ -3,6 +3,7 @@ import SignInForm from "../../components/SignInForm";
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
 import { Routes, Route, Link } from "react-router-dom";
 import SignUp from "../SignUp";
+import Main from "../Main";
 
 function SignIn() {
 
@@ -10,6 +11,7 @@ function SignIn() {
     <>
       <Routes>
         <Route path="SignUp" element={<SignUp />} />
+        <Route path="Main" element={<Main />} />
       </Routes>
    
         <div className="SignIn">
