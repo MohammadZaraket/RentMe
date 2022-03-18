@@ -107,6 +107,10 @@ const Navbar = () => {
                 {name}
               </Button>
             ))}
+
+            <Button id="addbtn">
+                Add Apartment
+            </Button>
           </Box>
 
         </Toolbar>

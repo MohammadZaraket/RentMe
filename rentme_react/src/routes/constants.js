@@ -7,13 +7,13 @@ import Profile from "../pages/Profile";
 
 export const ABOUTUS_ROUTE = {
     path:'/AboutUs',
-    name:'AboutUs',
+    name:'About Us',
     component:AboutUs,
 }
 
 export const CONTACTUS_ROUTE = {
     path:'/ContactUs',
-    name:'ContactUs',
+    name:'Contact Us',
     component:ContactUs
 }
 
