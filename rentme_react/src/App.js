@@ -8,16 +8,15 @@ import Terms from "./pages/Terms";
 import SignUp from "./pages/SignUp";
 import Main from "./pages/Main";
 
-function App({ children }) {
+function App() {
     return (
         <div className="App">
            
             <Routes>
-                <Route path="/" element={<Landing />} />
+                <Route path="*" element={<Landing />} />
                 <Route path="Main" element={<Main />} />
                 <Route path="ContactUs" element={<ContactUs />} />
                 <Route path="AboutUs" element={<AboutUs />} />
-                <Route path="SignIn" element={<SignIn />} />
                 <Route path="Terms" element={<Terms />} />
                 <Route path="SignUp" element={<SignUp />} />
             </Routes>
