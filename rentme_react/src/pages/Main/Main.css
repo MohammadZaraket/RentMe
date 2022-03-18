@@ -11,3 +11,16 @@
  
 
 }
+
+.search-form{
+    padding: 0px;
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.search-btn{
+    background-color: #DE9E36 !important;
+}

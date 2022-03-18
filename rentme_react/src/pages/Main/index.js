@@ -1,5 +1,6 @@
 import Navbar from '../../components/Navbar'
 import './Main.css'
+import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
 
 function Main() {
 
@@ -8,9 +9,43 @@ function Main() {
     <div className='Main-background'>
 
         <Navbar />
-        <div>
-            <h1>Rent Me</h1>
-        </div>
+
+        <Grid container spacing={2}>
+              <Grid item xs={12} style={{color:"white", marginTop:"10%"}}>
+                <Grid>
+                <p className="title">Rent Me</p>
+                <p className="slogan">Let Us Guide You Home</p>
+                </Grid>
+              </Grid>
+    
+              <Grid item xs={12}>
+              <form className="search-form">
+              <Grid container spacing={2}>
+                <Grid item xs={12} >
+                  <TextField style={{backgroundColor:"white"}}  placeholder="Where Do You Want To Live Next? " label="Location" variant="outlined"  fullWidth required />
+                </Grid>
+                <Grid item xs={6}>
+                  <Button className="search-btn" type="submit" variant="contained" color="primary"  fullWidth>Find Now!</Button>
+                </Grid>
+                <Grid item xs={6}>
+                  <Button className="search-btn" type="submit" variant="contained" color="primary"  fullWidth>Find Now!</Button>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button className="search-btn" type="submit" variant="contained" color="primary"  fullWidth>Find Now!</Button>
+                </Grid>
+           
+        
+               
+              </Grid>
+             </form>
+              </Grid>
+
+ 
+
+
+
+            
+          </Grid>
 
     </div>
 
