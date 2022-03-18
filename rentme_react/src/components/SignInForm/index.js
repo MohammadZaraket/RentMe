@@ -10,7 +10,7 @@ function SignInForm() {
   return (
     <div > 
       <Grid  style={{margin: "20% 5%"}}>
-        <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 autos", backgroundColor:"#DEB841", borderRadius:"20px"}}>
+        <Card style={{ maxWidth: 450, padding: "10px 5px", margin: "0 auto", backgroundColor:"#DEB841", borderRadius:"20px"}}>
           <CardContent>
           <Typography gutterBottom variant="p">
             Welcome to <b>RentMe</b>
@@ -36,12 +36,10 @@ function SignInForm() {
                   <Button className="signbtn" type="submit" variant="contained" color="primary"  fullWidth>Sign In</Button>
                 </Grid>
                 <Grid item xs={12}>
-                <Typography variant="body2" color="textSecondary" component="p" gutterBottom  style={{textAlign:"center"}}>
-                    Don't Have An Account?
+                <Typography variant="body2" color="textSecondary" component="p" gutterBottom  style={{textAlign:"center", padding:"10px 0"}}>
+                    
                     <nav>
-                        <Link to="/SignUp">      
-                        <b>Sign Up</b>
-                        </Link>
+                        Don't Have An Account?  <Link to="/SignUp" className='sign-link'><b> Sign Up</b></Link> 
                     </nav>
 
                  </Typography> 

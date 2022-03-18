@@ -27,7 +27,7 @@ body, html {
 
 .signbtn{
   background-color: #37323E !important;
-  margin-top: 20px !important;
+  margin-top: 15px !important;
   margin-bottom: 5px !important;
 }
 
@@ -43,6 +43,14 @@ body, html {
   justify-content: center;
   align-items: center;
   align-content: center;
+}
+
+.css-46bh2p-MuiCardContent-root:last-child {
+  padding-bottom: 0px !important;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 15px 10px !important;
 }
 
 .css-mhc70k-MuiGrid-root>.MuiGrid-item {
@@ -72,6 +80,17 @@ body, html {
 
   color: #DEB841;
 
+}
+
+.sign-link{
+
+  text-decoration:none;
+  color: black;
+}
+
+.sign-link:hover{
+
+  color: #37323E;
 }
 
 
