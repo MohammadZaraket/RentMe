@@ -14,7 +14,7 @@
 
 .search-form{
     padding: 0px;
-    margin-top: 2%;
+    margin-top: 3%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -23,4 +23,12 @@
 
 .search-btn{
     background-color: #DE9E36 !important;
+}
+
+
+.iconsdiv{
+
+    margin-top: 10% !important;
+    margin: auto;
+    color: #DEB841;
 }

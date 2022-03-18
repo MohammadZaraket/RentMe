@@ -32,14 +32,23 @@ body, html {
 }
 
 
+.css-mhc70k-MuiGrid-root {
+
+  margin-left: 0px !important;
+}
 
 .css-mhc70k-MuiGrid-root>.MuiGrid-item {
   padding-top: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
 }
 
+.css-mhc70k-MuiGrid-root>.MuiGrid-item {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 .Navbar {
   background-color: #37323E !important;
