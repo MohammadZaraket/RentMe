@@ -4,15 +4,16 @@ import './Main.css'
 function Main() {
 
   return (
-    <>
 
+    <div className='Main-background'>
 
-  
-    <Navbar />
+        <Navbar />
+        <div>
+            <h1>Rent Me</h1>
+        </div>
 
+    </div>
 
-    
-    </>
 
   );
 }

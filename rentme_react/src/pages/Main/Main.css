@@ -1,0 +1,13 @@
+
+.Main-background {
+
+    background-image:linear-gradient(rgba(55, 50, 62, 0.7), rgba(55, 50, 62, 0.7)), url("../../assets/beirut.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 'center';
+    background-color: rgba(55, 50, 62, 0.7);
+    background-attachment: fixed;
+    height: 100vh;
+ 
+
+}
