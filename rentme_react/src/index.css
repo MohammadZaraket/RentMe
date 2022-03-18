@@ -118,3 +118,25 @@ body, html {
   padding: 0px 25px ;
   text-transform: capitalize;
 }
+
+.Result-background{
+
+  background-color:rgba(55, 50, 62, 0.7);
+  height: 100vh;
+
+}
+
+.search-results{
+
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.result-title{
+  display: block;
+}
