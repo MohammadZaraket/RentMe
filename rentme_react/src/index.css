@@ -137,6 +137,19 @@ body, html {
 
 }
 
+
+#search-in-results{
+
+  padding: 10px !important;
+}
+
 .result-title{
   display: block;
+}
+
+
+
+.results-search-item{
+
+  padding-right: 10px;
 }

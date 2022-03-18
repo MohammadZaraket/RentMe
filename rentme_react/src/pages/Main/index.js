@@ -1,7 +1,10 @@
 import Navbar from '../../components/Navbar'
 import './Main.css'
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
-import { FaFacebookSquare,FaInstagram,FaTwitterSquare } from "react-icons/fa";
+import { FaFacebookSquare,FaInstagram,FaTwitterSquare,BsSearch } from "react-icons/fa";
+
+
+
 
 function Main() {
 
@@ -23,7 +26,7 @@ function Main() {
               <form className="search-form">
               <Grid container spacing={2}>
                 <Grid item xs={12} >
-                  <TextField style={{backgroundColor:"white"}}  placeholder="Where Do You Want To Live Next? " label="Location" variant="outlined"  fullWidth required />
+                  <TextField style={{backgroundColor:"white"}}  placeholder="Where Do You Want To Live Next? "  variant="outlined"  fullWidth required />
                 </Grid>
                 <Grid item xs={6}>
                   <Button className="search-btn" type="submit" variant="contained" color="primary"  fullWidth>Rooms</Button>

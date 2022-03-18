@@ -1,7 +1,8 @@
 import Navbar from '../../components/Navbar'
 
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
-import { FaFacebookSquare,FaInstagram,FaTwitterSquare } from "react-icons/fa";
+import { FaFacebookSquare,FaInstagram,FaTwitterSquare,FaSistrix } from "react-icons/fa";
+import InputAdornment from '@mui/material/InputAdornment';
 
 function Results() {
 
@@ -14,16 +15,18 @@ function Results() {
             
               <Grid item xs={12}  style={{display:"block"}} >
                 <form className="search-results">
-                    <Grid item xs={6} style={{paddingRight:"10px"}} >
-                    <TextField style={{backgroundColor:"white"}}  placeholder="Where Do You Want To Live Next? " label="Location" variant="outlined"  fullWidth required />
+                    <Grid item xs={6} className="results-search-item" >
+     
+                   
+                    <TextField style={{backgroundColor:"white"}} id="search-in-results" placeholder="Where Do You Want To Live Next?"  variant="outlined"  fullWidth required />
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={2} className="results-search-item">
                     <Button className="search-btn" type="submit" variant="contained" color="primary"  fullWidth>Rooms</Button>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={2} className="results-search-item">
                     <Button className="search-btn" type="submit" variant="contained" color="primary"  fullWidth>Price</Button>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={2} className="results-search-item">
                     <Button className="search-btn" type="submit" variant="contained" color="primary"  fullWidth>Find Now!</Button>
                     </Grid>
            
@@ -34,15 +37,7 @@ function Results() {
                 <h1 className="result_title">Search Results</h1>
             </Grid>
 
-            <Grid item xs={4} style={{color:"white",display:"block"}}>
-                <h1 className="result_title">Search Results</h1>
-            </Grid>
-            <Grid item xs={4} style={{color:"white",display:"block"}}>
-                <h1 className="result_title">Search Results</h1>
-            </Grid>
-            <Grid item xs={4} style={{color:"white",display:"block"}}>
-                <h1 className="result_title">Search Results</h1>
-            </Grid>
+           
         
         </Grid>
        
