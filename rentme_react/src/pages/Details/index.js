@@ -65,9 +65,7 @@ function Details() {
                         </Grid>
 
                         <Grid item xs={12}>
-                        
                             <Button className="request-btn" type="submit" variant="contained" color="primary"  fullWidth> <b>Request Tour</b> </Button>
-
                         </Grid>
 
                         <Grid item xs={12}>
