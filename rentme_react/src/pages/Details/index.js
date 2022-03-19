@@ -1,5 +1,6 @@
 import Navbar from '../../components/Navbar'
 import ImagesCarousel from '../../components/ImagesCarousel'
+import TourModal from '../../components/TourModal'
 
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
 import { FaFacebookSquare,FaInstagram,FaTwitterSquare,BsSearch,FaBed,FaBath } from "react-icons/fa";
@@ -74,6 +75,13 @@ function Details() {
                         </p>
                       
                         </Grid>
+
+                        <Grid item xs={12}>
+
+                            <TourModal />
+
+                        </Grid>
+
 
 
                     </Grid>
