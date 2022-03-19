@@ -10,7 +10,7 @@ function SignInForm() {
   return (
     <div > 
       <Grid  style={{margin: "20% 5%"}}>
-        <Card style={{ maxWidth: 450, padding: "10px 5px", margin: "0 auto", backgroundColor:"#DEB841", borderRadius:"20px"}}>
+        <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 auto", backgroundColor:"#DEB841", borderRadius:"20px"}}>
           <CardContent>
           <Typography gutterBottom variant="p">
             Welcome to <b>RentMe</b>

@@ -39,7 +39,7 @@ function Results() {
             </Grid>
 
             <Grid item xs={12} style={{color:"white",display:"block"}}>
-               <ApartmentCard />
+               <ApartmentCard  />
             </Grid>
 
 

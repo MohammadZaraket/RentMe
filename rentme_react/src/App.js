@@ -8,6 +8,7 @@ import Terms from "./pages/Terms";
 import SignUp from "./pages/SignUp";
 import Main from "./pages/Main";
 import Results from "./pages/Results";
+import Details from "./pages/Details";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="Terms" element={<Terms />} />
                 <Route path="SignUp" element={<SignUp />} />
                 <Route path="Results" element={<Results />} />
+                <Route path="Details" element={<Details />} />
             </Routes>
         </div>
     );
