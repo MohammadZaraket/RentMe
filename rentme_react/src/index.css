@@ -200,3 +200,77 @@ body, html {
   line-height: 21px !important;
 
 }
+
+
+
+
+
+/* Details Page Styling*/
+
+
+.details-title{
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 47px;
+  color: #FFFFFF;
+}
+
+.line{
+
+  margin: 20px 0px ;
+  border: 1px solid #808080;
+
+}
+.details-price{
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 50px;
+  color: #DEB841;
+  margin-bottom: 1%;
+}
+
+
+.details-space{
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 38px;
+  color: #FFFFFF;
+}
+
+.details-description{
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #CCCCCC;
+  margin-bottom: 2%;
+}
+
+.agent{
+
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.agent-name{
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: white;
+  margin-bottom: 2%;
+}
+
+.request-btn{
+  background: #DEB841 !important;
+  box-shadow: 0px 4px 19px rgba(119, 147, 65, 0.3) !important;
+  border-radius: 10px !important;
+  margin-bottom: 5% !important;
+}
