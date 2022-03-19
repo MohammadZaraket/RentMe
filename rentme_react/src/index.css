@@ -122,7 +122,7 @@ body, html {
 .Result-background{
 
   background-color:rgba(55, 50, 62, 0.7);
-  height: 100vh;
+  height: 100%;
 
 }
 
@@ -152,4 +152,51 @@ body, html {
 .results-search-item{
 
   padding-right: 10px;
+}
+
+
+
+
+
+
+
+/* Apartment Card Styling*/
+
+
+.apartment-price{
+
+  font-weight: 700 !important;
+  font-size: 25px !important;
+  line-height: 30px !important;
+  color: #DE9E36;
+
+}
+
+.apartment-space{
+
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  line-height: 23px !important;
+  color: #37323E;
+}
+
+
+.css-46bh2p-MuiCardContent-root {
+  padding: 0 16px !important;
+}
+
+
+/*#apartment-title{
+
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  line-height: 21px !important;
+}*/
+
+.css-1qvr50w-MuiTypography-root {
+
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  line-height: 21px !important;
+
 }
