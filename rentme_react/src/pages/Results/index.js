@@ -1,4 +1,5 @@
 import Navbar from '../../components/Navbar'
+import ApartmentCard from '../../components/ApartmentCard'
 
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
 import { FaFacebookSquare,FaInstagram,FaTwitterSquare,FaSistrix } from "react-icons/fa";
@@ -36,6 +37,11 @@ function Results() {
             <Grid item xs={12} style={{color:"white",display:"block"}}>
                 <h1 className="result_title">Search Results</h1>
             </Grid>
+
+            <Grid item xs={12} style={{color:"white",display:"block"}}>
+               <ApartmentCard />
+            </Grid>
+
 
            
         
