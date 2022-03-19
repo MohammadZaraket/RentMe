@@ -1,4 +1,5 @@
 import Navbar from '../../components/Navbar'
+import ImagesCarousel from '../../components/ImagesCarousel'
 
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
 import { FaFacebookSquare,FaInstagram,FaTwitterSquare,BsSearch,FaBed,FaBath } from "react-icons/fa";
@@ -12,13 +13,11 @@ function Details() {
         <Navbar />
 
             <Grid container spacing={2} style={{padding:"4%"}}>
-                <Grid item xs={6}>
-                    <Typography>
-                    <h1>testgrid6testestestjjesttest </h1>
-                    </Typography>
+                <Grid item xs={12} sm={6}>
+                   <ImagesCarousel />
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={6}>
                     <Grid container spacing={1}>
                         <Grid item xs={12}>
                             <h1 className='details-title'>Apartment Title Here</h1>
