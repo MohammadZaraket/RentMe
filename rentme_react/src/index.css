@@ -273,4 +273,29 @@ body, html {
   box-shadow: 0px 4px 19px rgba(119, 147, 65, 0.3) !important;
   border-radius: 10px !important;
   margin-bottom: 5% !important;
+  text-transform: capitalize !important;
 }
+
+
+
+
+
+
+
+
+/* Modal Styling*/
+
+
+.modal-field{
+
+  margin-bottom: 30px !important;
+  /*padding-right: 50px !important;*/
+  background: #FFFFFF;
+  box-sizing: border-box;
+}
+
+/*.request-btn{
+  background-color: #DEB841;
+  color: white !important;
+  padding: 10px !important;
+}*/
