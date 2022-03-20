@@ -2,11 +2,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ApartmentsController;
-use App\Http\Controllers\ReviewsController;
-use App\Http\Controllers\ImagesController;
-use App\Http\Controllers\ToursController;
-use App\Http\Controllers\AvailabilitiesController;
+use App\Http\Controllers\ApartmentController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\TourController;
+use App\Http\Controllers\AvailabilityController;
 
 
 /*
@@ -30,35 +30,35 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 
 
-    Route::post('/addApartment', [ApartmentsController::class, 'store']);
-    Route::post('/showApartment', [ApartmentsController::class, 'show']);
-    Route::post('/updateApartment', [ApartmentsController::class, 'update']);
-    Route::post('/deleteApartment', [ApartmentsController::class, 'destroy']);
-    Route::post('/searchApartment', [ApartmentsController::class, 'search']);
+    Route::post('/addApartment', [ApartmentController::class, 'store']);
+    Route::post('/showApartment', [ApartmentController::class, 'show']);
+    Route::post('/updateApartment', [ApartmentController::class, 'update']);
+    Route::post('/deleteApartment', [ApartmentController::class, 'destroy']);
+    Route::post('/searchApartment', [ApartmentController::class, 'search']);
 
 
 
-    Route::post('/showImages', [ImagesController::class, 'show']);
-    Route::post('/addImages', [ImagesController::class, 'update']);
-
-    
-
-    Route::post('/availableDate', [AvailabilitiesController::class, 'showDate']);
-    Route::post('/availableTime', [AvailabilitiesController::class, 'showTime']);
-    Route::post('/deleteAvailable', [AvailabilitiesController::class, 'destroy']);
-    Route::post('/addAvailable', [AvailabilitiesController::class, 'update']);
-
+    Route::post('/showImages', [ImageController::class, 'show']);
+    Route::post('/addImages', [ImageController::class, 'update']);
 
     
+
+    Route::post('/availableDate', [AvailabilityController::class, 'showDate']);
+    Route::post('/availableTime', [AvailabilityController::class, 'showTime']);
+    Route::post('/deleteAvailable', [AvailabilityController::class, 'destroy']);
+    Route::post('/addAvailable', [AvailabilityController::class, 'update']);
+
+
     
-    Route::post('/showTour', [ToursController::class, 'show']);
-    Route::post('/addTour', [ToursController::class, 'store']);
-    Route::post('/acceptTour', [ToursController::class, 'update']);
+    
+    Route::post('/showTour', [TourController::class, 'show']);
+    Route::post('/addTour', [TourController::class, 'store']);
+    Route::post('/acceptTour', [TourController::class, 'update']);
     
 
-    Route::post('/addReview', [ReviewsController::class, 'create']);
-    Route::post('/showReview', [ReviewsController::class, 'show']);
-    Route::post('/deleteReview', [ReviewsController::class, 'destroy']);
+    Route::post('/addReview', [ReviewController::class, 'create']);
+    Route::post('/showReview', [ReviewController::class, 'show']);
+    Route::post('/deleteReview', [ReviewController::class, 'destroy']);
     
 
  

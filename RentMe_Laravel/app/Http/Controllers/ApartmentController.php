@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Apartment;
+use App\Models\Image;
+use App\Models\Availability;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class ApartmentController extends Controller
 {
@@ -55,7 +58,6 @@ class ApartmentController extends Controller
                             ->orderBy('distance', 'asc')
                             ->offset(0)
                             ->limit(20);
-                            //->paginate()
                             $result = $query->get();
 
                         }
@@ -133,7 +135,6 @@ class ApartmentController extends Controller
                 'description' => 'required',
                 'longitude' => 'required|string|between:2,100',
                 'latitude' => 'required|string|between:2,100',
-                'user_id' => 'required',
                 'imgs' => 'required',
 
                 'date' => 'required',
@@ -143,8 +144,8 @@ class ApartmentController extends Controller
             if($validator->fails()){
                 return response()->json(['status' =>$validator->errors()], 400);
             }
-            $apartments = apartments::create(array_merge(
-                $validator->validated(),
+            $apartments = Apartment::create(array_merge(
+                $validator->validated(),['user_id' =>Auth::user()->id]
             ));
             
             if( $apartments->id){
@@ -161,11 +162,17 @@ class ApartmentController extends Controller
                     $file_name =  $randomNum."__".$uniqid . '.'.$image_type;
                     $file = $folderPath . $file_name;
                     file_put_contents($file, $image_base64);
-                    DB::table('images')->insert([
+
+                    $images = Image::create(array_merge(
+                        $validator->validated(),
+                        ['image'=>$file_name],['apartment_id'=>$apartments->id]
+
+                    ));
+                    /*DB::table('images')->insert([
                         'image'=>$file_name,
                         'apartment_id'=>$apartments->id,
                       
-                    ]);
+                    ]);*/
                 }
 
                     $date = $request->get('date');  
@@ -185,11 +192,19 @@ class ApartmentController extends Controller
             
                     foreach($date as $day){
                         foreach($ReturnArray as $timeslot){
-                            DB::table('availabilities')->insert([
+
+                            $availabilities = Availability::create(array_merge(
+                                $validator->validated(),
+                                ['date'=>$day], ['apartment_id'=>$apartments->id], ['time'=>$timeslot]
+                            ));
+
+                            /*DB::table('availabilities')->insert([
                                 'apartment_id'=>$apartments->id,
                                 'date'=>$day,
                                 'time'=>$timeslot,
-                            ]);
+                            ]);*/
+
+
                          }
                     }
 
@@ -205,12 +220,11 @@ class ApartmentController extends Controller
      * @param  \App\Models\apartments  $apartments
      * @return \Illuminate\Http\Response
      */
-    public function show(apartments $apartments,Request $request)
+    public function show(Request $request)
     {
         /*$apartments = DB::table('apartments')->where('user_id', '1');
         return response()->json($apartments);*/
-{
-                $validator = Validator::make($request->all(), [
+               /* $validator = Validator::make($request->all(), [
                     'user_id' => 'required',
                 ]);
                 if ($validator->fails()) {
@@ -228,7 +242,10 @@ class ApartmentController extends Controller
                 }
                 return response()->json(['status'=>true,'message'=>"No data found!"]);
 
-            }
+            }*/
+            $user = Auth::user();
+            $apartments = $user->UserApartments()->get();
+            return response()->json(["Apartments"=> $apartments]);
     }
 
     /**
@@ -306,12 +323,16 @@ class ApartmentController extends Controller
             }
 
             $id = $request->get('id');
-            $deleted = DB::table('apartments')->where('id', '=', $id)->delete();
+            $apartment = Apartment::find($id);
+            $apartment->delete();
+           /* $id = $request->get('id');
+            $deleted = DB::table('apartments')->where('id', '=', $id)->delete();*/
 
-            if($deleted){
-                return response()->json(['status'=>true,'message'=>"Apartment Deleted Successfully!"]);
-            }
-            return response()->json(['status'=>true,'message'=>"No data found!"]);
+            //if($deleted){}
+
+            return response()->json(['status'=>true,'message'=>"Apartment Deleted Successfully!"],201);
+            
+            //return response()->json(['status'=>true,'message'=>"No data found!"]);
 
         }
     }
