@@ -19,6 +19,7 @@ class CreateAvailabilitiesTable extends Migration
             $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade');
             $table->string('date');
             $table->string('time');
+            $table->string('taken')->default('0');
             $table->timestamps();
         });
     }
