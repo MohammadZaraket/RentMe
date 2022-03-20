@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\availabilities;
+use App\Models\Availability;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
-class AvailabilitiesController extends Controller
+class AvailabilityController extends Controller
 {
     /**
      * Display a listing of the resource.

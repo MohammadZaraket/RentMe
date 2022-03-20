@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\images;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class ImagesController extends Controller
+class ImageController extends Controller
 {
     /**
      * Display a listing of the resource.

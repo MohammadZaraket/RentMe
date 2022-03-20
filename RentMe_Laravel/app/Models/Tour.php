@@ -6,12 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class images extends Model
+class Tour extends Model
 {
     use HasFactory, Notifiable;
    
     protected $fillable = [
-        'image',
+        'name',
+        'phone',
+        'date',
+        'time',
         'apartment_id',
+        'approved',
+ 
     ];
 }

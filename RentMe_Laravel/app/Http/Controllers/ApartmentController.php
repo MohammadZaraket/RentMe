@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\apartments;
+use App\Models\Apartment;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
-class ApartmentsController extends Controller
+class ApartmentController extends Controller
 {
     /**
      * Display a listing of the resource.

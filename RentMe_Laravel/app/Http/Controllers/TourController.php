@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tours;
+use App\Models\Tour;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
-class ToursController extends Controller
+class TourController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\reviews;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\DB;
-class ReviewsController extends Controller
+
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
