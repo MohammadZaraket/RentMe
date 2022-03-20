@@ -15,14 +15,10 @@ class CreateAvailabilitiesTable extends Migration
     {
         Schema::create('availabilities', function (Blueprint $table) {
             $table->id();
-
-
             $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade');
-
             $table->string('date');
             $table->string('time');
-
             $table->timestamps();
         });
     }
