@@ -21,4 +21,14 @@ class Apartment extends Model
         'latitude',
         'user_id',
     ];
+
+
+
+
+       
+    public function UserApartment() {
+
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }

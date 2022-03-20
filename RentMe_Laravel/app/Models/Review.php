@@ -16,4 +16,12 @@ class Review extends Model
         'user_id',
         'apartment_id',
     ];
+
+
+
+    public function UserReview() {
+
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }
