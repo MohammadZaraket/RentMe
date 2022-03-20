@@ -19,4 +19,11 @@ class Tour extends Model
         'approved',
  
     ];
+
+
+
+    public function ApartmentTour() {
+
+        return $this->belongsTo(Apartment::class, 'apartment_id');
+    }
 }

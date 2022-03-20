@@ -24,4 +24,11 @@ class Review extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+
+
+    public function ApartmentReview() {
+
+        return $this->belongsTo(Apartment::class, 'apartment_id');
+    }
+
 }

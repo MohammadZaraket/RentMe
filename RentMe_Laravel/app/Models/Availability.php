@@ -15,4 +15,11 @@ class Avalability extends Model
         'time',
         'apartment_id',
     ];
+
+
+
+    public function ApartmentAvailability() {
+
+        return $this->belongsTo(Apartment::class, 'apartment_id');
+    }
 }
