@@ -19,7 +19,7 @@ function ImagesCarousel() {
   }
   return (
     <div className="App">
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center"}}>
         <div style={{
           padding: "0 20px"
         }}>

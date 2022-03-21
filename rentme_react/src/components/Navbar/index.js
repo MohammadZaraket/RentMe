@@ -43,10 +43,10 @@ const Navbar = () => {
           <Typography className="homebtn"
             variant="h6"
             noWrap
-            component="div"
+            component="button"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-          >
-            RentMe
+            onClick= {() => navigate("/Main")}>
+                RentMe
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -89,10 +89,10 @@ const Navbar = () => {
           <Typography className="homebtn"
             variant="h6"
             noWrap
-            component="div"
+            component="button"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }
            }
-          >
+           onClick= {() => navigate("/Main")}>
             RentMe
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className="navcontent">

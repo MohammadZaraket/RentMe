@@ -26,14 +26,14 @@ function Details() {
                         </Grid>
 
                         <Grid item xs={2}>
-                            <Typography variant="body2" color="text.secondary">
-                                4 <FaBed size={30}/>
+                            <Typography variant="body2" color="text.secondary" style={{fontSize:"40px"}}>
+                                4 <FaBed size={40}/>
                             </Typography>
                         </Grid>
     
                         <Grid item xs={2}>
-                            <Typography variant="body2" color="text.secondary">
-                                2 <FaBath size={30} />
+                            <Typography variant="body2" color="text.secondary" style={{fontSize:"40px"}}>
+                                2 <FaBath size={40} />
                             </Typography>
                         </Grid>
 

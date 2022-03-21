@@ -33,9 +33,8 @@ function ApartmentCard(props) {
 
 
 
-  if(props.name=='sara')
+  if(!props.editable)
   {
-
     return (
         <Card sx={{ maxWidth: 345 }} >
             <CardMedia
@@ -128,27 +127,47 @@ function ApartmentCard(props) {
           <CardContent>
           <TextField  value="Apartment Title Here" variant="outlined" required />
           <Grid container spacing={1}>
-                  <Grid item xs={12}  style={{display: "flex", alignItems: "center"}}>
-                    <Typography variant="body2" color="text.secondary">
-                    <TextField  value="4" variant="outlined" required /> <FaBed size={40}/>
+                  <Grid item xs={6}>
+                    <Typography variant="body2" color="text.secondary" style={{display: "flex", alignItems: "center"}}>
+                        <Grid item xs={6}>
+                            <TextField  value="4" variant="outlined" required /> 
+                        </Grid>
+                        <Grid item xs={6}>
+                            <FaBed size={50}/>
+                        </Grid>
                     </Typography>
                   </Grid>
         
-                  <Grid item xs={12} style={{display: "flex", alignItems: "center"}}>
-                    <Typography variant="body2" color="text.secondary">
-                    <TextField  value="2" variant="outlined" required /> <FaBath size={40} />
+                  <Grid item xs={6}>
+                    <Typography variant="body2" color="text.secondary"  style={{display: "flex", alignItems: "center"}}>
+                        <Grid item xs={6}>
+                            <TextField  value="2" variant="outlined" required /> 
+                        </Grid>
+                        <Grid item xs={6}>
+                            <FaBath size={50} />
+                        </Grid>
                     </Typography>
                   </Grid>
     
-                  <Grid item xs={12}  style={{display: "flex", alignItems: "center"}}>
-                    <Typography variant="body2" className="apartment-space">
-                    <TextField  value="Space" variant="outlined" required />Here
+                  <Grid item xs={6}>
+                    <Typography variant="body2" className="apartment-space" style={{display: "flex", alignItems: "center"}}>
+                        <Grid item xs={6}>
+                            <TextField  value="Space" variant="outlined" required />
+                        </Grid>
+                        <Grid item xs={6}>
+                            Here
+                        </Grid>
                     </Typography>
                   </Grid>
     
-                  <Grid item xs={12}  style={{display: "flex", alignItems: "center"}}>
-                    <Typography variant="body2"  className="apartment-price">
-                        <TextField  value="Price" variant="outlined" required />Here
+                  <Grid item xs={6}>
+                    <Typography variant="body2"  className="apartment-price" style={{display: "flex", alignItems: "center"}}>
+                        <Grid item xs={6}>
+                            <TextField  value="Price" variant="outlined" required />
+                        </Grid>
+                        <Grid item xs={6}>
+                            Here
+                        </Grid>
                     </Typography>
                   </Grid>
     
@@ -167,13 +186,9 @@ function ApartmentCard(props) {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <Typography paragraph>Description:</Typography>
+              <Typography paragraph><b>Description:</b></Typography>
               <Typography paragraph>
-                Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-                aside for 10 minutes.large plate and set aside, leaving chicken and chorizo in the pan. Add
-                pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-                stirring often until thickened and fragrant, about 10 minutes. Add
-                saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+                <TextField multiline value= "Heat 1/2 cup of the broth in a pot until simmering, add saffron and se aside for 10 minutes.large plate and set aside, leaving chicken and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil." variant="outlined" fullWidth required /> 
               </Typography>
             </CardContent>
           </Collapse>

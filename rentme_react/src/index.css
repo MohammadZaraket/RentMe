@@ -96,7 +96,10 @@ body, html {
 
 
 .homebtn {
-  color: #DEB841;
+  color: #DEB841 !important;
+  background-color: #37323E !important;
+  border-width: 0px;
+  cursor: pointer;
 }
 
 /*.addbtn{
@@ -276,7 +279,13 @@ body, html {
   text-transform: capitalize !important;
 }
 
+/*Images Carousel*/
 
+
+.thumbnails {
+
+  justify-content: center;
+}
 
 
 

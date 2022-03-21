@@ -19,7 +19,7 @@ function Profile() {
             </Grid>
 
             <Grid item xs={12} style={{color:"white",display:"block"}}>
-               <ApartmentCard  />
+               <ApartmentCard editable={true} />
             </Grid>
 
 
