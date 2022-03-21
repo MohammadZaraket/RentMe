@@ -9,32 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class TourController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         {
@@ -62,12 +37,7 @@ class TourController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\tours  $tours
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(tours $tours, Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -93,24 +63,9 @@ class TourController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\tours  $tours
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(tours $tours)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\tours  $tours
-     * @return \Illuminate\Http\Response
-     */
+    // When apartment Owenr Approves the tour request
+
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -120,10 +75,9 @@ class TourController extends Controller
             return response()->json(['status'=>false,'message'=>$validator->errors()]);
         }
         $id = $request->get('id');
-
-        $result = DB::table('tours')
-        ->where('id','=',$id)
-        ->update(['approved' => 'yes']);
+        $tour = Tour::find(id);
+        $tour->approved = '1';
+        $tour->save();
 
         if($result){
             return response()->json(['status'=>true,'message'=>"Tour Accepted!"]);
@@ -131,14 +85,5 @@ class TourController extends Controller
         return response()->json(['status'=>true,'message'=>"No data found!"]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\tours  $tours
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(tours $tours)
-    {
-        //
-    }
+ 
 }

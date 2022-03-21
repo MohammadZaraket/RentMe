@@ -12,22 +12,7 @@ use Auth;
 
 class ApartmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function search(Request $request)
     {
         {
@@ -116,15 +101,9 @@ class ApartmentController extends Controller
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
         {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|between:2,100',
@@ -168,11 +147,6 @@ class ApartmentController extends Controller
                         ['image'=>$file_name],['apartment_id'=>$apartments->id]
 
                     ));
-                    /*DB::table('images')->insert([
-                        'image'=>$file_name,
-                        'apartment_id'=>$apartments->id,
-                      
-                    ]);*/
                 }
 
                     $date = $request->get('date');  
@@ -197,76 +171,24 @@ class ApartmentController extends Controller
                                 $validator->validated(),
                                 ['date'=>$day], ['apartment_id'=>$apartments->id], ['time'=>$timeslot]
                             ));
-
-                            /*DB::table('availabilities')->insert([
-                                'apartment_id'=>$apartments->id,
-                                'date'=>$day,
-                                'time'=>$timeslot,
-                            ]);*/
-
-
                          }
                     }
-
                     return response()->json(['status' => 'Your Apartment Have Been Added!'], 201);
             }
     
         }   
 }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\apartments  $apartments
-     * @return \Illuminate\Http\Response
-     */
+
+    // Show the apartments of the user
     public function show(Request $request)
     {
-        /*$apartments = DB::table('apartments')->where('user_id', '1');
-        return response()->json($apartments);*/
-               /* $validator = Validator::make($request->all(), [
-                    'user_id' => 'required',
-                ]);
-                if ($validator->fails()) {
-                    return response()->json(['status'=>false,'message'=>$validator->errors()]);
-                }
-                $user_id = $request->get('user_id');
-
-                $result = DB::table('apartments')
-                ->where('user_id','=',$user_id)
-                ->select('apartments.*')
-                ->get();
-
-                if(count($result)>0){
-                    return response()->json($result);
-                }
-                return response()->json(['status'=>true,'message'=>"No data found!"]);
-
-            }*/
             $user = Auth::user();
             $apartments = $user->UserApartments()->get();
-            return response()->json(["Apartments"=> $apartments]);
+            return response()->json(["Apartments"=> $apartments],201);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\apartments  $apartments
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(apartments $apartments,Request $request)
-    {
 
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\apartments  $apartments
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, apartments $apartments)
     {
         {
@@ -294,24 +216,27 @@ class ApartmentController extends Controller
             $longitude = $request->get('longitude');
             $latitude = $request->get('latitude');
 
-            $result = DB::table('apartments')
+            /*$result = DB::table('apartments')
             ->where('id','=',$id)
             ->update(['name' => $name, 'bathrooms' => $bathrooms,'bedrooms' => $bedrooms,'price' => $price,'space' => $space,'description' => $description,'longitude' => $longitude,'latitude' => $latitude]);
+            */
+            $apartment = Apartment::find(id);
+            $apartment->name = $name;
+            $apartment->bedrooms = $bedrooms;
+            $apartment->bathrooms = $bathrooms;
+            $apartment->price = $price;
+            $apartment->space = $space;
+            $apartment->description = $description;
+            $apartment->longitude = $longitude;
+            $apartment->latitude = $latitude;
+            $tour->save();
 
-            if($result){
-                return response()->json(['status'=>true,'message'=>"Info Edited Successfully!"]);
-            }
-            return response()->json(['status'=>true,'message'=>"No data found!"]);
+            return response()->json(['status'=>true,'message'=>"Info Edited Successfully!"],201);
 
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\apartments  $apartments
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Request $request)
     {
         {
@@ -325,14 +250,8 @@ class ApartmentController extends Controller
             $id = $request->get('id');
             $apartment = Apartment::find($id);
             $apartment->delete();
-           /* $id = $request->get('id');
-            $deleted = DB::table('apartments')->where('id', '=', $id)->delete();*/
-
-            //if($deleted){}
 
             return response()->json(['status'=>true,'message'=>"Apartment Deleted Successfully!"],201);
-            
-            //return response()->json(['status'=>true,'message'=>"No data found!"]);
 
         }
     }
