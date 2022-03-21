@@ -30,7 +30,7 @@ export default function TourModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button className="request-btn" type="submit" variant="contained" color="primary" onClick={handleOpen}  fullWidth> <b>Request Tour</b>  </Button>
       <Modal open={open} onClose={handleClose} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
         <Box sx={{ ...style, width: 775, height:575 }}>
          

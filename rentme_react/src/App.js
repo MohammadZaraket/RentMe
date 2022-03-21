@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import Main from "./pages/Main";
 import Results from "./pages/Results";
 import Details from "./pages/Details";
+import Profile from "./pages/Profile";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                 <Route path="SignUp" element={<SignUp />} />
                 <Route path="Results" element={<Results />} />
                 <Route path="Details" element={<Details />} />
+                <Route path="Profile" element={<Profile />} />
             </Routes>
         </div>
     );
