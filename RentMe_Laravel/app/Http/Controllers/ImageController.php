@@ -10,45 +10,10 @@ use Carbon\Carbon;
 
 class ImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
     
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    // Show images of specific Apartment
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\images  $images
-     * @return \Illuminate\Http\Response
-     */
     public function show(Request $request)
     {
        
@@ -59,12 +24,9 @@ class ImageController extends Controller
         if ($validator->fails()) {
             return response()->json(['status'=>false,'message'=>$validator->errors()]);
         }
-        $apartment_id = $request->get('apartment_id');
 
-        $result = DB::table('images')
-        ->where('apartment_id','=',$apartment_id)
-        ->select('images.image')
-        ->get();
+        $apartment_id = $request->get('apartment_id');
+        $result = Image::where('apartment_id', $apartment_id)->get();
 
         if(count($result)>0){
             return response()->json($result);
@@ -72,24 +34,11 @@ class ImageController extends Controller
         return response()->json(['status'=>true,'message'=>"No Images found!"]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\images  $images
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(images $images)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\images  $images
-     * @return \Illuminate\Http\Response
-     */
+
+
+    // Add New images of specific Apartment
+
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -102,11 +51,7 @@ class ImageController extends Controller
         }
         
         $apartment_id = $request->get('apartment_id');
-        $result = DB::table('images')
-        ->where('apartment_id','=',$apartment_id)
-        ->select('images.image')
-        ->get();
-        
+        $result = Image::where('apartment_id', $apartment_id)->get(['image']);
 
         if(count($result) + count($request->get('imgs')) <= 3 ){
         
@@ -138,14 +83,5 @@ class ImageController extends Controller
          return response()->json(['status'=>true,'message'=>"Image Added Successfully!"]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\images  $images
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(images $images)
-    {
-        //
-    }
+
 }
