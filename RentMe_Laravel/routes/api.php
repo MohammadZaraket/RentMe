@@ -9,58 +9,60 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\AvailabilityController;
 
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-], function ($router) {
+Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
+
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 
-
-    Route::post('/addApartment', [ApartmentController::class, 'store']);
-    Route::post('/showApartment', [ApartmentController::class, 'show']);
-    Route::post('/updateApartment', [ApartmentController::class, 'update']);
-    Route::post('/deleteApartment', [ApartmentController::class, 'destroy']);
-    Route::post('/searchApartment', [ApartmentController::class, 'search']);
+});
 
 
+Route::group(['prefix' => 'Apartment'], function () {
 
-    Route::post('/showImages', [ImageController::class, 'show']);
-    Route::post('/addImages', [ImageController::class, 'update']);
+    Route::post('/add', [ApartmentController::class, 'store']);
+    Route::post('/show', [ApartmentController::class, 'show']);
+    Route::post('/update', [ApartmentController::class, 'update']);
+    Route::post('/delete', [ApartmentController::class, 'destroy']);
+    Route::post('/search', [ApartmentController::class, 'search']);
 
-    
-
-    Route::post('/availableDate', [AvailabilityController::class, 'showDate']);
-    Route::post('/availableTime', [AvailabilityController::class, 'showTime']);
-    Route::post('/deleteAvailable', [AvailabilityController::class, 'destroy']);
-    Route::post('/addAvailable', [AvailabilityController::class, 'update']);
+});
 
 
-    
-    
-    Route::post('/showTour', [TourController::class, 'show']);
-    Route::post('/addTour', [TourController::class, 'store']);
-    Route::post('/acceptTour', [TourController::class, 'update']);
-    
+Route::group(['prefix' => 'Images'], function () {
 
-    Route::post('/addReview', [ReviewController::class, 'create']);
-    Route::post('/showReview', [ReviewController::class, 'show']);
-    Route::post('/deleteReview', [ReviewController::class, 'destroy']);
-    
+    Route::post('/show', [ImageController::class, 'show']);
+    Route::post('/add', [ImageController::class, 'update']);
 
- 
+});
+
+
+Route::group(['prefix' => 'Available'], function () {
+
+    Route::post('/Date', [AvailabilityController::class, 'showDate']);
+    Route::post('/Time', [AvailabilityController::class, 'showTime']);
+    Route::post('/delete', [AvailabilityController::class, 'destroy']);
+    Route::post('/add', [AvailabilityController::class, 'update']);
+
+});
+
+
+
+Route::group(['prefix' => 'Tour'], function () {
+
+    Route::post('/show', [TourController::class, 'show']);
+    Route::post('/add', [TourController::class, 'store']);
+    Route::post('/accept', [TourController::class, 'update']);
+
+});
+
+
+Route::group(['prefix' => 'Review'], function () {
+
+    Route::post('/add', [ReviewController::class, 'create']);
+    Route::post('/show', [ReviewController::class, 'show']);
+    Route::post('/delete', [ReviewController::class, 'destroy']);
 
 });

@@ -12,6 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import {NAVBAR_ROUTE} from "../../routes/constants";
 import { useNavigate } from 'react-router-dom';
+import AddApartment from '../AddApartment';
 
 
 const Navbar = () => {
@@ -108,9 +109,9 @@ const Navbar = () => {
               </Button>
             ))}
 
-            <Button id="addbtn">
-                Add Apartment
-            </Button>
+            
+            <AddApartment />
+            
           </Box>
 
         </Toolbar>
