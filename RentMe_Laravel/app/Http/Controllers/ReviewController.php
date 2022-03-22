@@ -44,23 +44,8 @@ class ReviewController extends Controller
             }
             $apartment_id = $request->get('apartment_id');
             $apartment =Apartment::find($apartment_id);
-            $reviews = $apartment->ApartmentReviews()->get();
+            $reviews = $apartment->ApartmentReviews()->with("UserReview")->get();
             return response()->json(["reviews"=> $reviews]);
-
-           /* $result = DB::table('reviews')
-            ->join('users', 'users.id', '=', 'reviews.user_id')
-            ->where('apartment_id','=',$apartment_id)
-            ->select('reviews.rating','reviews.review','users.first_name','users.last_name')
-            ->get();
-
-            if(count($result)>0){
-                return response()->json($result);
-            }
-            else{
-                return response()->json(['status'=>true,'message'=>"No Reviews found!"]);
-            }*/
-    
-        
     }
 
 
