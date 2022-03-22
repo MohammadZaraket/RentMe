@@ -1,12 +1,20 @@
 import Navbar from '../../components/Navbar'
 import ImagesCarousel from '../../components/ImagesCarousel'
 import TourModal from '../../components/TourModal'
+import Map from '../../components/Map'
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
 import { FaFacebookSquare,FaInstagram,FaTwitterSquare,BsSearch,FaBed,FaBath } from "react-icons/fa";
 import InputAdornment from '@mui/material/InputAdornment';
 
 function Details() {
+
+    const location = {
+        address: '1600 Amphitheatre Parkway, Mountain View, california.',
+        lat: 37.42216,
+        lng: -122.08427,
+      }
 
   return (
 
@@ -75,6 +83,9 @@ function Details() {
                             Location
                         </p>
                       
+                        <Map location={location} zoomLevel={17} /> 
+                        
+                            
                         </Grid>
 
 
