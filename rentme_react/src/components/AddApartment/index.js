@@ -45,7 +45,7 @@ export default function AddApartment() {
         
         </Grid>
 
-          <Grid container spacing={1} style={{padding:"5% 0%"}}>
+          <Grid container spacing={1} style={{padding:"2% 0%"}}>
 
             <Grid item xs={12} sm={6}>
               <Grid container spacing={1}>
@@ -106,9 +106,9 @@ export default function AddApartment() {
                
               <Grid item xs={12}>
                   <Typography variant="body2"  component="p" gutterBottom>
-                    <b>Price </b> 
+                    <b>Description </b> 
                   </Typography> 
-                  <TextField className="modal-field" placeholder="Price"  variant="outlined"  fullWidth required />
+                  <TextField className="modal-field" placeholder="Description"  variant="outlined"  fullWidth required />
                 </Grid>
               </Grid>
             </Grid>

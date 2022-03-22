@@ -45,7 +45,7 @@ class ReviewController extends Controller
             $apartment_id = $request->get('apartment_id');
             $apartment =Apartment::find($apartment_id);
             $reviews = $apartment->ApartmentReviews()->get();
-            return response()->json(["reviews"=> $user]);
+            return response()->json(["reviews"=> $reviews]);
 
            /* $result = DB::table('reviews')
             ->join('users', 'users.id', '=', 'reviews.user_id')

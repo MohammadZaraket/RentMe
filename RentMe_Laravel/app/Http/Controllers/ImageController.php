@@ -68,11 +68,12 @@ class ImageController extends Controller
                 $file_name =  $randomNum."__".$uniqid . '.'.$image_type;
                 $file = $folderPath . $file_name;
                 file_put_contents($file, $image_base64);
-                DB::table('images')->insert([
-                    'image'=>$file_name,
-                    'apartment_id'=>$apartment_id,
-                  
-                ]);
+
+                $images = Image::create(array_merge(
+                    $validator->validated(),
+                    ['image'=>$file_name],['apartment_id'=>$apartment_id]
+
+                ));
          }
          }
          else{
