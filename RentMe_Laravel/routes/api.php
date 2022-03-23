@@ -27,6 +27,8 @@ Route::group(['prefix' => 'apartment'], function () {
     Route::post('/update', [ApartmentController::class, 'update']);
     Route::post('/delete', [ApartmentController::class, 'destroy']);
     Route::post('/search', [ApartmentController::class, 'search']);
+    Route::post('/details', [ApartmentController::class, 'showDetails']);
+
 
 });
 

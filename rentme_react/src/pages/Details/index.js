@@ -7,14 +7,34 @@ import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
 import { FaFacebookSquare,FaInstagram,FaTwitterSquare,BsSearch,FaBed,FaBath } from "react-icons/fa";
 import InputAdornment from '@mui/material/InputAdornment';
+import axios from "axios";
+import React, { useState, useEffect} from 'react';
 
-function Details() {
+function Details($id) {
+
+const [apartment_id, setApartment_id] = useState($id);
+const [apartment, setApartment] = useState('');
 
     const location = {
         address: '1600 Amphitheatre Parkway, Mountain View, california.',
         lat: 37.42216,
         lng: -122.08427,
       }
+
+
+      useEffect(() => {
+
+        getApartmentDetails();
+    
+    },[]);
+    
+    async function  getApartmentDetails(){
+    
+       const credentials = {apartment_id};
+    
+        await axios.post("http://127.0.0.1:8000/api/apartment/search", credentials).then((response)=> {setApartment(response.data);})
+    }
+    
 
   return (
 

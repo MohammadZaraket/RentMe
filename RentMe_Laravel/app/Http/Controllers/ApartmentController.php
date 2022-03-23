@@ -180,6 +180,24 @@ class ApartmentController extends Controller
 }
 
 
+   // Show the details of specific apartment
+
+   public function showDetails(Request $request)
+   {
+    $validator = Validator::make($request->all(), [
+        'apartment_id' => 'required',
+    ]);
+    if ($validator->fails()) {
+        return response()->json(['status'=>false,'message'=>$validator->errors()]);
+    }
+    $apartment_id = $request->get('apartment_id');
+    $apartment =Apartment::find($apartment_id);
+    $detail = $apartment->with("ApartmentImages")->where('id',$apartment_id)->get();
+    echo($detail);
+   /* $detail = $apartment->with("ApartmentImages")->get();
+    return response()->json(["Apartment"=> $detail]);*/
+   }
+
     // Show the apartments of the user
     public function show(Request $request)
     {

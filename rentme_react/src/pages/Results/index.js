@@ -13,8 +13,6 @@ function Results() {
 const [apartments, setApartments] = useState([]);
 
 
-
-
 const [longitude, setLongitude] = useState('-122');
 const [latitude, setLatitude] = useState('37');
 const [bedrooms, setBedrooms] = useState('3');
