@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
@@ -23,7 +24,7 @@ function App() {
                 <Route path="Terms" element={<Terms />} />
                 <Route path="SignUp" element={<SignUp />} />
                 <Route path="Results" element={<Results />} />
-                <Route path="Details" element={<Details />} />
+                <Route path="Details/:id" element={<Details />} />
                 <Route path="Profile" element={<Profile />} />
             </Routes>
         </div>

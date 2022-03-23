@@ -20,6 +20,8 @@ function Main() {
     const [rooms,setRooms] = useState("");
     const [price, setPrice] = useState('');
 
+    const ap ="5";
+
     const saveRooms = (event) => {
         setRooms(event.target.value);
     };
@@ -28,11 +30,12 @@ function Main() {
         setPrice(event.target.value);
       };
 
-    function print() {
+   /* function print() {
         console.log(rooms);
         console.log(price);
-        navigate("/Results");
-    }
+        var ap_id='10';
+        navigate("/Results",route=ap_id);
+    }*/
 
   return (
 
@@ -83,7 +86,7 @@ function Main() {
    
                 </Grid>
                 <Grid item xs={12}>
-                  <Button className="search-btn" type="submit" variant="contained" color="primary" onClick={print} fullWidth>Find Now!</Button>
+                  <Button className="search-btn" type="submit" variant="contained" color="primary"  onClick={() => {navigate('/Results/'+ap);}} fullWidth>Find Now!</Button>
                 </Grid>
                 
                 <div className='iconsdiv'>

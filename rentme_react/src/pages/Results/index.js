@@ -2,22 +2,18 @@ import Navbar from '../../components/Navbar'
 import ApartmentCard from '../../components/ApartmentCard'
 
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
-import { FaFacebookSquare,FaInstagram,FaTwitterSquare,FaSistrix } from "react-icons/fa";
+
 import InputAdornment from '@mui/material/InputAdornment';
 import axios from "axios";
 import React, { useState, useEffect} from 'react';
 
-
 function Results() {
 
 const [apartments, setApartments] = useState([]);
-
-
 const [longitude, setLongitude] = useState('-122');
 const [latitude, setLatitude] = useState('37');
 const [bedrooms, setBedrooms] = useState('3');
 const [price, setPrice] = useState('700');
-
 
 const url = "http://127.0.0.1:8000/api/apartment/search";
 
@@ -35,7 +31,7 @@ async function  getAllApartments(){
 }
 
 
-console.log(apartments);
+//console.log(apartments);
   return (
 
     <div className='Result-background'>
@@ -73,15 +69,6 @@ console.log(apartments);
                             </Grid>
                     ) 
                 })}
-            
-                 
-
-               
-            
-    
-
-
-           
         
         </Grid>
        
