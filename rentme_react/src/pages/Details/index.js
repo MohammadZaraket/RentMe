@@ -20,7 +20,19 @@ console.log(Number(apartment[0].latitude));
    const location = {
         lat: Number(apartment[0].latitude),
         lng: Number(apartment[0].longitude),
-      }
+      };
+
+      const data = [
+        {
+          image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
+        },
+        {
+          image: "../../assets/test.jpg",
+        },
+        {
+          image: "../../../../RentMe_Laravel/public/Images/testimage.png",
+        }
+      ];
 
      useEffect(() => {
         getApartmentDetails();
@@ -42,7 +54,7 @@ console.log(Number(apartment[0].latitude));
     
                 <Grid container spacing={2} style={{padding:"4%"}}>
                     <Grid item xs={12} sm={6}>
-                       <ImagesCarousel />
+                       <ImagesCarousel data={data}/>
                     </Grid>
     
                     <Grid item xs={12} sm={6}>
