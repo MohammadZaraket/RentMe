@@ -45,34 +45,33 @@ function ApartmentCard(props) {
             style={{padding:"10px"}}
           />
           <CardHeader
-            title="Apartment Title Here"
-            subheader="Best Deal Apartment"
+            title={props.name}
             id="apartment-title"
           />
           
           <CardContent>
           <Grid container spacing={1}>
                   <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary">
-                         4 <FaBed size={30}/>
+                    <Typography variant="body2" color="text.secondary"  style={{fontSize:"40px"}}>
+                    {props.bedrooms} <FaBed size={30}/>
                     </Typography>
                   </Grid>
         
                   <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary">
-                        2 <FaBath size={30} />
+                    <Typography variant="body2" color="text.secondary"  style={{fontSize:"40px"}}>
+                    {props.bathrooms} <FaBath size={30} />
                     </Typography>
                   </Grid>
     
                   <Grid item xs={12}>
                     <Typography variant="body2" className="apartment-space">
-                       Space Here
+                    {props.space}  m²
                     </Typography>
                   </Grid>
     
                   <Grid item xs={12}>
                     <Typography variant="body2"  className="apartment-price">
-                        Price Here
+                    {props.price} $/Month
                     </Typography>
                   </Grid>
     
@@ -91,13 +90,9 @@ function ApartmentCard(props) {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <Typography paragraph>Description:</Typography>
+              <Typography paragraph> <p>Description:</p></Typography>
               <Typography paragraph>
-                Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-                aside for 10 minutes.large plate and set aside, leaving chicken and chorizo in the pan. Add
-                pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-                stirring often until thickened and fragrant, about 10 minutes. Add
-                saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+              {props.description}
               </Typography>
             </CardContent>
           </Collapse>
@@ -118,19 +113,18 @@ function ApartmentCard(props) {
             style={{padding:"10px"}}
           />
           <CardHeader
-            title="Apartment Title Here"
-            subheader="Best Deal Apartment"
+            
             id="apartment-title"
           />
         
           
           <CardContent>
-          <TextField  value="Apartment Title Here" variant="outlined" required />
+          <TextField  value={props.name} variant="outlined" required />
           <Grid container spacing={1}>
                   <Grid item xs={6}>
                     <Typography variant="body2" color="text.secondary" style={{display: "flex", alignItems: "center"}}>
                         <Grid item xs={6}>
-                            <TextField  value="4" variant="outlined" required /> 
+                            <TextField  value={props.bedrooms} variant="outlined" required /> 
                         </Grid>
                         <Grid item xs={6}>
                             <FaBed size={50}/>
@@ -141,7 +135,7 @@ function ApartmentCard(props) {
                   <Grid item xs={6}>
                     <Typography variant="body2" color="text.secondary"  style={{display: "flex", alignItems: "center"}}>
                         <Grid item xs={6}>
-                            <TextField  value="2" variant="outlined" required /> 
+                            <TextField  value={props.bathrooms} variant="outlined" required /> 
                         </Grid>
                         <Grid item xs={6}>
                             <FaBath size={50} />
@@ -152,10 +146,10 @@ function ApartmentCard(props) {
                   <Grid item xs={6}>
                     <Typography variant="body2" className="apartment-space" style={{display: "flex", alignItems: "center"}}>
                         <Grid item xs={6}>
-                            <TextField  value="Space" variant="outlined" required />
+                            <TextField  value={props.space} variant="outlined" required />
                         </Grid>
                         <Grid item xs={6}>
-                            Here
+                             m²
                         </Grid>
                     </Typography>
                   </Grid>
@@ -163,10 +157,11 @@ function ApartmentCard(props) {
                   <Grid item xs={6}>
                     <Typography variant="body2"  className="apartment-price" style={{display: "flex", alignItems: "center"}}>
                         <Grid item xs={6}>
-                            <TextField  value="Price" variant="outlined" required />
+                            <TextField  value={props.price}  variant="outlined" required />
                         </Grid>
                         <Grid item xs={6}>
-                            Here
+                        $/Month
+                           
                         </Grid>
                     </Typography>
                   </Grid>
@@ -188,7 +183,7 @@ function ApartmentCard(props) {
             <CardContent>
               <Typography paragraph><b>Description:</b></Typography>
               <Typography paragraph>
-                <TextField multiline value= "Heat 1/2 cup of the broth in a pot until simmering, add saffron and se aside for 10 minutes.large plate and set aside, leaving chicken and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil." variant="outlined" fullWidth required /> 
+                <TextField multiline value={props.description} variant="outlined" fullWidth required /> 
               </Typography>
             </CardContent>
           </Collapse>

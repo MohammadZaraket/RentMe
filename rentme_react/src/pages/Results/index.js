@@ -37,9 +37,7 @@ async function  getAllApartments(){
 }
 
 
-
-
-
+console.log(apartments);
   return (
 
     <div className='Result-background'>
@@ -50,8 +48,6 @@ async function  getAllApartments(){
               <Grid item xs={12}  style={{display:"block"}} >
                 <form className="search-results">
                     <Grid item xs={6} className="results-search-item" >
-     
-                   
                     <TextField style={{backgroundColor:"white"}} id="search-in-results" placeholder="Where Do You Want To Live Next?"  variant="outlined"  fullWidth required />
                     </Grid>
                     <Grid item xs={2} className="results-search-item">
@@ -75,7 +71,7 @@ async function  getAllApartments(){
                 {apartments.map(function(apartments,i){
                     return(
                         <Grid item xs={3} style={{color:"white",display:"block"}}>
-                            <ApartmentCard editable = {false} key={i}/>
+                            <ApartmentCard editable = {false} key={i} name={apartments.name} bedrooms={apartments.bedrooms} bathrooms={apartments.bathrooms} space={apartments.space} price={apartments.price}  description={apartments.description} />
                             </Grid>
                     ) 
                 })}
