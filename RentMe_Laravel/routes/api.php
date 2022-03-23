@@ -20,7 +20,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
 });
 
 
-Route::group(['prefix' => 'Apartment'], function () {
+Route::group(['prefix' => 'apartment'], function () {
 
     Route::post('/add', [ApartmentController::class, 'store']);
     Route::post('/show', [ApartmentController::class, 'show']);
@@ -31,7 +31,7 @@ Route::group(['prefix' => 'Apartment'], function () {
 });
 
 
-Route::group(['prefix' => 'Images'], function () {
+Route::group(['prefix' => 'image'], function () {
 
     Route::post('/show', [ImageController::class, 'show']);
     Route::post('/add', [ImageController::class, 'update']);
@@ -39,10 +39,10 @@ Route::group(['prefix' => 'Images'], function () {
 });
 
 
-Route::group(['prefix' => 'Available'], function () {
+Route::group(['prefix' => 'available'], function () {
 
-    Route::post('/Date', [AvailabilityController::class, 'showDate']);
-    Route::post('/Time', [AvailabilityController::class, 'showTime']);
+    Route::post('/date', [AvailabilityController::class, 'showDate']);
+    Route::post('/time', [AvailabilityController::class, 'showTime']);
     Route::post('/delete', [AvailabilityController::class, 'destroy']);
     Route::post('/add', [AvailabilityController::class, 'update']);
 
@@ -50,7 +50,7 @@ Route::group(['prefix' => 'Available'], function () {
 
 
 
-Route::group(['prefix' => 'Tour'], function () {
+Route::group(['prefix' => 'tour'], function () {
 
     Route::post('/show', [TourController::class, 'show']);
     Route::post('/add', [TourController::class, 'store']);
@@ -59,7 +59,7 @@ Route::group(['prefix' => 'Tour'], function () {
 });
 
 
-Route::group(['prefix' => 'Review'], function () {
+Route::group(['prefix' => 'review'], function () {
 
     Route::post('/add', [ReviewController::class, 'create']);
     Route::post('/show', [ReviewController::class, 'show']);

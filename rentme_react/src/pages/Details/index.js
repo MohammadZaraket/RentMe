@@ -1,7 +1,7 @@
 import Navbar from '../../components/Navbar'
 import ImagesCarousel from '../../components/ImagesCarousel'
 import TourModal from '../../components/TourModal'
-import Map from '../../components/Map'
+//import Map from '../../components/Map'      <Map location={location} zoomLevel={17} /> 
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
@@ -83,7 +83,7 @@ function Details() {
                             Location
                         </p>
                       
-                        <Map location={location} zoomLevel={17} /> 
+                     
                         
                             
                         </Grid>

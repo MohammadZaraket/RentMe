@@ -7,8 +7,6 @@ import './map.css'
 
 const Map = ({ location, zoomLevel }) => (
     <div className="map">
-      <h2 className="map-h2">Come Visit Us At Our Campus</h2>
-  
       <div className="google-map">
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyCvR04Sig1U89mIlbokwSXZIOp44AzB22E' }}
