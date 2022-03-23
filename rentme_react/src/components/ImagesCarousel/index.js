@@ -1,6 +1,5 @@
 import { Carousel } from 'react-carousel-minimal';
 
-
 function ImagesCarousel(props) {
   const slideNumberStyle = {
     fontSize: '20px',

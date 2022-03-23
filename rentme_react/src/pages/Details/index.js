@@ -12,6 +12,7 @@ function Details(props) {
 
 let {id} = useParams();
 console.log(id);
+
 const [apartment_id, setApartment_id] = useState(id);
 const [apartment, setApartment] = useState([{"id": "-", "name":"-", "bathrooms":"-", "bedrooms": "-", "price": "-", "space": "-", "description": "-", "longitude": 36, "latitude": 33.878112, "user_id": "-", "apartment_images": [{"id": "-" , "image": "-" ,"apartment_id": "-" },{"id":"-" ,"image": "-", "apartment_id":"-"}]}]);
 
@@ -27,10 +28,10 @@ console.log(Number(apartment[0].latitude));
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
         },
         {
-          image: "../../assets/test.jpg",
+          image: "http://127.0.0.1:8000/Images/images.jpg",
         },
         {
-          image: "../../../../RentMe_Laravel/public/Images/testimage.png",
+          image:"http://127.0.0.1:8000/Images/images.jpg",
         }
       ];
 
@@ -42,7 +43,6 @@ console.log(Number(apartment[0].latitude));
        const credentials = {apartment_id};
         const response = await axios.post("http://127.0.0.1:8000/api/apartment/details", credentials);
         setApartment(response.data);
-
     }
     
     //console.log(apartment[0].name);

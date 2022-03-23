@@ -28,69 +28,22 @@ class ApartmentController extends Controller
                         }
                         $longitude = $request->get('longitude');
                         $latitude = $request->get('latitude');
-        
-                        if ($request->has('bedrooms') && $request->has('price') && count($request->all())>0) {
-                      
-                            $bedrooms = $request->get('bedrooms');
-                            $price = $request->get('price');
-
+                        $bedrooms = ($request->has('bedrooms')) ? $request->get('bedrooms'):"";
+                        $price = ($request->has('price')) ? $request->get('price'):"";
                             $query  = DB::table('apartments')
                             ->select(['id', 'name','bedrooms','bathrooms','price','space','description'])
                             ->selectRaw("( 6371 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
                             ->having("distance", "<", "25")
-                            ->where("bedrooms", ">=", $bedrooms)
-                            ->where("price", "<=", $price)
+                            ->when($bedrooms, function ($query, $bedrooms) {
+                                return $query->where('bedrooms', ">=", $bedrooms);
+                            })
+                            ->when($price, function ($query, $price) {
+                                return $query->where("price", "<=", $price);
+                            })
                             ->orderBy('distance', 'asc')
                             ->offset(0)
                             ->limit(20);
                             $result = $query->get();
-
-                        }
-
-                        elseif($request->has('bedrooms')){
-
-                            $bedrooms = $request->get('bedrooms');
-
-                            $query  = DB::table('apartments')
-                            ->select(['id', 'name','bedrooms','bathrooms','price','space','description'])
-                            ->selectRaw("( 6371 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
-                            ->having("distance", "<", "25")
-                            ->where("bedrooms", ">=", $bedrooms)
-                            ->orderBy('distance', 'asc')
-                            ->offset(0)
-                            ->limit(20);
-                
-                            $result = $query->get();  
-                        }
-
-                        elseif($request->has('price')){
-
-                            $price = $request->get('price');
-
-                            $query  = DB::table('apartments')
-                            ->select(['id', 'name','bedrooms','bathrooms','price','space','description'])
-                            ->selectRaw("( 6371 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
-                            ->having("distance", "<", "25")
-                            ->where("price", "<=", $price)
-                            ->orderBy('distance', 'asc')
-                            ->offset(0)
-                            ->limit(20);
-                
-                            $result = $query->get();
-                        }
-                        else{
-
-                            $query  = DB::table('apartments')
-                            ->select(['id', 'name','bedrooms','bathrooms','price','space','description'])
-                            ->selectRaw("( 6371 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
-                            ->having("distance", "<", "25")
-                            ->orderBy('distance', 'asc')
-                            ->offset(0)
-                            ->limit(20);
-                
-                            $result = $query->get();
-                        }
-                     
                      
                         if(count($result)>0){
                             return response()->json($result);
