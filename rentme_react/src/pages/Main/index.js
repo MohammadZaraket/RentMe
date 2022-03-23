@@ -9,12 +9,14 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { RoomService } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 function Main() {
 
+    const navigate = useNavigate();
     const [rooms,setRooms] = useState("");
     const [price, setPrice] = useState('');
 
@@ -29,6 +31,7 @@ function Main() {
     function print() {
         console.log(rooms);
         console.log(price);
+        navigate("/Results");
     }
 
   return (
