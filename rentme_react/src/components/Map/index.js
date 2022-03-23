@@ -16,7 +16,6 @@ const Map = ({ location, zoomLevel }) => (
           <LocationPin
             lat={location.lat}
             lng={location.lng}
-            text={location.address}
           />
         </GoogleMapReact>
       </div>

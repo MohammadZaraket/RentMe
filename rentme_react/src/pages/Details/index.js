@@ -1,7 +1,7 @@
 import Navbar from '../../components/Navbar'
 import ImagesCarousel from '../../components/ImagesCarousel'
 import TourModal from '../../components/TourModal'
-//import Map from '../../components/Map'      <Map location={location} zoomLevel={17} /> 
+import Map from '../../components/Map'   
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
 import { FaFacebookSquare,FaInstagram,FaTwitterSquare,BsSearch,FaBed,FaBath } from "react-icons/fa";
 import axios from "axios";
@@ -13,11 +13,13 @@ function Details(props) {
 let {id} = useParams();
 console.log(id);
 const [apartment_id, setApartment_id] = useState(id);
-const [apartment, setApartment] = useState([{"id": "-", "name":"-", "bathrooms":"-", "bedrooms": "-", "price": "-", "space": "-", "description": "-", "longitude": "-", "latitude": "-", "user_id": "-", "apartment_images": [{"id": "-" , "image": "-" ,"apartment_id": "-" },{"id":"-" ,"image": "-", "apartment_id":"-"}]}]);
+const [apartment, setApartment] = useState([{"id": "-", "name":"-", "bathrooms":"-", "bedrooms": "-", "price": "-", "space": "-", "description": "-", "longitude": 36, "latitude": 33.878112, "user_id": "-", "apartment_images": [{"id": "-" , "image": "-" ,"apartment_id": "-" },{"id":"-" ,"image": "-", "apartment_id":"-"}]}]);
 
-    const location = {
-        lat: apartment[0].latitude,
-        lng: apartment[0].longitude,
+console.log(Number(apartment[0].latitude));
+
+   const location = {
+        lat: Number(apartment[0].latitude),
+        lng: Number(apartment[0].longitude),
       }
 
      useEffect(() => {
@@ -100,6 +102,7 @@ const [apartment, setApartment] = useState([{"id": "-", "name":"-", "bathrooms":
                                 Location
                             </p>
                                 
+                            <Map location={location} zoomLevel={17} /> 
                             </Grid>
     
                         </Grid>
