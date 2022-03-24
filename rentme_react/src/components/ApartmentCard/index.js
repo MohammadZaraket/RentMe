@@ -6,13 +6,13 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { FaFacebookSquare,FaInstagram,FaTwitterSquare,BsSearch,FaBed,FaBath } from "react-icons/fa";
+import { FaBed,FaBath } from "react-icons/fa";
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
-
+import { useNavigate } from 'react-router-dom';
 
 
 const ExpandMore = styled((props) => {
+
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -25,17 +25,23 @@ const ExpandMore = styled((props) => {
 
 function ApartmentCard(props) { 
 
-  const [expanded, setExpanded] = React.useState(false);
+    const apartment_key = props.apartment_key;
+    const [expanded, setExpanded] = React.useState(false);
+    const navigate = useNavigate();
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
 
+
+  
+function goDetails() { navigate("/Details/"+apartment_key);};
 
 
   if(!props.editable)
   {
     return (
+        <div onClick={goDetails} style={{cursor:"pointer"}}>
         <Card sx={{ maxWidth: 345 }} >
             <CardMedia
             component="img"
@@ -65,7 +71,7 @@ function ApartmentCard(props) {
     
                   <Grid item xs={12}>
                     <Typography variant="body2" className="apartment-space">
-                    {props.space}  m²
+                    {props.space} m²
                     </Typography>
                   </Grid>
     
@@ -97,6 +103,7 @@ function ApartmentCard(props) {
             </CardContent>
           </Collapse>
         </Card>
+        </div>
     
       );
   }

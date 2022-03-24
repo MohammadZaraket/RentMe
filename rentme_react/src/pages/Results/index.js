@@ -1,6 +1,5 @@
 import Navbar from '../../components/Navbar'
 import ApartmentCard from '../../components/ApartmentCard'
-
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
 
 import InputAdornment from '@mui/material/InputAdornment';
@@ -15,7 +14,6 @@ const [latitude, setLatitude] = useState('37');
 const [bedrooms, setBedrooms] = useState('3');
 const [price, setPrice] = useState('700');
 
-const url = "http://127.0.0.1:8000/api/apartment/search";
 
 useEffect(() => {
 
@@ -30,8 +28,6 @@ async function  getAllApartments(){
     await axios.post("http://127.0.0.1:8000/api/apartment/search", credentials).then((response)=> {setApartments(response.data);})
 }
 
-
-//console.log(apartments);
   return (
 
     <div className='Result-background'>
@@ -64,8 +60,8 @@ async function  getAllApartments(){
             
                 {apartments.map(function(apartments,i){
                     return(
-                        <Grid item xs={3} style={{color:"white",display:"block"}}>
-                            <ApartmentCard editable = {false} key={i} name={apartments.name} bedrooms={apartments.bedrooms} bathrooms={apartments.bathrooms} space={apartments.space} price={apartments.price}  description={apartments.description} />
+                        <Grid item xs={12} md={3} sm={6} style={{color:"white",display:"block"}}>
+                            <ApartmentCard editable = {false} key={i} apartment_key={apartments.id} name={apartments.name} bedrooms={apartments.bedrooms} bathrooms={apartments.bathrooms} space={apartments.space} price={apartments.price}  description={apartments.description} />
                             </Grid>
                     ) 
                 })}
