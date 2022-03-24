@@ -12,13 +12,21 @@ import InputAdornment from '@mui/material/InputAdornment';
 import axios from "axios";
 import React, { useState, useEffect} from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 function Results() {
 
-const [apartments, setApartments] = useState([{"status": false,"message": "Searching"}]);
-const [longitude, setLongitude] = useState('-122');
-const [latitude, setLatitude] = useState('37');
-const [bedrooms, setBedrooms] = useState(1);
-const [price, setPrice] = useState(600);
+    const parameters = useSelector(state => state.credentials);
+    const [apartments, setApartments] = useState([{"status": false,"message": "Searching"}]);
+    const [longitude, setLongitude] = useState(parameters[0].longitude);
+    const [latitude, setLatitude] = useState(parameters[0].latitude);
+    const [bedrooms, setBedrooms] = useState(parameters[0].bedrooms);
+    const [price, setPrice] = useState(parameters[0].price);
+
+console.log(longitude);
+console.log(latitude);
+console.log(bedrooms);
+console.log(price);
 
 const saveRooms = (event) => {
     setBedrooms(event.target.value);

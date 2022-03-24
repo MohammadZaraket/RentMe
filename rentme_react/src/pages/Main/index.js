@@ -12,13 +12,21 @@ import { RoomService } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 
-
+import { useDispatch, useSelector } from 'react-redux';
 
 function Main() {
 
     const navigate = useNavigate();
     const [rooms,setRooms] = useState('');
     const [price, setPrice] = useState('');
+    const [longitude, setLongitude] = useState('-122');
+    const [latitude, setLatitude] = useState('37');
+
+   const parameters = useSelector(state => state.credentials);
+   parameters[0].bedrooms=rooms;
+   parameters[0].price=price;
+   parameters[0].longitude=longitude;
+   parameters[0].latitude=latitude;
 
     const saveRooms = (event) => {
         setRooms(event.target.value);
