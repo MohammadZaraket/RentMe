@@ -11,8 +11,8 @@ function Results() {
 const [apartments, setApartments] = useState([]);
 const [longitude, setLongitude] = useState('-122');
 const [latitude, setLatitude] = useState('37');
-const [bedrooms, setBedrooms] = useState('3');
-const [price, setPrice] = useState('700');
+const [bedrooms, setBedrooms] = useState('4');
+const [price, setPrice] = useState('500');
 
 
 useEffect(() => {
@@ -25,8 +25,10 @@ async function  getAllApartments(){
 
    const credentials = {longitude,latitude,bedrooms,price};
 
-    await axios.post("http://127.0.0.1:8000/api/apartment/search", credentials).then((response)=> {setApartments(response.data);})
+    await axios.post("http://127.0.0.1:8000/api/apartment/search", credentials).then((response)=> {setApartments(response.data);});
+   
 }
+
 
   return (
 
@@ -61,7 +63,7 @@ async function  getAllApartments(){
                 {apartments.map(function(apartments,i){
                     return(
                         <Grid item xs={12} md={3} sm={6} style={{color:"white",display:"block"}}>
-                            <ApartmentCard editable = {false} key={i} apartment_key={apartments.id} name={apartments.name} bedrooms={apartments.bedrooms} bathrooms={apartments.bathrooms} space={apartments.space} price={apartments.price}  description={apartments.description} />
+                            <ApartmentCard editable = {false} key={i} apartment_key={apartments.id} name={apartments.name} bedrooms={apartments.bedrooms} bathrooms={apartments.bathrooms} space={apartments.space} price={apartments.price}  description={apartments.description} image={apartments.apartment_images[0].image} />
                             </Grid>
                     ) 
                 })}

@@ -33,6 +33,7 @@ function ApartmentCard(props) {
         setExpanded(!expanded);
     };
 
+   const image_url ="http://127.0.0.1:8000/Images/"+ props.image;
 
   
 function goDetails() { navigate("/Details/"+apartment_key);};
@@ -46,7 +47,7 @@ function goDetails() { navigate("/Details/"+apartment_key);};
             <CardMedia
             component="img"
             height="194"
-            image="../../assets/test.jpg"
+            image={image_url}
             alt="Paella dish"
             style={{padding:"10px"}}
           />
@@ -115,7 +116,7 @@ function goDetails() { navigate("/Details/"+apartment_key);};
             <CardMedia
             component="img"
             height="194"
-            image="../../assets/test.jpg"
+            image={props.image}
             alt="Paella dish"
             style={{padding:"10px"}}
           />

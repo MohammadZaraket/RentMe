@@ -30,8 +30,7 @@ class ApartmentController extends Controller
                         $latitude = $request->get('latitude');
                         $bedrooms = ($request->has('bedrooms')) ? $request->get('bedrooms'):"";
                         $price = ($request->has('price')) ? $request->get('price'):"";
-                            $query  = DB::table('apartments')
-                            ->select(['id', 'name','bedrooms','bathrooms','price','space','description'])
+                            $query = Apartment::select(['id', 'name','bedrooms','bathrooms','price','space','description'])
                             ->selectRaw("( 6371 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
                             ->having("distance", "<", "25")
                             ->when($bedrooms, function ($query, $bedrooms) {
@@ -40,6 +39,7 @@ class ApartmentController extends Controller
                             ->when($price, function ($query, $price) {
                                 return $query->where("price", "<=", $price);
                             })
+                            ->with("ApartmentImages")
                             ->orderBy('distance', 'asc')
                             ->offset(0)
                             ->limit(20);
@@ -128,7 +128,6 @@ class ApartmentController extends Controller
                     }
                     return response()->json(['status' => 'Your Apartment Have Been Added!'], 201);
             }
-    
         }   
 }
 
