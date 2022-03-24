@@ -17,10 +17,8 @@ import { useNavigate } from 'react-router-dom';
 function Main() {
 
     const navigate = useNavigate();
-    const [rooms,setRooms] = useState("");
+    const [rooms,setRooms] = useState('');
     const [price, setPrice] = useState('');
-
-    const ap ="5";
 
     const saveRooms = (event) => {
         setRooms(event.target.value);
@@ -30,19 +28,12 @@ function Main() {
         setPrice(event.target.value);
       };
 
-   /* function print() {
-        console.log(rooms);
-        console.log(price);
-        var ap_id='10';
-        navigate("/Results",route=ap_id);
-    }*/
-
   return (
 
     <div className='Main-background'>
         <Navbar />
-        <Grid container spacing={2}>
-              <Grid item xs={12} style={{color:"white", marginTop:"8%"}}>
+        <Grid container spacing={2} style={{padding:"auto",margin:"auto"}}>
+              <Grid item xs={12} style={{color:"white", margin:"auto"}}>
                 <Grid>
                 <p className="title">Rent Me</p>
                 <p className="slogan">Let Us Guide You Home</p>
@@ -55,38 +46,46 @@ function Main() {
                 <Grid item xs={12} >
                   <TextField style={{backgroundColor:"white"}}  placeholder="Where Do You Want To Live Next? "  variant="outlined"  fullWidth required />
                 </Grid>
-                <Grid item xs={6}>
-                  <Button className="search-btn" type="submit" variant="contained" color="primary"  fullWidth>Rooms</Button>
+
+                <Grid item xs={12} style={{justifyContent: "space-between"}}>
+                    <Grid item xs={5}>
+                        <Box  className="drop-down" fullWidth>
+                            <FormControl fullWidth >
+                            <InputLabel><b>Minimum Bedrooms</b></InputLabel>
+                                <Select value={rooms} onChange={saveRooms}>
+                                <MenuItem value=""><em>None</em></MenuItem>
+                                <MenuItem value={1}>1</MenuItem>
+                                <MenuItem value={2}>2</MenuItem>
+                                <MenuItem value={3}>3</MenuItem>
+                                <MenuItem value={4}>4</MenuItem>
+                                <MenuItem value={5}>5</MenuItem>
+                                <MenuItem value={6}>6</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
+                    </Grid>
+
+                    <Grid item xs={5}>
+                        <Box className="drop-down" fullWidth>
+                            <FormControl fullWidth>
+                            <InputLabel> <b>Maximum Price</b></InputLabel>
+                                <Select value={price} onChange={savePrice}>
+                                <MenuItem value=""><em>None</em></MenuItem>
+                                <MenuItem value={100}>100</MenuItem>
+                                <MenuItem value={200}>200</MenuItem>
+                                <MenuItem value={300}>300</MenuItem>
+                                <MenuItem value={400}>400</MenuItem>
+                                <MenuItem value={500}>500</MenuItem>
+                                <MenuItem value={600}>600</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
+                    </Grid>
+            
                 </Grid>
-                <Grid item xs={6}>
-                  <Button className="search-btn" type="submit" variant="contained" color="primary"  fullWidth>Price</Button>
-                </Grid>
-                <Grid item xs={6}>
-                    <Box sx={{ minWidth: 120 }} className="search-btn">
-                        <FormControl fullWidth>
-                            <Select value={rooms} onChange={saveRooms}>
-                            <MenuItem value={1}>1</MenuItem>
-                            <MenuItem value={2}>2</MenuItem>
-                            <MenuItem value={3}>3</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Box>
-   
-                </Grid>
-                <Grid item xs={6}>
-                    <Box sx={{ minWidth: 120 }} className="search-btn">
-                        <FormControl fullWidth>
-                            <Select value={price} onChange={savePrice}>
-                            <MenuItem value={100}>100</MenuItem>
-                            <MenuItem value={200}>200</MenuItem>
-                            <MenuItem value={300}>300</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Box>
-   
-                </Grid>
+                
                 <Grid item xs={12}>
-                  <Button className="search-btn" type="submit" variant="contained" color="primary"  onClick={() => {navigate('/Results/'+ap);}} fullWidth>Find Now!</Button>
+                  <Button className="search-btn" type="submit" variant="contained" color="primary"  onClick={() => {navigate('/Results');}} fullWidth>Find Now!</Button>
                 </Grid>
                 
                 <div className='iconsdiv'>
@@ -97,17 +96,9 @@ function Main() {
                 
               </Grid>
              </form>
-              </Grid>
-
- 
-
-
-
-            
+              </Grid>          
           </Grid>
-
     </div>
-
 
   );
 }

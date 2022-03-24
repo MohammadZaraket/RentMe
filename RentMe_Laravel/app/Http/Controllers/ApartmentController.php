@@ -21,7 +21,6 @@ class ApartmentController extends Controller
                             'latitude' => 'required',
                             'bedrooms' => 'integer',
                             'price' => 'integer',
-                            
                         ]);
                         if ($validator->fails()) {
                             return response()->json(['status'=>false,'message'=>'Please Enter A Specific Location To Start With']);
@@ -46,9 +45,9 @@ class ApartmentController extends Controller
                             $result = $query->get();
                      
                         if(count($result)>0){
-                            return response()->json($result);
+                            return response()->json(['status'=>true,"apartments"=>$result]);
                         }
-                        return response()->json(['status'=>true,'message'=>"No Apartments found With Such Conditions!"]);
+                        return response()->json(['status'=>false,'message'=>"No Apartments found With Such Conditions!"]);
         
         }
         
