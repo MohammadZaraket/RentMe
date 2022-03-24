@@ -8,44 +8,38 @@ import axios from "axios";
 import React, { useState, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 
-function Details(props) {
+function Details() {
 
-let {id} = useParams();
-console.log(id);
+    let {id} = useParams();
+    const [apartment_id, setApartment_id] = useState(id);
+    const [apartment, setApartment] = useState([{"id": "-", "name":"-", "bathrooms":"-", "bedrooms": "-", "price": "-", "space": "-", "description": "-", "longitude": 36, "latitude": 33.878112, "user_id": "-", "apartment_images": [{"id": "-" , "image": "-" ,"apartment_id": "-" }]}]);
+    var element = {}, data = [];
 
-const [apartment_id, setApartment_id] = useState(id);
-const [apartment, setApartment] = useState([{"id": "-", "name":"-", "bathrooms":"-", "bedrooms": "-", "price": "-", "space": "-", "description": "-", "longitude": 36, "latitude": 33.878112, "user_id": "-", "apartment_images": [{"id": "-" , "image": "-" ,"apartment_id": "-" },{"id":"-" ,"image": "-", "apartment_id":"-"}]}]);
-
-console.log(Number(apartment[0].latitude));
-
+    // Location to be sent to googple map API
    const location = {
         lat: Number(apartment[0].latitude),
         lng: Number(apartment[0].longitude),
       };
 
-      const data = [
-        {
-          image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
-        },
-        {
-          image: "http://127.0.0.1:8000/Images/images.jpg",
-        },
-        {
-          image:"http://127.0.0.1:8000/Images/images.jpg",
-        }
-      ];
 
+      for (let i=0; i<apartment[0].apartment_images.length;i++)
+      {
+        element={image: "http://127.0.0.1:8000/Images/"+apartment[0].apartment_images[i].image,}
+        data.push(element);
+      }
+
+      
      useEffect(() => {
         getApartmentDetails();
     },[]);
     
+
     async function getApartmentDetails(){
        const credentials = {apartment_id};
         const response = await axios.post("http://127.0.0.1:8000/api/apartment/details", credentials);
         setApartment(response.data);
     }
     
-    //console.log(apartment[0].name);
 
     return (
 
