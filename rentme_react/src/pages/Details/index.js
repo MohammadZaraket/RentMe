@@ -7,12 +7,14 @@ import { FaFacebookSquare,FaInstagram,FaTwitterSquare,BsSearch,FaBed,FaBath } fr
 import axios from "axios";
 import React, { useState, useEffect} from 'react';
 import {useParams} from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 
 function Details() {
 
+    const parameters = useSelector(state => state.credentials);
     let {id} = useParams();
     const [apartment_id, setApartment_id] = useState(id);
-    const [apartment, setApartment] = useState([{"id": "-", "name":"-", "bathrooms":"-", "bedrooms": "-", "price": "-", "space": "-", "description": "-", "longitude": 36, "latitude": 33.878112, "user_id": "-", "apartment_images": [{"id": "-" , "image": "-" ,"apartment_id": "-" }]}]);
+    const [apartment, setApartment] = useState([{"id": "-", "name":"-", "bathrooms":"-", "bedrooms": "-", "price": "-", "space": "-", "description": "-", "longitude": parameters[0].longitude, "latitude": parameters[0].latitude, "user_id": "-", "apartment_images": [{"id": "-" , "image": "-" ,"apartment_id": "-" }]}]);
     var element = {}, data = [];
 
     // Location to be sent to googple map API
@@ -28,7 +30,7 @@ function Details() {
         data.push(element);
       }
 
-      
+
      useEffect(() => {
         getApartmentDetails();
     },[]);

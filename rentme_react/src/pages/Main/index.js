@@ -16,11 +16,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Main() {
 
+    //() => {navigate('/Results');}
     const navigate = useNavigate();
     const [rooms,setRooms] = useState('');
     const [price, setPrice] = useState('');
-    const [longitude, setLongitude] = useState('-122');
-    const [latitude, setLatitude] = useState('37');
+    const [longitude, setLongitude] = useState('');
+    const [latitude, setLatitude] = useState('');
 
    const parameters = useSelector(state => state.credentials);
    parameters[0].bedrooms=rooms;
@@ -36,6 +37,16 @@ function Main() {
         setPrice(event.target.value);
       };
 
+
+      function  getUserLocation() {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            setLongitude(position.coords.longitude);
+            setLatitude( position.coords.latitude);
+            navigate('/Results');
+        });
+
+      }
+    
   return (
 
     <div className='Main-background'>
@@ -93,7 +104,7 @@ function Main() {
                 </Grid>
                 
                 <Grid item xs={12}>
-                  <Button className="search-btn" type="submit" variant="contained" color="primary"  onClick={() => {navigate('/Results');}} fullWidth>Find Now!</Button>
+                  <Button className="search-btn" type="submit" variant="contained" color="primary"  onClick={getUserLocation} fullWidth>Find Now!</Button>
                 </Grid>
                 
                 <div className='iconsdiv'>
