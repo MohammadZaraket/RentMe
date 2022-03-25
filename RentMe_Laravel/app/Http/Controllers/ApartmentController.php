@@ -66,7 +66,7 @@ class ApartmentController extends Controller
                 'description' => 'required',
                 'longitude' => 'required|string|between:2,100',
                 'latitude' => 'required|string|between:2,100',
-                'imgs' => 'required',
+                'images' => 'required',
 
                 'date' => 'required',
                 'from' => 'required',
@@ -80,7 +80,7 @@ class ApartmentController extends Controller
             ));
             
             if( $apartments->id){
-                foreach($request->get('imgs') as $imgDoc){
+                foreach($request->get('images') as $imgDoc){
                     $img = $imgDoc;
                     $randomNum=substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ"), 0, 16);
                     // $folderPath = "C:/Users/USER/Desktop/SE FACTORY/FSW/Final Project/RentMe/RentMe_Laravel/app/assets/";
