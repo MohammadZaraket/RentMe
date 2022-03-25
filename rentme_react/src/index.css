@@ -324,9 +324,28 @@ body, html {
     flex-direction: row;
     align-content: center;
     justify-content: space-between;
-    border-style: solid;
+    align-items: center;
+    border-style: dashed;
+    border-width: 1px;
+    border-color: #DEB841;
 }
 
-button {
-  height: 40px;
+.upload-btn {
+  cursor: pointer;
+  color: #DEB841;
+  background-color: transparent;
+  border: 0px;
+}
+
+
+.remove-btn {
+  cursor: pointer;
+  color: red;
+  background-color: transparent;
+  border: 0px;
+}
+
+BiImageAdd{
+
+  background-color: transparent;
 }
