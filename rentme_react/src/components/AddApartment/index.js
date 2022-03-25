@@ -13,6 +13,12 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 
 import { styled } from '@mui/material/styles';
 
+
+
+import ReactDOM from "react-dom";
+import ImageUploading from "react-images-uploading";
+
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -30,6 +36,15 @@ const style = {
 
 
 export default function AddApartment() {
+
+    const [images, setImages] = React.useState([]);
+    const maxNumber = 69;
+    const onChange = (imageList, addUpdateIndex) => {
+      console.log(imageList, addUpdateIndex);
+      setImages(imageList);
+    };
+
+
 
 const [selectedImage, setSelectedImage] = React.useState('');
   const [open, setOpen] = React.useState(false);
@@ -162,42 +177,36 @@ const [selectedImage, setSelectedImage] = React.useState('');
                 </Grid>
               </Grid>
             </Grid>
+
             <Grid item xs={12} sm={12}>
               <Grid container spacing={1}>
-               
-              <Grid item xs={4}>
-                  <Typography variant="body2"  component="p" gutterBottom>
-                    <b>Image 1 </b> 
-                  </Typography> 
-                  <TextField className="modal-field" placeholder="Image 1"  variant="outlined"  fullWidth required />
-                </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="body2"  component="p" gutterBottom>
-                    <b>Image 2 </b> 
-                  </Typography> 
-                  
-                    <label htmlFor="icon-button-file">
-                        <input type="file" className="form-control" name="image" onChange={onFileChange} />
-                    </label>
-                    
-                  <TextField className="modal-field" placeholder="Image 2"  variant="outlined"  fullWidth required />
-                </Grid>
-                <Grid item xs={4}>
-                  <Typography variant="body2"  component="p" gutterBottom>
-                    <b>Image 3 </b> 
-                  </Typography> 
-                  <TextField className="modal-field" placeholder="Image 3"  variant="outlined"  fullWidth required />
+                <Grid item xs={12}>
+                <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url">
+                {({imageList, onImageUpload, onImageRemove, isDragging, dragProps}) => (
+            
+                    <div className="upload-image-wrapper"  style={isDragging ? { color: "red" } : null} {...dragProps}>
+                        <button onClick={onImageUpload} >
+                        Upload Images
+                        </button>
+                        &nbsp;
+                        {imageList.map((image, index) => (
+                        <div key={index} className="image-item">
+                            <img src={image.data_url} alt="" width="75" height="75" />
+                            <button onClick={() => onImageRemove(index)}>Remove</button>
+                        </div>
+                        ))}
+                    </div>
+                )}
+                </ImageUploading>
                 </Grid>
               </Grid>
             </Grid>
-
 
             <Grid item xs={12} style={{display:"flex",justifyContent:"center"}}>
             <Button className="request-btn" style={{padding:"10px 20px"}} type="submit" variant="contained" color="primary"> <b> Add Apartment </b> </Button>
             </Grid>
            
-          </Grid>
-          
+          </Grid>   
          
         </Box>
       </Modal>
