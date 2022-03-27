@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Grid, TextField, Button, Card, CardContent, Typography, Modal,Box } from '@mui/material/';
 import { GrClose } from "react-icons/gr";
 import { useState, useEffect} from 'react';
-
+//e7SLf04kUXoj18crCEAMzi:APA91bGZXtDeMuSZ8Db2m-jlhogxO35KcYzEf6fY_7AWDYa7_7_rVVmflYphhcJUY9HCFluC-GoJHyLbeHORO8Bu8WAfuhUhCiXA2NdRg6ekAGwMWRzfk5umuN3Mr2X-Sd5ERnNIyRFT
 
 
 const style = {
@@ -40,7 +40,9 @@ export default function TourModal() {
       notification:{
         title:"test",
         body:"body test"
-      }
+      },
+      content_available: true,
+      priority: 'high'
     }
 
     let options= {
@@ -56,13 +58,13 @@ export default function TourModal() {
 
     fetch("https://fcm.googleapis.com/fcm/send", options).then(res =>{
      
-     // console.log(res);
+      console.log(res);
      // console.log("SENT");
 
     }).catch(e => console.log(e))
 
 
-    console.log(body);
+    //console.log(body);
   }
 
   return (
