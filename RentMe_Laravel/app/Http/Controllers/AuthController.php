@@ -7,19 +7,14 @@ use Validator;
 
 class AuthController extends Controller
 {
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
+    /*Create a new AuthController instance.*/
+
     public function __construct() {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
-    /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+
+    /* Get a JWT via given credentials. */
+
     public function login(Request $request){
     	$validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -33,11 +28,9 @@ class AuthController extends Controller
         }
         return $this->createNewToken($token);
     }
-    /**
-     * Register a User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+
+    /* Register a User.*/
+
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|between:2,100',
@@ -60,38 +53,47 @@ class AuthController extends Controller
         ], 201);
     }
 
-    /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    /* Log the user out (Invalidate the token).  */
+
     public function logout() {
         auth()->logout();
         return response()->json(['message' => 'User successfully signed out']);
     }
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+
+    /* Refresh a token.  */
+
     public function refresh() {
         return $this->createNewToken(auth()->refresh());
     }
-    /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+
+
+    /*Update Firebase Token */
+
+    public function updateFirebaseToken(Request $request) {
+     
+        $validator = Validator::make($request->all(), [
+            'Token' => 'required|string',
+        ]);
+        if($validator->fails()){
+            return response()->json(['status' =>$validator->errors()], 400);
+        }
+        $Token = $request->get('Token');
+        $user = User::find(Auth::user()->id);
+        $user->Token = $Token;
+        $user->save();
+        return response()->json(['message' => 'Firebase Token Updated Successfully']);
+
+    }
+
+
+    /* Get the authenticated User.*/
+    
     public function userProfile() {
         return response()->json(auth()->user());
     }
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+
+
+    /* Get the token array structure.*/
     protected function createNewToken($token){
         return response()->json([
             'access_token' => $token,
@@ -100,4 +102,7 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
     }
+
+
+
 }
