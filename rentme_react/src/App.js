@@ -41,7 +41,7 @@ function App() {
     //return cityList;
     }
 
-        const messaging = getMessaging();
+   /*     const messaging = getMessaging();
         getToken(messaging, { vapidKey: 'BK3q6ixBB6Nj0BUrfyKJlFCdXog6R5JLsV0TOaqKSQ_s7a8fNYjou18IdK5NrC-gQ01OwgS9A7swPW6TZY8k-Nk' }).then((currentToken) => {
         if (currentToken) {
             // Send the token to your server and update the UI if necessary
@@ -59,7 +59,7 @@ function App() {
         return false;
         // ...
         });
-      
+      */
 
   
    /*     const firebaseConfig = {
