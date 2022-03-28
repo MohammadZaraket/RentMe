@@ -14,7 +14,8 @@ function Details() {
     const parameters = useSelector(state => state.credentials);
     let {id} = useParams();
     const [apartment_id, setApartment_id] = useState(id);
-    const [apartment, setApartment] = useState([{"id": "-", "name":"-", "bathrooms":"-", "bedrooms": "-", "price": "-", "space": "-", "description": "-", "longitude": parameters[0].longitude, "latitude": parameters[0].latitude, "user_id": "-", "apartment_images": [{"id": "-" , "image": "-" ,"apartment_id": "-" }],"user_apartment": {"Token": "-"  }}]);
+    const [apartment, setApartment] = useState([{"id": "-", "name":"-", "bathrooms":"-", "bedrooms": "-", "price": "-", "space": "-", "description": "-", "longitude": parameters[0].longitude, "latitude": parameters[0].latitude, "user_id": "-", "apartment_images": [{"id": "-" , "image": "-" ,"apartment_id": "-" }],"user_apartment": {"Token": "-",  "first_name": "-",
+    "last_name": "-"  }}]);
     var element = {}, data = [];
 
     // Location to be sent to googple map API
@@ -95,7 +96,7 @@ function Details() {
                                   <b>Agent</b>
                                 </Typography>
                                 <p className="agent-name">
-                                Mohammad Zaraket
+                                {apartment[0].user_apartment.first_name} {apartment[0].user_apartment.last_name}
                                 </p>
                             </Grid>
     

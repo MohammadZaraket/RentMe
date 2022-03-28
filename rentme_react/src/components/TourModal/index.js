@@ -23,11 +23,11 @@ const style = {
 export default function TourModal(props) {
 
   const [open, setOpen] = useState(false);
-  const [name,setName] = useState("");
-  const [date,setDate] = useState("");
-  const [number,setNumber] = useState("");
-  const [time,setTime] = useState("");
-
+  const [name,setName] = useState("me");
+  const [date,setDate] = useState("28/3/2022");
+  const [number,setNumber] = useState("71965233");
+  const [time,setTime] = useState("10:00");
+  const message = name + " with phone number: " + number + " will be visiting your Apartment on: " +  date + " at: " + time;
   const handleOpen = () => {
     setOpen(true);
   };
@@ -39,8 +39,8 @@ export default function TourModal(props) {
     let body = {
       to: props.Token,
       notification:{
-        title:"test",
-        body:"body test"
+        title:"Appointment For Apartment Tour",
+        body: message
       },
       content_available: true,
       priority: 'high'
