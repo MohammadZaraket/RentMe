@@ -140,8 +140,10 @@ class ApartmentController extends Controller
     if ($validator->fails()) {
         return response()->json(['status'=>false,'message'=>$validator->errors()]);
     }
+    
+
     $apartment_id = $request->get('apartment_id');
-    $detail =Apartment::find($apartment_id)->with("ApartmentImages")->where('id',$apartment_id)->get();
+    $detail =Apartment::find($apartment_id)->with("ApartmentImages")->with("UserApartment")->where('id',$apartment_id)->get();
     return response()->json($detail);
    }
 
@@ -181,10 +183,6 @@ class ApartmentController extends Controller
             $longitude = $request->get('longitude');
             $latitude = $request->get('latitude');
 
-            /*$result = DB::table('apartments')
-            ->where('id','=',$id)
-            ->update(['name' => $name, 'bathrooms' => $bathrooms,'bedrooms' => $bedrooms,'price' => $price,'space' => $space,'description' => $description,'longitude' => $longitude,'latitude' => $latitude]);
-            */
             $apartment = Apartment::find(id);
             $apartment->name = $name;
             $apartment->bedrooms = $bedrooms;

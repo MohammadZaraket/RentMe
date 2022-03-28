@@ -3,7 +3,6 @@ import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/mat
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-
 import { getMessaging, getToken } from "firebase/messaging";
 
 function SignInForm() { 
@@ -67,26 +66,19 @@ function SignInForm() {
         const messaging = getMessaging();
         getToken(messaging, { vapidKey: 'BK3q6ixBB6Nj0BUrfyKJlFCdXog6R5JLsV0TOaqKSQ_s7a8fNYjou18IdK5NrC-gQ01OwgS9A7swPW6TZY8k-Nk' }).then((currentToken) => {
         if (currentToken) {
-            //console.log(currentToken);
             if(currentToken==response.user.Token){
-                console.log("still same token");
             }
             else{
-                console.log("not same");
                 updateToken(currentToken,config);
-               console.log(currentToken);
             }
         } else {
-            // Show permission request UI
             console.log('No registration token available. Request permission to generate one.');
         }
         }).catch((err) => {
         console.log('An error occurred while retrieving token. ', err);
         });
            
-
-
-         // navigate("/Main");
+         navigate("/Main");
         } else {
             console.log("error");
         }

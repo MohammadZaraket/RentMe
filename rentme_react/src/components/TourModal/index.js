@@ -20,7 +20,8 @@ const style = {
 };
 
 
-export default function TourModal() {
+export default function TourModal(props) {
+
   const [open, setOpen] = useState(false);
   const [name,setName] = useState("");
   const [date,setDate] = useState("");
@@ -36,7 +37,7 @@ export default function TourModal() {
 
   function sendNotification(){
     let body = {
-      to: "e7SLf04kUXoj18crCEAMzi:APA91bGZXtDeMuSZ8Db2m-jlhogxO35KcYzEf6fY_7AWDYa7_7_rVVmflYphhcJUY9HCFluC-GoJHyLbeHORO8Bu8WAfuhUhCiXA2NdRg6ekAGwMWRzfk5umuN3Mr2X-Sd5ERnNIyRFT",
+      to: props.Token,
       notification:{
         title:"test",
         body:"body test"
