@@ -11,13 +11,32 @@ function SignInForm() {
     var [alertStyle,setAlertStyle] = useState({display:'none'});
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
+    const [Token,setToken] = useState("");
+    const [user_id, setUser_id] = useState(localStorage.getItem('access_token'));
     const navigate = useNavigate();
-
+    const config = {
+        headers: { Authorization: `Bearer ${user_id}` }
+    };
 
     function handleLoginSuccess(response) {
         localStorage.setItem('access_token', response.access_token);
         return true;
     }
+
+    async function updateToken(updatedToken,config) {
+
+        setToken(updatedToken);
+        let data= {Token};
+        try {
+         const response = await axios.post("http://127.0.0.1:8000/api/auth/update-token", data,config);
+          return response.data;
+
+        } catch (error) {
+          console.log(error.response);
+          return false;
+        }
+    
+      }
 
   async function doUserLogin(credentials) {
     try {
@@ -48,12 +67,14 @@ function SignInForm() {
         const messaging = getMessaging();
         getToken(messaging, { vapidKey: 'BK3q6ixBB6Nj0BUrfyKJlFCdXog6R5JLsV0TOaqKSQ_s7a8fNYjou18IdK5NrC-gQ01OwgS9A7swPW6TZY8k-Nk' }).then((currentToken) => {
         if (currentToken) {
-            console.log(currentToken);
+            //console.log(currentToken);
             if(currentToken==response.user.Token){
                 console.log("still same token");
             }
             else{
                 console.log("not same");
+                updateToken(currentToken,config);
+               console.log(currentToken);
             }
         } else {
             // Show permission request UI
