@@ -85,7 +85,6 @@ export default function AddApartment() {
     };
 
 
-
     const handleOpen = () => {
         setOpen(true);
     };
@@ -224,9 +223,9 @@ export default function AddApartment() {
               </Grid>
 
                 <Grid item xs={12} style={{display:"flex",justifyContent:"center",marginTop:"25px"}}>
-                    <Button className="request-btn" style={{padding:"10px 20px"}} type="submit" variant="contained" onClick={addApartment} color="primary"> <b> Add Apartment </b> </Button>
+                    <Button className="request-btn" style={{padding:"10px 20px"}} type="submit" variant="contained" onClick={addApartment} color="primary"> <b> Add Apartment </b> </Button>                
                 </Grid>
-
+                                   
            </Grid>
           </Grid>   
         </Box>
