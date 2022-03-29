@@ -50,7 +50,7 @@ function Details() {
             <Navbar />
     
                 <Grid container spacing={2} style={{padding:"4%"}}>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={6} style={{ flexDirection: "column", justifyContent: "flex-start" }}>
                        <ImagesCarousel data={data}/>
                     </Grid>
     
