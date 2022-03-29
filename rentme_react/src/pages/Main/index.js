@@ -10,6 +10,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { RoomService } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+//import SearchLocationInput from  '../../components/SearchLocationInput'
+
 
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,6 +30,9 @@ function Main() {
    parameters[0].price=price;
    parameters[0].longitude=longitude;
    parameters[0].latitude=latitude;
+
+   const [mapApi, setMapApi] = useState(null);
+   const [mapInstance, setMapInstance] = useState(null);
 
     const saveRooms = (event) => {
         setRooms(event.target.value);
@@ -64,6 +69,7 @@ function Main() {
               <Grid container spacing={2}>
                 <Grid item xs={12} >
                   <TextField style={{backgroundColor:"white"}}  placeholder="Where Do You Want To Live Next? "  variant="outlined"  fullWidth required />
+              
                 </Grid>
 
                 <Grid item xs={12} style={{justifyContent: "space-between"}}>
