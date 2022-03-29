@@ -12,18 +12,22 @@ import { RoomService } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 //import SearchLocationInput from  '../../components/SearchLocationInput'
 
+import Axios from "axios";
+
 
 
 import { useDispatch, useSelector } from 'react-redux';
 
 function Main() {
 
-    //() => {navigate('/Results');}
     const navigate = useNavigate();
     const [rooms,setRooms] = useState('');
     const [price, setPrice] = useState('');
-    const [longitude, setLongitude] = useState('');
-    const [latitude, setLatitude] = useState('');
+    const [longitude, setLongitude] = useState('35');
+    const [latitude, setLatitude] = useState('35');
+
+    const API_KEY = "pk.eyJ1IjoibW9oYW1tYWR6YXJha2V0IiwiYSI6ImNsMWJ1azlhczAxZHAzam8wbnJwZmwzaXIifQ.Oo8E7DP6Sl_hk5SsXEhbOg";
+    const [city, setCity] = useState("beirut");
 
    const parameters = useSelector(state => state.credentials);
    parameters[0].bedrooms=rooms;
@@ -49,8 +53,20 @@ function Main() {
             setLatitude( position.coords.latitude);
             navigate('/Results');
         });
-
       }
+
+      async function getCoordinates(event) {
+        event.preventDefault();
+        console.log(city);
+        try {
+            const response = await Axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?access_token=${API_KEY}`);
+            setLongitude(response.data.features[0].geometry.coordinates[0]);    
+            setLatitude(response.data.features[0].geometry.coordinates[1]);
+          } catch (error) {
+            console.log(error.response.status);
+            return false;
+          }
+}
     
   return (
 
@@ -68,8 +84,7 @@ function Main() {
               <form className="search-form">
               <Grid container spacing={2}>
                 <Grid item xs={12} >
-                  <TextField style={{backgroundColor:"white"}}  placeholder="Where Do You Want To Live Next? "  variant="outlined"  fullWidth required />
-              
+                  <TextField style={{backgroundColor:"white"}}  placeholder="Where Do You Want To Live Next? " onInput={e => setCity(e.target.value)} variant="outlined"  fullWidth required />
                 </Grid>
 
                 <Grid item xs={12} style={{justifyContent: "space-between"}}>
@@ -110,7 +125,7 @@ function Main() {
                 </Grid>
                 
                 <Grid item xs={12}>
-                  <Button className="search-btn" type="submit" variant="contained" color="primary"  onClick={getUserLocation} fullWidth>Find Now!</Button>
+                  <Button className="search-btn" type="submit" variant="contained" color="primary"  onClick={getCoordinates} fullWidth>Find Now!</Button>
                 </Grid>
                 
                 <div className='iconsdiv'>
