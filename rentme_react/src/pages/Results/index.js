@@ -22,7 +22,8 @@ function Results() {
     const [latitude, setLatitude] = useState(parameters[0].latitude);
     const [bedrooms, setBedrooms] = useState(parameters[0].bedrooms);
     const [price, setPrice] = useState(parameters[0].price);
-
+    const [city, setCity] = useState('');
+    const API_KEY = "pk.eyJ1IjoibW9oYW1tYWR6YXJha2V0IiwiYSI6ImNsMWJ1azlhczAxZHAzam8wbnJwZmwzaXIifQ.Oo8E7DP6Sl_hk5SsXEhbOg";
 console.log(longitude);
 console.log(latitude);
 console.log(bedrooms);
@@ -42,6 +43,33 @@ useEffect(() => {
     getAllApartments();
 
 },[]);
+
+function  getUserLocation() {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        setLongitude(position.coords.longitude);
+        setLatitude( position.coords.latitude);
+        getAllApartments();
+    });
+  }
+
+async function getCoordinates(event) {
+    event.preventDefault();
+
+    if(city==''){
+        getUserLocation();
+    }
+    else{
+        try {
+            const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?access_token=${API_KEY}`);
+            setLongitude(response.data.features[0].geometry.coordinates[0]);    
+            setLatitude(response.data.features[0].geometry.coordinates[1]);
+          } catch (error) {
+            console.log(error.response.status);
+            return false;
+          }
+          getAllApartments();
+    }    
+}
 
 async function  getAllApartments(){
 
@@ -69,7 +97,7 @@ async function  getAllApartments(){
               <Grid item xs={12}  style={{display:"block"}} >
                 <form className="search-results">
                     <Grid item xs={6} className="results-search-item" >
-                    <TextField style={{backgroundColor:"white"}} id="search-in-results" placeholder="Where Do You Want To Live Next?"  variant="outlined"  fullWidth required />
+                    <TextField style={{backgroundColor:"white"}} id="search-in-results" placeholder="Where Do You Want To Live Next?"  variant="outlined" onInput={e => setCity(e.target.value)}  fullWidth required />
                     </Grid>
                     <Grid item xs={2} className="results-search-item" >
                         <Box className="drop-down" fullWidth>
@@ -104,7 +132,7 @@ async function  getAllApartments(){
                             </Box>
                         </Grid>
                     <Grid item xs={2} className="results-search-item">
-                    <Button className="search-btn" type="submit" variant="contained" color="primary"  fullWidth>Find Now!</Button>
+                    <Button className="search-btn" type="submit" variant="contained" color="primary" onClick={getCoordinates} fullWidth>Find Now!</Button>
                     </Grid>
            
                 </form>
