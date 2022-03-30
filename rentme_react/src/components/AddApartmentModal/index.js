@@ -37,6 +37,7 @@ const style = {
 
 export default function AddApartmentModal() {
 
+    var [alertStyle,setAlertStyle] = useState({display:'none'});
     //Adding Apartment Parameters
     const [name, setName] = useState('');
     const [bathrooms, setBathrooms] = useState('');
@@ -65,11 +66,18 @@ export default function AddApartmentModal() {
         {
             images.push(imagesuploaded[i].dataURL);
         }
+
+        if(name=="" || bathrooms=="" || bedrooms==""|| price==""|| space==""|| description==""|| longitude==""|| latitude==""|| date=="" || from==""  || to==""  || images=="" )
+        {  
+            setAlertStyle({color: 'red', display:"flex"});
+            return false;
+        }
        
         const data ={name,bathrooms,bedrooms,price,space,description,longitude,latitude,date,from,to,images};
         console.log(data);
 
-         try {
+
+       /*  try {
              const response = await axios.post("http://127.0.0.1:8000/api/apartment/add", data,config);
             return response.data;
              
@@ -77,7 +85,8 @@ export default function AddApartmentModal() {
             console.error("Error", error.response);
              return false;
         }
-          
+          */
+         console.log(date);
     };
     
     const [open, setOpen] = useState(false);
@@ -106,6 +115,7 @@ export default function AddApartmentModal() {
 
             <Grid item xs={6}>
                 <h1> Add Property </h1>
+                <h4 style={alertStyle}>*Please Enter All Fields</h4>
             </Grid>
             <Grid item xs={6} style={{justifyContent: "right", display: "flex"}}>
                 <Button onClick={handleClose}> <GrClose size={30} /> </Button>
@@ -194,7 +204,7 @@ export default function AddApartmentModal() {
                         <b>Availability </b> 
                     </Typography> 
                     <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
-                        <DatePicker  value={date}  onChange={(newDate) => { setDate(newDate);}} renderInput={(params) => <TextField {...params} variant="outlined" />} style={{width:"50%"}} />
+                        <DatePicker  value={date}  onChange={(newDate) => { setDate(newDate);}} renderInput={(params) => <TextField {...params} variant="outlined" />}  views={["year", "month", "day"]} format="DD-MM-YYYY" mask="__/__/____"/>
                     </LocalizationProvider>
                 </Grid>
 
@@ -258,8 +268,9 @@ export default function AddApartmentModal() {
 
                 <Grid item xs={12} style={{display:"flex",justifyContent:"center",marginTop:"25px"}}>
                     <Button className="request-btn" style={{padding:"10px 20px"}} type="submit" variant="contained" onClick={addApartment} color="primary"> <b> Add Apartment </b> </Button>                
+                 
                 </Grid>
-                                   
+               
            </Grid>
           </Grid>   
         </Box>
