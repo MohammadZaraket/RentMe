@@ -13,6 +13,12 @@ import {MdDelete} from "react-icons/md";
 import ImageUploading from "react-images-uploading";
 import axios from "axios";
 
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import TimePicker from '@mui/lab/TimePicker';
+import ruLocale from 'date-fns/locale/ru';
+
 
 const style = {
   position: 'absolute',
@@ -29,7 +35,6 @@ const style = {
 };
 
 
-
 export default function AddApartmentModal() {
 
     //Adding Apartment Parameters
@@ -41,13 +46,14 @@ export default function AddApartmentModal() {
     const [description, setDescription] = useState('');
     const [longitude, setLongitude] = useState('35.505192');
     const [latitude, setLatitude] = useState('33.873252');
-    const [date, setDate] = useState(['30/3/2022']);
-    const [from, setFrom] = useState('10:00');
-    const [to, setTo] = useState('12:00');
+    const [date, setDate] = useState(['']);
+    const [from, setFrom] = useState('');
+    const [to, setTo] = useState('');
     const [user_id, setUser_id] = useState(localStorage.getItem('access_token'));
     const [imagesuploaded, setImagesuploaded] = useState([]);
     var images=[];
 
+    const [value, setValue] = React.useState(null);
     const config = {
         headers: { Authorization: `Bearer ${user_id}` }
     };
@@ -71,7 +77,6 @@ export default function AddApartmentModal() {
             console.error("Error", error.response);
              return false;
         }
-
           
     };
     
@@ -81,7 +86,6 @@ export default function AddApartmentModal() {
     const stackImages = (imageList, addUpdateIndex) => {
       console.log(imageList);
       setImagesuploaded(imageList);
-
     };
 
 
@@ -120,11 +124,11 @@ export default function AddApartmentModal() {
                   <TextField className="modal-field"  placeholder="Apartment Name"  variant="outlined" onInput={e => setName(e.target.value)} fullWidth required />
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs={3}>
                     <Typography variant="body2"  component="p" gutterBottom>
                         <b>BedRooms</b> 
                     </Typography> 
-                    <Box fullWidth>
+                    <Box >
                         <FormControl fullWidth >
                             <Select onChange={e => setBedrooms(e.target.value)}>
                                 <MenuItem value=""><em>None</em></MenuItem>
@@ -134,12 +138,14 @@ export default function AddApartmentModal() {
                                 <MenuItem value={4}>4</MenuItem>
                                 <MenuItem value={5}>5</MenuItem>
                                 <MenuItem value={6}>6</MenuItem>
+                                <MenuItem value={7}>7</MenuItem>
+                                <MenuItem value={8}>8</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs={3}>
                     <Typography variant="body2"  component="p" gutterBottom>
                         <b>BathRooms </b> 
                     </Typography> 
@@ -152,11 +158,25 @@ export default function AddApartmentModal() {
                                 <MenuItem value={3}>3</MenuItem>
                                 <MenuItem value={4}>4</MenuItem>
                                 <MenuItem value={5}>5</MenuItem>
-                                <MenuItem value={6}>6</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
                 </Grid>
+
+                <Grid item xs={3}>
+                    <Typography variant="body2"  component="p" gutterBottom>
+                        <b>Price </b> 
+                    </Typography> 
+                    <TextField className="modal-field" placeholder="$/Month"  variant="outlined" onInput={e => setPrice(e.target.value)} fullWidth required />
+                </Grid>
+
+                <Grid item xs={3}>
+                    <Typography variant="body2"  component="p" gutterBottom>
+                        <b>Space </b> 
+                    </Typography> 
+                    <TextField className="modal-field" placeholder="m²"  variant="outlined" onInput={e => setSpace(e.target.value)} fullWidth required />
+                </Grid>
+
               </Grid> 
             </Grid>
 
@@ -171,17 +191,30 @@ export default function AddApartmentModal() {
 
                 <Grid item xs={6}>
                     <Typography variant="body2"  component="p" gutterBottom>
-                        <b>Price </b> 
+                        <b>Availability </b> 
                     </Typography> 
-                    <TextField className="modal-field" placeholder="Price in $/Month"  variant="outlined" onInput={e => setPrice(e.target.value)} fullWidth required />
+                    <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
+                        <DatePicker  value={date}  onChange={(newDate) => { setDate(newDate);}} renderInput={(params) => <TextField {...params} variant="outlined" />} style={{width:"50%"}} />
+                    </LocalizationProvider>
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs={3}>
                     <Typography variant="body2"  component="p" gutterBottom>
-                        <b>Space </b> 
-                    </Typography> 
-                    <TextField className="modal-field" placeholder="Space in m²"  variant="outlined" onInput={e => setSpace(e.target.value)} fullWidth required />
+                        <b>From </b> 
+                    </Typography>
+                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={ruLocale}>
+                            <TimePicker value={from} onChange={(newFrom) => setFrom(newFrom)} renderInput={(params) => <TextField {...params} />} />
+                        </LocalizationProvider>
                 </Grid>
+
+                <Grid item xs={3}>
+                    <Typography variant="body2"  component="p" gutterBottom>
+                        <b>To </b> 
+                    </Typography>
+                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={ruLocale}>
+                            <TimePicker value={to} onChange={(newTo) => setTo(newTo)} renderInput={(params) => <TextField {...params} />} />
+                    </LocalizationProvider>
+                </Grid>               
 
               </Grid>
             </Grid>
@@ -193,6 +226,7 @@ export default function AddApartmentModal() {
                         <b>Description </b> 
                     </Typography> 
                     <TextField className="modal-field" placeholder="Description"  variant="outlined" onInput={e => setDescription(e.target.value)} fullWidth required />
+                   
                 </Grid>
               </Grid>
             </Grid>

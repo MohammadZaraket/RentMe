@@ -49,9 +49,6 @@ body, html {
   padding-bottom: 0px !important;
 }
 
-.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  padding: 15px 10px !important;
-}
 
 .css-mhc70k-MuiGrid-root>.MuiGrid-item {
   padding-left: 10px;
@@ -299,11 +296,16 @@ body, html {
 .modal-field{
 
   margin-bottom: 30px !important;
-  /*padding-right: 50px !important;*/
   background: #FFFFFF;
   box-sizing: border-box;
 }
 
+
+
+.css-i4bv87-MuiSvgIcon-root {
+  
+  width: 75px !important;
+}
 /*.request-btn{
   background-color: #DEB841;
   color: white !important;
@@ -352,50 +354,3 @@ BiImageAdd{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.fly {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 300px;
-  height: 100px;
-  color: white;
-  background-color: #3061e7;
-  margin-top: 1%;
-  margin-left: 40%;
-  padding: 10px;
-  border-radius: 5px;
-  }
-  .fly input {
-  padding-left: 5px;
-  font-size: 18px;
-  height: 30px;
-  }
-  .fly button {
-  cursor: pointer;
-  width: 50px;
-  }
-  
