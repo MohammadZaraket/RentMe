@@ -30,7 +30,7 @@ const style = {
 
 
 
-export default function AddApartment() {
+export default function AddApartmentModal() {
 
     //Adding Apartment Parameters
     const [name, setName] = useState('');
