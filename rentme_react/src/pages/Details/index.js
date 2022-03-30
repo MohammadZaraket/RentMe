@@ -102,7 +102,7 @@ function Details() {
     
                             <Grid item xs={12}>
                                
-                            <TourModal Token={apartment[0].user_apartment.Token}/> 
+                            <TourModal Token={apartment[0].user_apartment.Token} apartment_id={apartment_id}/> 
                             </Grid>
     
                             <Grid item xs={12}>

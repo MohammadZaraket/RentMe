@@ -74,10 +74,10 @@ export default function AddApartmentModal() {
         }
        
         const data ={name,bathrooms,bedrooms,price,space,description,longitude,latitude,date,from,to,images};
-        console.log(data);
+        //console.log(data);
 
 
-       /*  try {
+         try {
              const response = await axios.post("http://127.0.0.1:8000/api/apartment/add", data,config);
             return response.data;
              
@@ -85,8 +85,7 @@ export default function AddApartmentModal() {
             console.error("Error", error.response);
              return false;
         }
-          */
-         console.log(date);
+ 
     };
     
     const [open, setOpen] = useState(false);
