@@ -34,7 +34,8 @@ export default function TourModal(props) {
   const [number,setNumber] = useState("");
   const [time,setTime] = useState("");
   const [availableDate,setAvailableDate] = useState([{"status": false,"message": "Loading"}]);
-  let availableTime=[];
+  const [availableTime,setAvailableTime] = useState([{"status": false,"message": "Loading"}]);
+  const apartment_id = props.apartment_id;
 
   const message = name + " with phone number: " + number + " will be visiting your Apartment on: " +  date + " at: " + time;
   const handleOpen = () => {
@@ -49,7 +50,6 @@ export default function TourModal(props) {
 
   async function getAvailableDate(){
 
-    const apartment_id = props.apartment_id;
     const data = {apartment_id};
     const response = await axios.post("http://127.0.0.1:8000/api/available/date", data);
     
@@ -58,6 +58,34 @@ export default function TourModal(props) {
       }
     else{
     setAvailableDate([{"status": false,"message": "No Available Dates!"}]);
+    }
+  
+  }
+
+  const saveDate = (event) => {
+    setDate(event.target.value);
+    getAvailableTime();
+};
+const saveTime = (event) => {
+  setTime(event.target.value);
+};
+
+  async function getAvailableTime(){
+
+    const data = {apartment_id,date};
+    console.log(data);
+    const response = await axios.post("http://127.0.0.1:8000/api/available/time", data);
+    
+    console.log(response.data)
+    if(response.data){
+      for (let i=0; i<response.data.length;i++)
+      {
+        setAvailableTime(response.data);
+      }
+    
+      }
+    else{
+      setAvailableTime([{"status": false,"message": "No Available Times!"}]);
     }
   
   }
@@ -131,7 +159,7 @@ export default function TourModal(props) {
                   </Typography> 
                   <Box fullWidth>
                             <FormControl fullWidth >
-                                <Select>
+                                <Select onChange={saveDate}>
                                 {
                                   availableDate.map(function(availableDate,i){
                                     if(availableDate.message){
@@ -171,7 +199,26 @@ export default function TourModal(props) {
                   <Typography variant="body2"  component="p" gutterBottom>
                     <b>Time </b> 
                   </Typography> 
-                  <TextField className="modal-field" placeholder="Time"  variant="outlined" onInput={e => setTime(e.target.value)}  fullWidth required />
+                  <Box fullWidth>
+                            <FormControl fullWidth >
+                                <Select onChange={saveTime}>
+                                {
+                                  availableTime.map(function(availableTime,i){
+                                    if(availableTime.message){
+                                      return(
+                                              <MenuItem value={availableTime.message}>{availableTime.message}</MenuItem>
+                                            ) 
+                                   }
+                                   else{
+                                    return(
+                                      <MenuItem value={availableTime}>{availableTime}</MenuItem>
+                                          ) 
+                                   }
+                                  })
+                                }
+                                </Select>
+                            </FormControl>
+                        </Box>
                 </Grid>
 
               </Grid>
