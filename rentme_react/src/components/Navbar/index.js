@@ -47,7 +47,7 @@ const Navbar = () => {
             component="button"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
             onClick= {() => navigate("/Main")}>
-                RentMe
+              <b>RentMe</b>  
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

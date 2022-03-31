@@ -15,7 +15,7 @@ function SignUpForm() {
           <Typography gutterBottom variant="p">
             Welcome to <b>RentMe</b>
           </Typography> 
-            <Typography gutterBottom variant="h4"  style={{margin:"10px 0 "}}>
+            <Typography gutterBottom variant="h4"  style={{margin:"15px 0 "}}>
               <b>Sign Up</b>
           </Typography> 
             <form style={{padding:"0px"}}>

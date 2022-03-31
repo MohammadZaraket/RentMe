@@ -9,7 +9,7 @@ function ImagesCarousel(props) {
     <div className="App">
       <div style={{ textAlign: "center"}}>
         <div style={{
-          padding: "0 20px"
+          padding: "0 10px"
         }}>
           <Carousel
             data={props.data}
@@ -32,7 +32,7 @@ function ImagesCarousel(props) {
               textAlign: "center",
               maxWidth: "850px",
               maxHeight: "500px",
-              margin: "40px auto",
+              margin: "10px auto",
             }}
           />
         </div>

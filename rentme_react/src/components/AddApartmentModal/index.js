@@ -266,7 +266,7 @@ export default function AddApartmentModal() {
               </Grid>
 
                 <Grid item xs={12} style={{display:"flex",justifyContent:"center",marginTop:"25px"}}>
-                    <Button className="request-btn" style={{padding:"10px 20px"}} type="submit" variant="contained" onClick={addApartment} color="primary"> <b> Add Apartment </b> </Button>                
+                    <Button className="request-btn" style={{padding:"10px 40px"}} type="submit" variant="contained" onClick={addApartment} color="primary"> <b> Add Apartment </b> </Button>                
                  
                 </Grid>
                

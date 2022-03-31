@@ -51,7 +51,11 @@ function Details() {
     
                 <Grid container spacing={2} style={{padding:"4%"}}>
                     <Grid item xs={12} sm={6} style={{ flexDirection: "column", justifyContent: "flex-start" }}>
-                       <ImagesCarousel data={data}/>
+                    <Grid container spacing={1}>
+                        <Grid item xs={12}>
+                            <ImagesCarousel data={data}/>
+                        </Grid>
+                    </Grid>
                     </Grid>
     
                     <Grid item xs={12} sm={6}>
