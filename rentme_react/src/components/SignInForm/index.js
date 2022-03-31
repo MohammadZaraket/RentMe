@@ -19,10 +19,12 @@ function SignInForm() {
 
     function handleLoginSuccess(response) {
         localStorage.setItem('access_token', response.access_token);
+        setUser_id(localStorage.getItem('access_token'))
         return true;
     }
 
     async function updateToken(updatedToken,config) {
+        console.log(updatedToken)
 
         setToken(updatedToken);
         let data= {Token};
@@ -99,13 +101,13 @@ function SignInForm() {
               <Grid container spacing={1}>
                 <Grid item xs={12} >
                 <Typography variant="body2"  component="p" gutterBottom>
-                   <b>Enter Your Email Address</b> 
+                   <b>Email Address</b> 
                  </Typography> 
                   <TextField style={{backgroundColor:"white", marginBottom:"10px", borderRadius:"10px", borderWidth:"0px"}} type="email" placeholder="Enter email" variant="outlined"  value={email} onInput={e => setEmail(e.target.value)} fullWidth required />
                 </Grid>
                 <Grid item xs={12}>
                 <Typography variant="body2" component="p" gutterBottom>
-                    <b>Enter Your Password</b>
+                    <b>Password</b>
                  </Typography> 
                   <TextField  style={{backgroundColor:"white", marginBottom:"10px",  borderRadius:"10px" }} type="password" placeholder="Enter Password" variant="outlined" value={password} onInput={e => setPassword(e.target.value)} fullWidth required />
                 </Grid>

@@ -287,9 +287,13 @@ body, html {
 
 
 
+Label:focus{
+  color:white !important;
+}
 
-
-
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+  color: #37323E !important;
+}
 /* Modal Styling*/
 
 

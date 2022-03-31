@@ -34,7 +34,7 @@
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that no finished template was used, all from scratch and using pure css modules
 
-| Landing  | Home/Search  |
+| Home/Search  |
 | -----------------| -----|
 | ![Home/Search](https://github.com/MohammadZaraket/RentMe/tree/main/readme/main-page.PNG) |
 

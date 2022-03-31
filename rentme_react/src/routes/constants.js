@@ -1,32 +1,25 @@
 import AboutUs from "../pages/AboutUs";
 import ContactUs from "../pages/ContactUs";
-import Terms from "../pages/Terms";
 import Profile from "../pages/Profile";
-//import SignIn from "../pages/SignIn";
 
 
 export const ABOUTUS_ROUTE = {
-    path:'/AboutUs',
-    name:'About Us',
+    path:'/aboutus',
+    name:'about us',
     component:AboutUs,
 }
 
 export const CONTACTUS_ROUTE = {
-    path:'/ContactUs',
-    name:'Contact Us',
+    path:'/contactus',
+    name:'contact us',
     component:ContactUs
 }
 
 
-export const TERMS = {
-    path:'/Terms',
-    name:'Terms',
-    component:Terms
-}
 
 export const PROFILE = {
-    path:'/Profile',
-    name:'Profile',
+    path:'/profile',
+    name:'profile',
     component:Profile
 }
 
@@ -35,7 +28,6 @@ export const PROFILE = {
 export const NAVBAR_ROUTE = [
 
     ABOUTUS_ROUTE,
-    TERMS,
     CONTACTUS_ROUTE,
     PROFILE
 ]

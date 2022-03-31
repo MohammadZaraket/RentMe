@@ -45,11 +45,12 @@ export default function AddApartmentModal() {
     const [price, setPrice] = useState('');
     const [space, setSpace] = useState('');
     const [description, setDescription] = useState('');
-    const [longitude, setLongitude] = useState('35.505192');
-    const [latitude, setLatitude] = useState('33.873252');
+    const [longitude, setLongitude] = useState('');
+    const [latitude, setLatitude] = useState('');
     const [date, setDate] = useState(['']);
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
+    const [city, setCity] = useState('');
     const [user_id, setUser_id] = useState(localStorage.getItem('access_token'));
     const [imagesuploaded, setImagesuploaded] = useState([]);
     var images=[];
@@ -59,6 +60,19 @@ export default function AddApartmentModal() {
         headers: { Authorization: `Bearer ${user_id}` }
     };
 
+    const API_KEY = process.env.API_KEY;
+
+
+    async function getLocation(){
+    try {
+        const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?access_token=${API_KEY}`);
+        setLongitude(response.data.features[0].geometry.coordinates[0]);    
+        setLatitude(response.data.features[0].geometry.coordinates[1]);
+      } catch (error) {
+        console.log(error.response.status);
+        return false;
+      }
+    }
 
     async function addApartment(){
 
@@ -75,7 +89,7 @@ export default function AddApartmentModal() {
        
         const data ={name,bathrooms,bedrooms,price,space,description,longitude,latitude,date,from,to,images};
         //console.log(data);
-
+        getLocation();
 
          try {
              const response = await axios.post("http://127.0.0.1:8000/api/apartment/add", data,config);
@@ -135,7 +149,7 @@ export default function AddApartmentModal() {
 
                 <Grid item xs={3}>
                     <Typography variant="body2"  component="p" gutterBottom>
-                        <b>BedRooms</b> 
+                        <b>Bedrooms</b> 
                     </Typography> 
                     <Box >
                         <FormControl fullWidth >
@@ -156,7 +170,7 @@ export default function AddApartmentModal() {
 
                 <Grid item xs={3}>
                     <Typography variant="body2"  component="p" gutterBottom>
-                        <b>BathRooms </b> 
+                        <b>Bathrooms </b> 
                     </Typography> 
                     <Box fullWidth>
                         <FormControl fullWidth >
@@ -195,7 +209,7 @@ export default function AddApartmentModal() {
                     <Typography variant="body2"  component="p" gutterBottom>
                         <b>Location </b> 
                     </Typography> 
-                    <TextField className="modal-field" placeholder="Location"  variant="outlined"  fullWidth required />
+                    <TextField className="modal-field" placeholder="Location"  variant="outlined" onInput={e => setCity(e.target.value)}  fullWidth required />
                 </Grid>
 
                 <Grid item xs={6}>

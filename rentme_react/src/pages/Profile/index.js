@@ -1,11 +1,37 @@
 import Navbar from '../../components/Navbar'
 import ApartmentCard from '../../components/ApartmentCard'
-
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
-import { FaFacebookSquare,FaInstagram,FaTwitterSquare,FaSistrix } from "react-icons/fa";
-import InputAdornment from '@mui/material/InputAdornment';
+import React, { useState, useEffect} from 'react';
+import axios from "axios";
 
 function Profile() {
+
+    const [user_id, setUser_id] = useState(localStorage.getItem('access_token'));
+    const config = {
+        headers: { Authorization: `Bearer ${user_id}` }
+    };
+
+
+    
+
+    async function getUserApartments(){
+
+       /* try {
+            const response = await axios.post("http://127.0.0.1:8000/api/apartment/show",config);
+             console.log(response);
+   
+           } catch (error) {
+             console.log(error.response);
+             return false;
+           }*/
+
+           console.log(user_id);
+           console.log(config);
+            const response = await axios.post("http://127.0.0.1:8000/api/apartment/show", config);
+            console.log(response);
+    
+    }
+    
 
   return (
 

@@ -22,7 +22,8 @@ function Main() {
     const [longitude, setLongitude] = useState('');
     const [latitude, setLatitude] = useState('');
 
-    const API_KEY = "pk.eyJ1IjoibW9oYW1tYWR6YXJha2V0IiwiYSI6ImNsMWJ1azlhczAxZHAzam8wbnJwZmwzaXIifQ.Oo8E7DP6Sl_hk5SsXEhbOg";
+    const API_KEY = process.env.API_KEY;
+    console.log(API_KEY);
     const [city, setCity] = useState('');
 
    const parameters = useSelector(state => state.credentials);
@@ -72,7 +73,7 @@ function Main() {
     <div className='Main-background'>
         <Navbar />
         <Grid container spacing={2} style={{padding:"auto",margin:"auto"}}>
-              <Grid item xs={12} style={{color:"white", margin:"auto"}}>
+              <Grid item xs={12} style={{color:"white", margin:"1% auto"}}>
                 <Grid>
                 <p className="title">Rent Me</p>
                 <p className="slogan">Let Us Guide You Home</p>
@@ -90,7 +91,7 @@ function Main() {
                     <Grid item xs={5}>
                         <Box  className="drop-down" fullWidth>
                             <FormControl fullWidth >
-                            <InputLabel><b>Minimum Bedrooms</b></InputLabel>
+                            <InputLabel><b>Min Bedrooms</b></InputLabel>
                                 <Select value={rooms} onChange={saveRooms}>
                                 <MenuItem value=""><em>None</em></MenuItem>
                                 <MenuItem value={1}>1</MenuItem>
@@ -107,7 +108,7 @@ function Main() {
                     <Grid item xs={5}>
                         <Box className="drop-down" fullWidth>
                             <FormControl fullWidth>
-                            <InputLabel> <b>Maximum Price</b></InputLabel>
+                            <InputLabel> <b>Max Price</b></InputLabel>
                                 <Select value={price} onChange={savePrice}>
                                 <MenuItem value=""><em>None</em></MenuItem>
                                 <MenuItem value={100}>100</MenuItem>
@@ -127,15 +128,17 @@ function Main() {
                   <Button className="search-btn" type="submit" variant="contained" color="primary"  onClick={getCoordinates} fullWidth>Find Now!</Button>
                 </Grid>
                 
+            </Grid>
+             </form>
+             </Grid>   
                 <div className='iconsdiv'>
-                    <FaFacebookSquare  size={42}/>
-                    <FaInstagram size={42} />
-                    <FaTwitterSquare size={42}/>
+                    <FaFacebookSquare className='main-icon' size={30}/>
+                    <FaInstagram className='main-icon' size={30} />
+                    <FaTwitterSquare className='main-icon' size={30}/>
                 </div>
                 
-              </Grid>
-             </form>
-              </Grid>          
+
+                    
           </Grid>
     </div>
 

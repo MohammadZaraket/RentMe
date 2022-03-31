@@ -28,12 +28,17 @@
 
 .drop-down{
     background: #CCCCCC;
-    /*padding-right: 10px;*/
 }
 
 .iconsdiv{
 
-    margin-top: 10% !important;
+    margin-top: 5% !important;
     margin: auto;
     color: #DEB841;
 }
+
+
+.main-icon{
+    margin: 20px;
+}
+

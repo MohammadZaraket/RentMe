@@ -3,18 +3,15 @@ import { Routes, Route, Link } from "react-router-dom";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import SignIn from "./pages/SignIn";
-import Terms from "./pages/Terms";
 import SignUp from "./pages/SignUp";
 import Main from "./pages/Main";
 import Results from "./pages/Results";
 import Details from "./pages/Details";
 import Profile from "./pages/Profile";
 import 'firebase/compat/messaging';
-import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
 
 import { initializeApp } from 'firebase/app';
 import { collection, getDocs } from 'firebase/firestore';
-import { getMessaging, getToken } from "firebase/messaging";
 import { getFirestore } from 'firebase/firestore'
 
 
@@ -38,40 +35,19 @@ function App() {
         const cityList = citySnapshot.docs.map(doc => doc.data());
         console.log(cityList);
      }
-
-     /*   const messaging = getMessaging();
-        getToken(messaging, { vapidKey: 'BK3q6ixBB6Nj0BUrfyKJlFCdXog6R5JLsV0TOaqKSQ_s7a8fNYjou18IdK5NrC-gQ01OwgS9A7swPW6TZY8k-Nk' }).then((currentToken) => {
-        if (currentToken) {
-            // Send the token to your server and update the UI if necessary
-            // ...
-            console.log(currentToken);
-            return true;
-        } else {
-            // Show permission request UI
-            console.log('No registration token available. Request permission to generate one.');
-            return false;
-            // ...
-        }
-        }).catch((err) => {
-        console.log('An error occurred while retrieving token. ', err);
-        return false;
-        // ...
-        });*/
-      
    
     return (
         <div className="App">
            
             <Routes>
                 <Route path="*" element={<Landing />} />
-                <Route path="Main" element={<Main />} />
-                <Route path="ContactUs" element={<ContactUs />} />
-                <Route path="AboutUs" element={<AboutUs />} />
-                <Route path="Terms" element={<Terms />} />
-                <Route path="SignUp" element={<SignUp />} />
-                <Route path="Results" element={<Results />} />
-                <Route path="Details/:id" element={<Details />} />
-                <Route path="Profile" element={<Profile />} />
+                <Route path="main" element={<Main />} />
+                <Route path="contactus" element={<ContactUs />} />
+                <Route path="aboutus" element={<AboutUs />} />
+                <Route path="signup" element={<SignUp />} />
+                <Route path="results" element={<Results />} />
+                <Route path="details/:id" element={<Details />} />
+                <Route path="profile" element={<Profile />} />
             </Routes>
         </div>
     );
