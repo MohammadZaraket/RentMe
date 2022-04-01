@@ -55,7 +55,6 @@ Route::group(['prefix' => 'available'], function () {
 
 Route::group(['prefix' => 'tour'], function () {
 
-    Route::post('/show', [TourController::class, 'show']);
     Route::post('/add', [TourController::class, 'store']);
     Route::post('/accept', [TourController::class, 'update']);
 

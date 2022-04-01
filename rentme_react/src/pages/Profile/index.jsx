@@ -96,15 +96,15 @@ function Profile() {
 
         <TabPanel value="2">
 
-          <Grid container spacing={2} style={{padding:"4%"}}>
-            <Grid item xs={12} style={{color:"white",display:"block"}}>
-                <h1 className="result_title">User Profile</h1>
-            </Grid>
+          
+        <Grid container spacing={2}>
+          <Grid item xs={12} style={{color:"white",display:"block"}}>
+              <h1 className="result_title">User Profile</h1>
+          </Grid>
 
-            <Grid item xs={12} style={{color:"white",display:"block"}}>
-                <ApartmentCard editable={true} />
-            </Grid>
-            </Grid>
+          </Grid>
+
+
         
         </TabPanel>
       </TabContext>

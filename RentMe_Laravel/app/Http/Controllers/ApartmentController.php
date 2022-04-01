@@ -148,11 +148,11 @@ class ApartmentController extends Controller
     return response()->json($detail);
    }
 
-    // Show the apartments of the user
+    // Show the apartments of the user + Tours requested for each apartment
     public function show(Request $request)
     {
             $user = Auth::user();
-            $apartments = $user->UserApartments()->get();
+            $apartments = $user->UserApartments()->with("ApartmentTours")->get();
             return response()->json(['status'=>true,"Apartments"=>$apartments]);
     }
 
