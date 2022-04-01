@@ -88,7 +88,6 @@ export default function AddApartmentModal() {
         }
        
         const data ={name,bathrooms,bedrooms,price,space,description,longitude,latitude,date,from,to,images};
-        //console.log(data);
         getLocation();
 
          try {
@@ -106,7 +105,6 @@ export default function AddApartmentModal() {
     const maxNumber = 3; // Maximum number of Images a User can upload for ONE apartment
 
     const stackImages = (imageList, addUpdateIndex) => {
-      console.log(imageList);
       setImagesuploaded(imageList);
     };
 
@@ -279,7 +277,7 @@ export default function AddApartmentModal() {
                     </Grid>
               </Grid>
 
-                <Grid item xs={12} style={{display:"flex",justifyContent:"center",marginTop:"25px"}}>
+                <Grid item xs={12} style={{display:"flex",justifyContent:"center",marginTop:"20px"}}>
                     <Button className="request-btn" style={{padding:"10px 40px"}} type="submit" variant="contained" onClick={addApartment} color="primary"> <b> Add Apartment </b> </Button>                
                  
                 </Grid>

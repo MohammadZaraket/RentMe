@@ -72,7 +72,7 @@ function Main() {
 
     <div className='Main-background'>
         <Navbar />
-        <Grid container spacing={2} style={{padding:"auto",margin:"auto"}}>
+        <Grid container spacing={2} >
               <Grid item xs={12} style={{color:"white", margin:"1% auto"}}>
                 <Grid>
                 <p className="title">Rent Me</p>
@@ -84,7 +84,7 @@ function Main() {
               <form className="search-form">
               <Grid container spacing={2}>
                 <Grid item xs={12} >
-                  <TextField style={{backgroundColor:"white"}}  placeholder="Where Do You Want To Live Next? " onInput={e => setCity(e.target.value)} variant="outlined"  fullWidth required />
+                  <TextField style={{backgroundColor:"white"}}  placeholder="Where To Live Next? Keep Empty To Find Nearby" onInput={e => setCity(e.target.value)} variant="outlined"  fullWidth required />
                 </Grid>
 
                 <Grid item xs={12} style={{justifyContent: "space-between"}}>

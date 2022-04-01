@@ -24,7 +24,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
 Route::group(['prefix' => 'apartment'], function () {
 
     Route::post('/add', [ApartmentController::class, 'store']);
-    Route::post('/show', [ApartmentController::class, 'show']);
+    Route::get('/show', [ApartmentController::class, 'show']);
     Route::post('/update', [ApartmentController::class, 'update']);
     Route::post('/delete', [ApartmentController::class, 'destroy']);
     Route::post('/search', [ApartmentController::class, 'search']);

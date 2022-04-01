@@ -23,42 +23,33 @@ function Results() {
     const [bedrooms, setBedrooms] = useState(parameters[0].bedrooms);
     const [price, setPrice] = useState(parameters[0].price);
     const [city, setCity] = useState('');
-    const API_KEY = "pk.eyJ1IjoibW9oYW1tYWR6YXJha2V0IiwiYSI6ImNsMWJ1azlhczAxZHAzam8wbnJwZmwzaXIifQ.Oo8E7DP6Sl_hk5SsXEhbOg";
-console.log(longitude);
-console.log(latitude);
-console.log(bedrooms);
-console.log(price);
-
-const saveRooms = (event) => {
-    setBedrooms(event.target.value);
-};
-
-const savePrice = (event) => {
-    setPrice(event.target.value);
-  };
+    const API_KEY = process.env.API_KEY;
 
 
-useEffect(() => {
+    const saveRooms = (event) => {
+        setBedrooms(event.target.value);
+    };
 
-    getAllApartments();
+    const savePrice = (event) => {
+        setPrice(event.target.value);
+    };
 
-},[]);
 
-function  getUserLocation() {
-    navigator.geolocation.getCurrentPosition(function(position) {
-        setLongitude(position.coords.longitude);
-        setLatitude( position.coords.latitude);
+    useEffect(() => {
+
         getAllApartments();
-    });
-  }
 
-async function getCoordinates(event) {
-    event.preventDefault();
+    },[]);
 
-    if(city==''){
-        getUserLocation();
+    function  getUserLocation() {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            setLongitude(position.coords.longitude);
+            setLatitude( position.coords.latitude);
+            getAllApartments();
+        });
     }
-    else{
+
+  async  function  getLocationByCity() {
         try {
             const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?access_token=${API_KEY}`);
             setLongitude(response.data.features[0].geometry.coordinates[0]);    
@@ -67,7 +58,17 @@ async function getCoordinates(event) {
             console.log(error.response.status);
             return false;
           }
-          getAllApartments();
+            getAllApartments();
+    }
+
+async function getCoordinates(event) {
+    event.preventDefault();
+
+    if(city==''){
+        getUserLocation();
+    }
+    else{
+        getLocationByCity();
     }    
 }
 

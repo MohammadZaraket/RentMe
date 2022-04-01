@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Apartment;
+use App\Models\User;
 use App\Models\Image;
 use App\Models\Availability;
 use Illuminate\Http\Request;
