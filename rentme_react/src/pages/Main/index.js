@@ -21,9 +21,9 @@ function Main() {
     const [price, setPrice] = useState('');
     const [longitude, setLongitude] = useState('');
     const [latitude, setLatitude] = useState('');
-
     const API_KEY = process.env.API_KEY;
-    console.log(API_KEY);
+
+    //console.log(API_KEY);
     const [city, setCity] = useState('');
 
    const parameters = useSelector(state => state.credentials);
@@ -90,9 +90,9 @@ function Main() {
                 <Grid item xs={12} style={{justifyContent: "space-between"}}>
                     <Grid item xs={5}>
                         <Box  className="drop-down" fullWidth>
-                            <FormControl fullWidth >
+                            <FormControl className='form-dropdown'  fullWidth >
                             <InputLabel><b>Min Bedrooms</b></InputLabel>
-                                <Select value={rooms} onChange={saveRooms}>
+                                <Select value={rooms} onChange={saveRooms} style={{backgroundColor:"#CCCCCC",padding:"6.5px 0"}}>
                                 <MenuItem value=""><em>None</em></MenuItem>
                                 <MenuItem value={1}>1</MenuItem>
                                 <MenuItem value={2}>2</MenuItem>
@@ -107,9 +107,9 @@ function Main() {
 
                     <Grid item xs={5}>
                         <Box className="drop-down" fullWidth>
-                            <FormControl fullWidth>
+                            <FormControl className='form-dropdown' fullWidth>
                             <InputLabel> <b>Max Price</b></InputLabel>
-                                <Select value={price} onChange={savePrice}>
+                                <Select value={price} onChange={savePrice} style={{backgroundColor:"#CCCCCC",padding:"6.5px 0"}}>
                                 <MenuItem value=""><em>None</em></MenuItem>
                                 <MenuItem value={100}>100</MenuItem>
                                 <MenuItem value={200}>200</MenuItem>

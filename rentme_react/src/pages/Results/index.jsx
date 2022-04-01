@@ -101,11 +101,11 @@ async function  getAllApartments(){
                     <TextField style={{backgroundColor:"white"}} id="search-in-results" placeholder="Where Do You Want To Live Next?"  variant="outlined" onInput={e => setCity(e.target.value)}  fullWidth required />
                     </Grid>
                     <Grid item xs={2} className="results-search-item" >
-                        <Box className="drop-down" fullWidth>
+                        <Box className="drop-down" fullWidth >
                                 <FormControl fullWidth >
                                 <InputLabel><b>Minimum Bedrooms</b></InputLabel>
-                                    <Select value={bedrooms} onChange={saveRooms}>
-                                    <MenuItem value=""><em>None</em></MenuItem>
+                                    <Select value={bedrooms} onChange={saveRooms} >
+                                    <MenuItem value="" ><em>None</em></MenuItem>
                                     <MenuItem value={1}>1</MenuItem>
                                     <MenuItem value={2}>2</MenuItem>
                                     <MenuItem value={3}>3</MenuItem>
