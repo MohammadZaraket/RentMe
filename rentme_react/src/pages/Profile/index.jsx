@@ -1,4 +1,5 @@
 import Navbar from '../../components/Navbar'
+import TourTable from '../../components/TourTable'
 import ApartmentCard from '../../components/ApartmentCard'
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
 import React, { useState, useEffect} from 'react';
@@ -20,6 +21,9 @@ function Profile() {
     const [user_id, setUser_id] = useState(localStorage.getItem('access_token'));
     const config = {  headers: {Authorization: `Bearer ${user_id}`} };
     const [apartments, setApartments] = useState([{"status": false,"message": "Loading"}]);
+    const [tours, setTours] = useState([]);
+
+    
     const [value, setValue] = useState('1');
     const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -37,6 +41,12 @@ function Profile() {
 
              if(response.data){
                 setApartments(response.data.Apartments);
+             for( let i=0; i<apartments.length; i++){
+
+                  tours.push(apartments[i].apartment_tours);
+                }
+   
+    
                 }
             else{
                 setApartments([{"status": false,"message": "No Apartments Uploaded Yet!"}]);
@@ -46,6 +56,7 @@ function Profile() {
               console.log(error.response);
               return false;
             }
+
           }
     
 
@@ -99,8 +110,15 @@ function Profile() {
           
         <Grid container spacing={2}>
           <Grid item xs={12} style={{color:"white",display:"block"}}>
-              <h1 className="result_title">User Profile</h1>
+              <h1 className="result_title">Requested Tours</h1>
           </Grid>
+
+        
+        <Grid item xs={12} md={12} sm={12} style={{color:"white",display:"flex",padding:"5% 10%"}}>
+          <TourTable tours={tours} />
+         </Grid>
+                 
+
 
           </Grid>
 

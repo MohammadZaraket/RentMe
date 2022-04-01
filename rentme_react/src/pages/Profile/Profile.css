@@ -5,11 +5,15 @@
 
 .tab::selection{
 
-    color: white;
+    color: white !important;
 }
 
 
 .css-1aquho2-MuiTabs-indicator {
 
-    background-color: white; 
+    background-color: white !important; 
+}
+
+.css-aym9vq-MuiButtonBase-root-MuiTab-root.Mui-selected {
+    color: white !important;
 }
