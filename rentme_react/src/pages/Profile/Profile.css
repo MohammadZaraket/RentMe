@@ -1,0 +1,15 @@
+.tab:focus{
+
+    color: white;
+}
+
+.tab::selection{
+
+    color: white;
+}
+
+
+.css-1aquho2-MuiTabs-indicator {
+
+    background-color: white; 
+}

@@ -112,6 +112,7 @@ function goDetails() { navigate("/Details/"+apartment_key);};
   else{
 
     return(
+        <div>
         <Card sx={{ maxWidth: 345 }} >
             <CardMedia
             component="img"
@@ -196,6 +197,9 @@ function goDetails() { navigate("/Details/"+apartment_key);};
             </CardContent>
           </Collapse>
         </Card>
+        <Button className="editbtn" type="submit" variant="contained" color="primary" fullWidth>Edit</Button>
+        <Button className="deletebtn" type="submit" variant="contained" color="primary" fullWidth>Delete</Button>
+        </div>
     
     );
   }

@@ -360,3 +360,16 @@ BiImageAdd{
 }
 
 
+
+/*For Profile Page*/
+.editbtn{
+  background-color: #DEB841 !important;
+  margin-top: 15px !important;
+  margin-bottom: 5px !important;
+}
+
+.deletebtn{
+  background-color:red !important;
+  margin-top: 15px !important;
+  margin-bottom: 5px !important;
+}

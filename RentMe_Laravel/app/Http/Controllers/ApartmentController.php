@@ -153,7 +153,7 @@ class ApartmentController extends Controller
     {
             $user = Auth::user();
             $apartments = $user->UserApartments()->get();
-            return response()->json(["Apartments"=> $apartments],201);
+            return response()->json(['status'=>true,"Apartments"=>$apartments]);
     }
 
 
