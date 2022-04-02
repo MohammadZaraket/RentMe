@@ -16,48 +16,53 @@ class ApartmentController extends Controller
    
     public function search(Request $request)
     {
-        {
-                        $validator = Validator::make($request->all(), [
-                            'longitude' => 'required',
-                            'latitude' => 'required',
-                            'bedrooms' => 'integer',
-                            'price' => 'integer',
-                        ]);
-                        if ($validator->fails()) {
-                            return response()->json(['status'=>false,'message'=>'Please Enter A Specific Location To Start With']);
-                        }
-                        $longitude = $request->get('longitude');
-                        $latitude = $request->get('latitude');
-                        $bedrooms = ($request->has('bedrooms')) ? $request->get('bedrooms'):"";
-                        $price = ($request->has('price')) ? $request->get('price'):"";
-                            $query = Apartment::select(['id', 'name','bedrooms','bathrooms','price','space','description'])
-                            ->selectRaw("( 6371 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
-                            ->having("distance", "<", "25")
-                            ->when($bedrooms, function ($query, $bedrooms) {
-                                return $query->where('bedrooms', ">=", $bedrooms);
-                            })
-                            ->when($price, function ($query, $price) {
-                                return $query->where("price", "<=", $price);
-                            })
-                            ->with("ApartmentImages")
-                            ->orderBy('distance', 'asc')
-                            ->offset(0)
-                            ->limit(20);
-                            $result = $query->get();
-                     
-                        if(count($result)>0){
-                            return response()->json(['status'=>true,"apartments"=>$result]);
-                        }
-                        return response()->json(['status'=>false,'message'=>"No Apartments found With Such Conditions!"]);
-        
-        }
+        try {
+            
+            $validator = Validator::make($request->all(), [
+                'longitude' => 'required',
+                'latitude' => 'required',
+                'bedrooms' => 'integer',
+                'price' => 'integer',
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['status'=>false,'message'=>'Please Enter A Specific Location To Start With']);
+            }
+            $longitude = $request->get('longitude');
+            $latitude = $request->get('latitude');
+            $bedrooms = ($request->has('bedrooms')) ? $request->get('bedrooms'):"";
+            $price = ($request->has('price')) ? $request->get('price'):"";
+                $query = Apartment::select(['id', 'name','bedrooms','bathrooms','price','space','description'])
+                ->selectRaw("( 6371 * acos ( cos ( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin ( radians(?) ) * sin( radians( latitude ) ) ) ) as distance", [$latitude, $longitude, $latitude])
+                ->having("distance", "<", "25")
+                ->when($bedrooms, function ($query, $bedrooms) {
+                    return $query->where('bedrooms', ">=", $bedrooms);
+                })
+                ->when($price, function ($query, $price) {
+                    return $query->where("price", "<=", $price);
+                })
+                ->with("ApartmentImages")
+                ->orderBy('distance', 'asc')
+                ->offset(0)
+                ->limit(20);
+                $result = $query->get();
+         
+            if(count($result)>0){
+                return response()->json(['status'=>true,"apartments"=>$result]);
+            }
+            return response()->json(['status'=>false,'message'=>"No Apartments found With Such Conditions!"]);
+
+
+        } catch (ModelNotFoundException $exception) {
+
+            return back()->withError($exception->getMessage());
+        }    
         
     }
 
 
     public function store(Request $request)
     {
-        {
+        try {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|between:2,100',
                 'bathrooms' => 'required|integer|',
@@ -127,39 +132,52 @@ class ApartmentController extends Controller
                          }
                     }
                     return response()->json(['status' => 'Your Apartment Have Been Added!'], 201);
-            }
-        }   
+            } 
+        } catch (ModelNotFoundException $exception) {
+
+            return back()->withError($exception->getMessage());
+        }    
+        
 }
 
 
    // Show the details of specific apartment
    public function showDetails(Request $request)
    {
-    $validator = Validator::make($request->all(), [
-        'apartment_id' => 'required',
-    ]);
-    if ($validator->fails()) {
-        return response()->json(['status'=>false,'message'=>$validator->errors()]);
-    }
-    
+    try {
+        $validator = Validator::make($request->all(), [
+            'apartment_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['status'=>false,'message'=>$validator->errors()]);
+        }
+        
+        $apartment_id = $request->get('apartment_id');
+        $detail =Apartment::find($apartment_id)->with("ApartmentImages")->with("UserApartment")->where('id',$apartment_id)->get();
+        return response()->json($detail);
 
-    $apartment_id = $request->get('apartment_id');
-    $detail =Apartment::find($apartment_id)->with("ApartmentImages")->with("UserApartment")->where('id',$apartment_id)->get();
-    return response()->json($detail);
+    } catch (ModelNotFoundException $exception) {
+        return back()->withError($exception->getMessage())->withInput();
+    }
    }
 
     // Show the apartments of the user + Tours requested for each apartment
     public function show(Request $request)
     {
+        try {
             $user = Auth::user();
             $apartments = $user->UserApartments()->with("ApartmentTours")->with("ApartmentImages")->get();
             return response()->json(['status'=>true,"Apartments"=>$apartments]);
+        } 
+        catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        } 
     }
 
 
     public function update(Request $request, apartments $apartments)
     {
-        {
+        try {
             $validator = Validator::make($request->all(), [
                 'id' => 'required',
                 'name' => 'required|string|between:2,100',
@@ -196,14 +214,17 @@ class ApartmentController extends Controller
             $tour->save();
 
             return response()->json(['status'=>true,'message'=>"Info Edited Successfully!"],201);
-
+       
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
         }
+ 
     }
 
 
     public function destroy(Request $request)
     {
-        {
+        try {
             $validator = Validator::make($request->all(), [
                 'id' => 'required',
             ]);
@@ -216,7 +237,9 @@ class ApartmentController extends Controller
             $apartment->delete();
 
             return response()->json(['status'=>true,'message'=>"Apartment Deleted Successfully!"],201);
-
+        
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
         }
     }
 }
