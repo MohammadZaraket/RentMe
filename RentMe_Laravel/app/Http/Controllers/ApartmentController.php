@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Illuminate\Support\Str;
 
 class ApartmentController extends Controller
 {
@@ -88,15 +89,17 @@ class ApartmentController extends Controller
             if( $apartments->id){
                 foreach($request->get('images') as $imgDoc){
                     $img = $imgDoc;
-                    $randomNum=substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ"), 0, 16);
-                    // $folderPath = "C:/Users/USER/Desktop/SE FACTORY/FSW/Final Project/RentMe/RentMe_Laravel/app/assets/";
+                    //$randomNum=substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ"), 0, 16);
+                    //$uniqid = uniqid();
+                    // testing UUID instead
+                    $randomNum = Str::uuid()->toString();
                     $folderPath = public_path().'/Images/'; //path location
                     $image_parts = explode(";base64,", $img);
                     $image_type_aux = explode("image/", $image_parts[0]);
                     $image_type = $image_type_aux[1];
                     $image_base64 = base64_decode($image_parts[1]);
-                    $uniqid = uniqid();
-                    $file_name =  $randomNum."__".$uniqid . '.'.$image_type;
+                    //$file_name =  $randomNum."__".$uniqid . '.'.$image_type;
+                    $file_name =  $randomNum.'.'.$image_type;
                     $file = $folderPath . $file_name;
                     file_put_contents($file, $image_base64);
 
