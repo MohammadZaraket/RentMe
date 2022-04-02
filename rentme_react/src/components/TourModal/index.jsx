@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { Grid, TextField, Button, Card, CardContent, Typography, Modal,Box } from '@mui/material/';
+import { Grid, TextField, Button, Typography, Modal,Box } from '@mui/material/';
 import { GrClose } from "react-icons/gr";
 import { useState, useEffect} from 'react';
-//e7SLf04kUXoj18crCEAMzi:APA91bGZXtDeMuSZ8Db2m-jlhogxO35KcYzEf6fY_7AWDYa7_7_rVVmflYphhcJUY9HCFluC-GoJHyLbeHORO8Bu8WAfuhUhCiXA2NdRg6ekAGwMWRzfk5umuN3Mr2X-Sd5ERnNIyRFT
 import axios from "axios";
-
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -32,18 +30,20 @@ export default function TourModal(props) {
   const [open, setOpen] = useState(false);
   const [name,setName] = useState("");
   const [date,setDate] = useState("");
-  const [number,setNumber] = useState("");
+  const [phone,setPhone] = useState("");
   const [time,setTime] = useState("");
   const [isDisabled,setIsDisabled] = useState(true);
   const [availableDate,setAvailableDate] = useState([{"status": false,"message": "Loading"}]);
   const [availableTime,setAvailableTime] = useState([{"status": false,"message": "Loading"}]);
   const apartment_id = props.apartment_id;
 
-  const message = name + " with phone number: " + number + " will be visiting your Apartment on: " +  date + " at: " + time;
+  const message = name + " with phone number: " + phone + " will be visiting your Apartment on: " +  date + " at: " + time;
+
   const handleOpen = () => {
     setOpen(true);
     getAvailableDate();
   };
+
   const handleClose = () => {
     setOpen(false);
     setSuccessStyle({color: 'green', display:"none"});
@@ -57,11 +57,9 @@ export default function TourModal(props) {
     
     if(response.data){
       setAvailableDate(response.data);
-      }
-    else{
+    }else{
     setAvailableDate([{"status": false,"message": "No Available Dates!"}]);
     }
-  
   }
 
   const saveDate = (event) => {
@@ -69,6 +67,7 @@ export default function TourModal(props) {
     getAvailableTime();
     setIsDisabled(false);
   };
+
   const saveTime = (event) => {
     setTime(event.target.value);
   };
@@ -76,24 +75,33 @@ export default function TourModal(props) {
   async function getAvailableTime(){
 
     const data = {apartment_id,date};
-    console.log(data);
     const response = await axios.post("http://127.0.0.1:8000/api/available/time", data);
     
-    console.log(response.data)
     if(response.data){
       for (let i=0; i<response.data.length;i++)
       {
         setAvailableTime(response.data);
       }
-      }
-    else{
+      }else{
       setAvailableTime([{"status": false,"message": "No Available Times!"}]);
     }
   }
 
+  async function saveTour(){
+
+    const data = {apartment_id,name,phone,date,time};
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/tour/add", data);
+      console.log(response);
+      
+    }catch (error) {
+      console.error("Error", error.response);
+    }  
+  }
+
   function sendNotification(){
 
-    if(name=="" || date=="" || number==""|| time=="")
+    if(name=="" || date=="" || phone==""|| time=="")
     {  
         setAlertStyle({color: 'red', display:"flex"});
         return false;
@@ -112,18 +120,16 @@ export default function TourModal(props) {
     let options= {
       method: "POST",
       headers: new Headers({
-
         Authorization:"key=AAAAdmgizV4:APA91bH-3i_Ipyxf7k0TQ6Q4T_Db-cbUHGP8yyTgTe973fvL2P4wv5J6PEcbVIe5yOcPa1Hezzw63FXj1YUo8Zkl5W_gNeXaIY2nE8q0x9MclQWKwM8dyM7PgebUsiZ9nzcnsDPjEPgD",
         "Content-Type":"application/json"
-
       }),
       body: JSON.stringify(body)
     }
 
     fetch("https://fcm.googleapis.com/fcm/send", options).then(res =>{
-     
-      console.log(res);
+
       setSuccessStyle({color: 'green', display:"flex"});
+      saveTour();
 
     }).catch(e => console.log(e))
   }
@@ -133,97 +139,80 @@ export default function TourModal(props) {
       <Button className="request-btn" type="submit" variant="contained" color="primary" onClick={handleOpen}  fullWidth> <b>Request Tour</b>  </Button>
       <Modal open={open} onClose={handleClose} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
         <Box sx={{ ...style, width: 775, height:575 }}>
-         
-        <Grid container spacing={1}>
-                  <Grid item xs={6}>
-                   <h1> Request Tour  </h1>
-                  <h4 style={alertStyle}>*Please Enter All Fields</h4>
-                  </Grid>
-                  <Grid item xs={6} style={{justifyContent: "right", display: "flex"}}>
-                  <Button onClick={handleClose}> <GrClose size={30} /> </Button>
-                  </Grid>
-        </Grid>
-          <Grid container spacing={1} style={{padding:"5% 0%"}}>
+          <Grid container spacing={1}>
+            <Grid item xs={6}>
+              <h1> Request Tour  </h1>
+              <h4 style={alertStyle}>*Please Enter All Fields</h4>
+            </Grid>
+            <Grid item xs={6} style={{justifyContent: "right", display: "flex"}}>
+              <Button onClick={handleClose}> <GrClose size={30} /> </Button>
+            </Grid>
+          </Grid>
 
+          <Grid container spacing={1} style={{padding:"5% 0%"}}>
             <Grid item xs={12} sm={6}>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
                   <Typography variant="body2"  component="p" gutterBottom>
-                    <b>Full Name </b> 
+                    <b>Full Name</b> 
                   </Typography> 
                   <TextField className="modal-field"  placeholder="Full Name"  variant="outlined" onInput={e => setName(e.target.value)} fullWidth required />
                 </Grid>
-
                 <Grid item xs={12}>
                   <Typography variant="body2"  component="p" gutterBottom>
-                    <b>Date </b> 
+                    <b>Date</b> 
                   </Typography> 
                   <Box fullWidth className="modal-field">
-                            <FormControl fullWidth >
-                                <Select onChange={saveDate} style={{padding:"6.5px 0px"}}>
-                                {
-                                  availableDate.map(function(availableDate,i){
-                                    if(availableDate.message){
-                                      return(
-                                              <MenuItem value={availableDate.message}>{availableDate.message}</MenuItem>
+                    <FormControl fullWidth >
+                      <Select onChange={saveDate} style={{padding:"6.5px 0px"}}>
+                        {
+                          availableDate.map(function(availableDate,i){
+                            if(availableDate.message){
+                                return(
+                                  <MenuItem value={availableDate.message}>{availableDate.message}</MenuItem>
                                       ) 
-                                   }
-                                   else{
-                                    return(
-                                      <MenuItem value={availableDate}>{availableDate}</MenuItem>
-                              ) 
-                                   }
-                                  
-                                  })
-                                }
-                                </Select>
-                            </FormControl>
-                        </Box>
-                  
+                            }else{
+                              return(<MenuItem value={availableDate}>{availableDate}</MenuItem>)}
+                            })
+                        }
+                      </Select>
+                    </FormControl>
+                  </Box>          
                 </Grid>
-
               </Grid>
-              
             </Grid>
 
             <Grid item xs={12} sm={6}>
               <Grid container spacing={1}>
-               
-              <Grid item xs={12}>
+                <Grid item xs={12}>
                   <Typography variant="body2"  component="p" gutterBottom>
                     <b>Phone Number </b> 
                   </Typography> 
-                  <TextField className="modal-field" placeholder="Phone Number"  variant="outlined" onInput={e => setNumber(e.target.value)} fullWidth required />
+                  <TextField className="modal-field" placeholder="Phone Number"  variant="outlined" onInput={e => setPhone(e.target.value)} fullWidth required />
                 </Grid>
-
                 <Grid item xs={12}>
                   <Typography variant="body2"  component="p" gutterBottom>
                     <b>Time </b> 
                   </Typography> 
                   <Box fullWidth className="modal-field">
-                  <Tooltip title="Choose From the Available Dates Before" disableInteractive>
-                            <FormControl fullWidth  disabled={isDisabled} >
-                                <Select onChange={saveTime} style={{padding:"6.5px 0px"}}>
-                                {
-                                  availableTime.map(function(availableTime,i){
-                                    if(availableTime.message){
-                                      return(
-                                              <MenuItem value={availableTime.message}>{availableTime.message}</MenuItem>
-                                            ) 
+                    <Tooltip title="Choose From the Available Dates Before" disableInteractive>
+                      <FormControl fullWidth  disabled={isDisabled} >
+                        <Select onChange={saveTime} style={{padding:"6.5px 0px"}}>
+                          {
+                            availableTime.map(function(availableTime,i){
+                              if(availableTime.message){
+                                return(<MenuItem value={availableTime.message}>{availableTime.message}</MenuItem>) 
                                    }
-                                   else{
-                                    return(
-                                      <MenuItem value={availableTime}>{availableTime}</MenuItem>
-                                          ) 
+                              else{
+                                    return(<MenuItem value={availableTime}>{availableTime}</MenuItem>) 
                                    }
                                   })
-                                }
-                                </Select>
-                            </FormControl>
-                        </Tooltip>
-                        </Box>
+                          }
+                        </Select>
+                      </FormControl>
+                    </Tooltip>
+                  </Box>
                 </Grid>
-
               </Grid>
             </Grid>
 
@@ -231,20 +220,16 @@ export default function TourModal(props) {
                 <Typography variant="body2"  component="p" gutterBottom>
                     <b>Message </b> 
                 </Typography> 
-                  <TextField className='modal-field'  value="Hi, I saw your apartment offer on RentMe, and I’m really excited to have a tour." variant="outlined"  fullWidth required />
+                <TextField className='modal-field'  value="Hi, I saw your apartment offer on RentMe, and I’m really excited to have a tour." variant="outlined"  fullWidth required />
             </Grid>
 
             <Grid item xs={12} style={{display:"flex",justifyContent:"center"}}>
-            <Button className="request-btn" style={{padding:"10px 40px"}} type="submit" variant="contained" onClick={sendNotification} color="primary"> <b>Request Tour</b> </Button> <br></br>
+              <Button className="request-btn" style={{padding:"10px 40px"}} type="submit" variant="contained" onClick={sendNotification} color="primary"> <b>Request Tour</b> </Button> <br></br>
             </Grid>
             <Grid item xs={12} style={{display:"flex",justifyContent:"center",padding:"0px"}}>
-            <h4 style={SuccessStyle}>Request Sent Successfully</h4>
+              <h4 style={SuccessStyle}>Request Sent Successfully</h4>
             </Grid>
-        
-           
           </Grid>
-          
-         
         </Box>
       </Modal>
     </div>

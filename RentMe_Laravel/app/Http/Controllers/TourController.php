@@ -28,11 +28,7 @@ class TourController extends Controller
                 $validator->validated(),
             ));
             
-         
-            return response()->json(['status' => 'Your Request Have Been Sent!'], 201);
-            
-
-            
+            return response()->json(['status' => 'Your Request Have Been Sent!'], 201); 
            
         }
     }
