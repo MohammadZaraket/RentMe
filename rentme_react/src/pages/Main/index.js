@@ -22,7 +22,7 @@ function Main() {
     const [longitude, setLongitude] = useState('');
     const [latitude, setLatitude] = useState('');
     
-    const API_KEY = "pk.eyJ1IjoibW9oYW1tYWR6YXJha2V0IiwiYSI6ImNsMWJ1azlhczAxZHAzam8wbnJwZmwzaXIifQ.Oo8E7DP6Sl_hk5SsXEhbOg";
+    const API_KEY = process.env.API_KEY;
     //console.log(API_KEY);
     const [city, setCity] = useState('');
 

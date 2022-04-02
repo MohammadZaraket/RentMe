@@ -188,13 +188,6 @@ padding: 10px 20px !important;
 }
 
 
-/*#apartment-title{
-
-  font-weight: 700 !important;
-  font-size: 18px !important;
-  line-height: 21px !important;
-}*/
-
 .css-1qvr50w-MuiTypography-root {
 
   font-weight: 700 !important;
@@ -288,7 +281,6 @@ padding: 10px 20px !important;
 }
 
 
-
 Label:focus{
   color:white !important;
 }
@@ -296,6 +288,8 @@ Label:focus{
 .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
   color: #37323E !important;
 }
+
+
 /* Modal Styling*/
 
 
@@ -312,12 +306,6 @@ Label:focus{
   
   width: 75px !important;
 }
-/*.request-btn{
-  background-color: #DEB841;
-  color: white !important;
-  padding: 10px !important;
-}*/
-
 
 
 
@@ -337,6 +325,8 @@ Label:focus{
     border-style: dashed;
     border-width: 1px;
     border-color: #DEB841;
+    height: 75%;
+    max-height:100%;
 }
 
 .upload-btn {
@@ -372,4 +362,30 @@ BiImageAdd{
   background-color:red !important;
   margin-top: 15px !important;
   margin-bottom: 5px !important;
+}
+
+
+
+/*contact us*/
+
+.contact-form{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
+}
+
+.about{
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 20%;
+  color: white;
 }

@@ -102,9 +102,9 @@ async function  getAllApartments(){
                     </Grid>
                     <Grid item xs={2} className="results-search-item" >
                         <Box className="drop-down" fullWidth >
-                                <FormControl fullWidth >
-                                <InputLabel><b>Minimum Bedrooms</b></InputLabel>
-                                    <Select value={bedrooms} onChange={saveRooms} >
+                                <FormControl fullWidth className='form-dropdown' >
+                                <InputLabel><b>Min Bedrooms</b></InputLabel>
+                                    <Select value={bedrooms} onChange={saveRooms} style={{backgroundColor:"#CCCCCC"}}>
                                     <MenuItem value="" ><em>None</em></MenuItem>
                                     <MenuItem value={1}>1</MenuItem>
                                     <MenuItem value={2}>2</MenuItem>
@@ -118,9 +118,9 @@ async function  getAllApartments(){
                         </Grid>
                         <Grid item xs={2} className="results-search-item" >
                             <Box className="drop-down" fullWidth>
-                                <FormControl fullWidth>
-                                <InputLabel> <b>Maximum Price</b></InputLabel>
-                                    <Select value={price} onChange={savePrice}>
+                                <FormControl fullWidth className='form-dropdown'>
+                                <InputLabel> <b>Max Price</b></InputLabel>
+                                    <Select value={price} onChange={savePrice} style={{backgroundColor:"#CCCCCC"}}>
                                     <MenuItem value=""><em>None</em></MenuItem>
                                     <MenuItem value={100}>100</MenuItem>
                                     <MenuItem value={200}>200</MenuItem>

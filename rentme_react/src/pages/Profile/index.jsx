@@ -21,7 +21,7 @@ function Profile() {
     const [user_id, setUser_id] = useState(localStorage.getItem('access_token'));
     const config = {  headers: {Authorization: `Bearer ${user_id}`} };
     const [apartments, setApartments] = useState([{"status": false,"message": "Loading"}]);
-    const [tours, setTours] = useState([]);
+    const [tours, setTours] = useState([{"name": "Ali bitar", "phone": '03526693', "date": '6/4/2022', "time": '19:00'}]);
 
     
     const [value, setValue] = useState('1');
@@ -41,11 +41,11 @@ function Profile() {
 
              if(response.data){
                 setApartments(response.data.Apartments);
-             for( let i=0; i<apartments.length; i++){
+      /*          for( let i=0; i<apartments.length; i++){
 
                   tours.push(apartments[i].apartment_tours);
                 }
-   
+    */
     
                 }
             else{
@@ -94,7 +94,7 @@ function Profile() {
                          else{
                             return(
                                 <Grid item xs={12} md={3} sm={6} style={{color:"white",display:"block"}}>
-                                    <ApartmentCard editable = {true} key={i} apartment_key={apartments.id} name={apartments.name} bedrooms={apartments.bedrooms} bathrooms={apartments.bathrooms} space={apartments.space} price={apartments.price}  description={apartments.description} />
+                                    <ApartmentCard editable = {true} key={i} apartment_key={apartments.id} name={apartments.name} bedrooms={apartments.bedrooms} bathrooms={apartments.bathrooms} space={apartments.space} price={apartments.price}  description={apartments.description} image={apartments.apartment_images[0].image} />
                                 </Grid>
                             ) 
                          }

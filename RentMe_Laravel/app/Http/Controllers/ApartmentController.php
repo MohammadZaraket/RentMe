@@ -152,7 +152,7 @@ class ApartmentController extends Controller
     public function show(Request $request)
     {
             $user = Auth::user();
-            $apartments = $user->UserApartments()->with("ApartmentTours")->get();
+            $apartments = $user->UserApartments()->with("ApartmentTours")->with("ApartmentImages")->get();
             return response()->json(['status'=>true,"Apartments"=>$apartments]);
     }
 

@@ -18,6 +18,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import TimePicker from '@mui/lab/TimePicker';
 import ruLocale from 'date-fns/locale/ru';
+import Tooltip from '@mui/material/Tooltip';
 
 
 const style = {
@@ -151,7 +152,7 @@ export default function AddApartmentModal() {
                     </Typography> 
                     <Box >
                         <FormControl fullWidth >
-                            <Select onChange={e => setBedrooms(e.target.value)}>
+                            <Select onChange={e => setBedrooms(e.target.value)} style={{padding:"6.5px 0px"}}>
                                 <MenuItem value=""><em>None</em></MenuItem>
                                 <MenuItem value={1}>1</MenuItem>
                                 <MenuItem value={2}>2</MenuItem>
@@ -171,8 +172,8 @@ export default function AddApartmentModal() {
                         <b>Bathrooms </b> 
                     </Typography> 
                     <Box fullWidth>
-                        <FormControl fullWidth >
-                            <Select onChange={e => setBathrooms(e.target.value)}>
+                        <FormControl  fullWidth >
+                            <Select onChange={e => setBathrooms(e.target.value)} style={{padding:"6.5px 0px"}}>
                                 <MenuItem value=""><em>None</em></MenuItem>
                                 <MenuItem value={1}>1</MenuItem>
                                 <MenuItem value={2}>2</MenuItem>
@@ -260,10 +261,13 @@ export default function AddApartmentModal() {
                         </Typography> 
                         <ImageUploading multiple value={imagesuploaded} onChange={stackImages} maxNumber={maxNumber} >
                         {({imageList, onImageUpload, onImageRemove, isDragging, dragProps}) => (
+                        <Tooltip title="Drag And Drop Images Here" disableInteractive>
+                            
                             <div className="upload-image-wrapper"  {...dragProps}>
                                 <button className="upload-btn" onClick={onImageUpload} >
                                 <BiImageAdd size={35} />
                                 </button>
+
                                 &nbsp;
                                 {imageList.map((image, index) => (
                                 <div key={index} className="image-item">
@@ -272,6 +276,7 @@ export default function AddApartmentModal() {
                                 </div>
                                 ))}
                             </div>
+                        </Tooltip>
                         )}
                         </ImageUploading>
                     </Grid>

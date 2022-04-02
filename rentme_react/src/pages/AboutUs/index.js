@@ -11,13 +11,24 @@ function AboutUs() {
     <div className='Result-background'>
         <Navbar />
 
-        <Grid container spacing={2} style={{padding:"4%"}}>
-         
-            <Grid item xs={12} style={{color:"white",display:"block"}}>
-                <h1 className="result_title">About Us </h1>
+        <div className='about'> 
+        <Grid container spacing={2}>
+            <Grid item xs={12}>   
+                <Typography component="h1">
+                   <h1>About Us</h1> 
+                </Typography> 
             </Grid>
-             
+            <Grid item xs={12}> 
+                <Typography variant="body2"  component="p" gutterBottom>
+                   RentMe is a rental property website, where you as a user -after signing in- can search for apartments in specific city or can keep the search field empty to find nearby apartments.
+                   RentMe also offers you the ability to upload and display your apartments to be rented.
+                   Note that, when using RentMe, you are accepting the terms and conditions applied. By signing into RentMe user has the choice to accept receiving notifications send from the website to users in case of any tour requested. 
+                    In addition of accessing the user's Location for optimizing nearby searching.
+                </Typography> 
+            </Grid>
+         
         </Grid>
+        </div>
        
         </div>
 

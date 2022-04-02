@@ -8,6 +8,7 @@ import axios from "axios";
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Tooltip from '@mui/material/Tooltip';
 
 const style = {
   position: 'absolute',
@@ -33,6 +34,7 @@ export default function TourModal(props) {
   const [date,setDate] = useState("");
   const [number,setNumber] = useState("");
   const [time,setTime] = useState("");
+  const [isDisabled,setIsDisabled] = useState(true);
   const [availableDate,setAvailableDate] = useState([{"status": false,"message": "Loading"}]);
   const [availableTime,setAvailableTime] = useState([{"status": false,"message": "Loading"}]);
   const apartment_id = props.apartment_id;
@@ -65,10 +67,11 @@ export default function TourModal(props) {
   const saveDate = (event) => {
     setDate(event.target.value);
     getAvailableTime();
-};
-const saveTime = (event) => {
-  setTime(event.target.value);
-};
+    setIsDisabled(false);
+  };
+  const saveTime = (event) => {
+    setTime(event.target.value);
+  };
 
   async function getAvailableTime(){
 
@@ -82,12 +85,10 @@ const saveTime = (event) => {
       {
         setAvailableTime(response.data);
       }
-    
       }
     else{
       setAvailableTime([{"status": false,"message": "No Available Times!"}]);
     }
-  
   }
 
   function sendNotification(){
@@ -157,9 +158,9 @@ const saveTime = (event) => {
                   <Typography variant="body2"  component="p" gutterBottom>
                     <b>Date </b> 
                   </Typography> 
-                  <Box fullWidth>
+                  <Box fullWidth className="modal-field">
                             <FormControl fullWidth >
-                                <Select onChange={saveDate}>
+                                <Select onChange={saveDate} style={{padding:"6.5px 0px"}}>
                                 {
                                   availableDate.map(function(availableDate,i){
                                     if(availableDate.message){
@@ -199,9 +200,10 @@ const saveTime = (event) => {
                   <Typography variant="body2"  component="p" gutterBottom>
                     <b>Time </b> 
                   </Typography> 
-                  <Box fullWidth>
-                            <FormControl fullWidth >
-                                <Select onChange={saveTime}>
+                  <Box fullWidth className="modal-field">
+                  <Tooltip title="Choose From the Available Dates Before" disableInteractive>
+                            <FormControl fullWidth  disabled={isDisabled} >
+                                <Select onChange={saveTime} style={{padding:"6.5px 0px"}}>
                                 {
                                   availableTime.map(function(availableTime,i){
                                     if(availableTime.message){
@@ -218,13 +220,14 @@ const saveTime = (event) => {
                                 }
                                 </Select>
                             </FormControl>
+                        </Tooltip>
                         </Box>
                 </Grid>
 
               </Grid>
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item xs={12} >
                 <Typography variant="body2"  component="p" gutterBottom>
                     <b>Message </b> 
                 </Typography> 
@@ -232,7 +235,7 @@ const saveTime = (event) => {
             </Grid>
 
             <Grid item xs={12} style={{display:"flex",justifyContent:"center"}}>
-            <Button className="request-btn" style={{padding:"10px 20px"}} type="submit" variant="contained" onClick={sendNotification} color="primary"> <b>Request Tour</b> </Button> <br></br>
+            <Button className="request-btn" style={{padding:"10px 40px"}} type="submit" variant="contained" onClick={sendNotification} color="primary"> <b>Request Tour</b> </Button> <br></br>
             </Grid>
             <Grid item xs={12} style={{display:"flex",justifyContent:"center",padding:"0px"}}>
             <h4 style={SuccessStyle}>Request Sent Successfully</h4>
