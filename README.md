@@ -49,12 +49,11 @@ Note that no finished template was used, all from scratch and using pure css mod
 
 Here's a brief high-level overview of the tech stack the Well app uses:
 
-- 
-- 
-- 
-- 
-- 
-
+- This project used Laravel - the PHP web framework- as a backend to implement different APIs.
+- For Frontend, the website uses React which is a JavaScript library for building user interfaces based on UI components.
+- For storage, the project uses MySQL to save users and apartments data.
+- The website integrates with Firebase messaging service to push notifications to users.
+- The website also integrates with different geolocation services from Google maps APIs and Mapbox APIs.
 
 
 
@@ -62,19 +61,25 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 <br><br>
 <img src="./readme/title5.svg"/>
 
-> Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
+> Using the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
+
+| Main Page  | Results  |
+| -----------------| -----|
+| ![Main Page]() | ![Results]() |
+
+| Details   |
+| -----------------|
+| ![Details]() | 
+
 
 
 <br><br>
+
 <img src="./readme/title6.svg"/>
 
 
-> This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
   npm install npm@latest -g
@@ -82,3 +87,32 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/MohammadZaraket/RentMe.git
+   ```
+2. Install NPM packages
+   ```sh
+    npm install @material-ui/core
+   ```
+   ```sh
+    npm install firebase
+   ```
+   ```sh
+    npm install google-map-react
+   ```
+   ```sh
+    npm install react-map-gl
+   ```
+   ```sh
+    npm install --save date-fns
+   ```
+3. Get a free API Key at Google Maps API Services
+
+4. Get a free public API Key at [https://mapbox.com](https://mapbox.com)
+
+5. Enter your API in `.env`
+   ```js
+   const API_KEY = 'ENTER YOUR API';
+   ```

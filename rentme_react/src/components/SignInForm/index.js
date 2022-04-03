@@ -23,14 +23,11 @@ function SignInForm() {
         return true;
     }
 
-    async function updateToken(updatedToken,config) {
-        console.log(updatedToken)
+    async function updateToken(data,config) {
 
-        setToken(updatedToken);
-        let data= {Token};
-        try {
+      try {
          const response = await axios.post("http://127.0.0.1:8000/api/auth/update-token", data,config);
-          return response.data;
+          console.log(response.data);
 
         } catch (error) {
           console.log(error.response);
@@ -63,15 +60,16 @@ function SignInForm() {
     if (response) {
           handleLoginSuccess(response);
           console.log(response.user.Token);
-          console.log(response.user);
-
         const messaging = getMessaging();
         getToken(messaging, { vapidKey: 'BK3q6ixBB6Nj0BUrfyKJlFCdXog6R5JLsV0TOaqKSQ_s7a8fNYjou18IdK5NrC-gQ01OwgS9A7swPW6TZY8k-Nk' }).then((currentToken) => {
         if (currentToken) {
             if(currentToken==response.user.Token){
+              console.log("same")
             }
             else{
-                updateToken(currentToken,config);
+                setToken(currentToken);
+                let data= {Token};
+                updateToken(data,config);
             }
         } else {
             console.log('No registration token available. Request permission to generate one.');

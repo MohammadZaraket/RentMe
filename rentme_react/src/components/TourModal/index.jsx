@@ -129,6 +129,7 @@ export default function TourModal(props) {
     fetch("https://fcm.googleapis.com/fcm/send", options).then(res =>{
 
       setSuccessStyle({color: 'green', display:"flex"});
+      console.log(res);
       saveTour();
 
     }).catch(e => console.log(e))

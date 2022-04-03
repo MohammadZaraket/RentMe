@@ -166,12 +166,12 @@ function ApartmentCard(props) {
         
           
           <CardContent>
-          <TextField  value={props.name} onInput={e => setName(e.target.value)} variant="outlined" required />
+          <TextField  value={name} onInput={e => setName(e.target.value)} variant="outlined" required />
           <Grid container spacing={1}>
                   <Grid item xs={6}>
                     <Typography variant="body2" color="text.secondary" style={{display: "flex", alignItems: "center"}}>
                         <Grid item xs={6}>
-                            <TextField  value={props.bedrooms} onInput={e => setBedrooms(e.target.value)} variant="outlined" required /> 
+                            <TextField  value={bedrooms} onInput={e => setBedrooms(e.target.value)} variant="outlined" required /> 
                         </Grid>
                         <Grid item xs={6}>
                             <FaBed size={50}/>
@@ -182,7 +182,7 @@ function ApartmentCard(props) {
                   <Grid item xs={6}>
                     <Typography variant="body2" color="text.secondary"  style={{display: "flex", alignItems: "center"}}>
                         <Grid item xs={6}>
-                            <TextField  value={props.bathrooms} onInput={e => setBathrooms(e.target.value)} variant="outlined" required /> 
+                            <TextField  value={bathrooms} onInput={e => setBathrooms(e.target.value)} variant="outlined" required /> 
                         </Grid>
                         <Grid item xs={6}>
                             <FaBath size={50} />
@@ -193,7 +193,7 @@ function ApartmentCard(props) {
                   <Grid item xs={6}>
                     <Typography variant="body2" className="apartment-space" style={{display: "flex", alignItems: "center"}}>
                         <Grid item xs={6}>
-                            <TextField  value={props.space} onInput={e => setSpace(e.target.value)} variant="outlined" required />
+                            <TextField  value={space} onInput={e => setSpace(e.target.value)} variant="outlined" required />
                         </Grid>
                         <Grid item xs={6}>
                              m²
@@ -204,7 +204,7 @@ function ApartmentCard(props) {
                   <Grid item xs={6}>
                     <Typography variant="body2"  className="apartment-price" style={{display: "flex", alignItems: "center"}}>
                         <Grid item xs={6}>
-                            <TextField  value={props.price} onInput={e => setPrice(e.target.value)} variant="outlined" required />
+                            <TextField  value={price} onInput={e => setPrice(e.target.value)} variant="outlined" required />
                         </Grid>
                         <Grid item xs={6}>
                         $/Month
@@ -230,7 +230,7 @@ function ApartmentCard(props) {
             <CardContent>
               <Typography paragraph><b>Description:</b></Typography>
               <Typography paragraph>
-                <TextField multiline value={props.description} onInput={e => setDescription(e.target.value)} variant="outlined" fullWidth required /> 
+                <TextField multiline value={description} onInput={e => setDescription(e.target.value)} variant="outlined" fullWidth required /> 
               </Typography>
             </CardContent>
           </Collapse>
