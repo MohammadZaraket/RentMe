@@ -9,7 +9,9 @@ export const store = createStore(() => ({
         bedrooms: 0,
         price: 0
       }
-    ]
+    ],
+    signin:{auth:false}
   }));
 
 export default store;
+

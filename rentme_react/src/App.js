@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react';
-import { Routes, Route, Link } from "react-router-dom";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import SignIn from "./pages/SignIn";
@@ -9,13 +8,15 @@ import Results from "./pages/Results";
 import Details from "./pages/Details";
 import Profile from "./pages/Profile";
 import 'firebase/compat/messaging';
-
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
-import { collection, getDocs } from 'firebase/firestore';
-import { getFirestore } from 'firebase/firestore'
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function App() {
+
+    const parameters = useSelector(state => state.signin);
+    const [user, setUser] = useState(parameters.auth);
 
     const firebaseConfig = {
         apiKey: "AIzaSyDbB1ktOk-9aCMwx3sFebRusVBp86BkOnI",
@@ -28,26 +29,32 @@ function App() {
     
     const app = initializeApp(firebaseConfig);
     
-    async function getCities() {
-        const db = getFirestore(app);
-        const citiesCol = collection(db, 'cities');
-        const citySnapshot = await getDocs(citiesCol);
-        const cityList = citySnapshot.docs.map(doc => doc.data());
-        console.log(cityList);
-     }
+     const ProtectedRoute = ({ user, children }) => {
+        useEffect(() => {
+            setUser(parameters.auth);
+          },[user]);
+
+        if (!user) {
+          return <Navigate to="/" replace />;
+        }
+      
+        return children;
+      };
+
    
     return (
         <div className="App">
            
             <Routes>
                 <Route path="*" element={<Landing />} />
-                <Route path="main" element={<Main />} />
-                <Route path="contactus" element={<ContactUs />} />
-                <Route path="aboutus" element={<AboutUs />} />
                 <Route path="signup" element={<SignUp />} />
-                <Route path="results" element={<Results />} />
-                <Route path="details/:id" element={<Details />} />
-                <Route path="profile" element={<Profile />} />
+
+                <Route path="main" element={ <ProtectedRoute user={user}>  <Main /> </ProtectedRoute>}/>
+                <Route path="contactus" element={ <ProtectedRoute user={user}>  <ContactUs /> </ProtectedRoute>}/>
+                <Route path="aboutus" element={ <ProtectedRoute user={user}>  <AboutUs /> </ProtectedRoute>}/>
+                <Route path="results" element={ <ProtectedRoute user={user}>  <Results /> </ProtectedRoute>}/>
+                <Route path="details/:id" element={ <ProtectedRoute user={user}>  <Details /> </ProtectedRoute>}/>
+                <Route path="profile" element={ <ProtectedRoute user={user}>  <Profile /> </ProtectedRoute>}/>
             </Routes>
         </div>
     );

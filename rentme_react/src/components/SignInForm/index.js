@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { getMessaging, getToken } from "firebase/messaging";
+import { useDispatch, useSelector } from 'react-redux';
 
 function SignInForm() { 
+    const parameters = useSelector(state => state.signin);
 
     var [alertStyle,setAlertStyle] = useState({display:'none'});
     const [email,setEmail] = useState("");
@@ -59,12 +61,11 @@ function SignInForm() {
     const response = await doUserLogin(item);
     if (response) {
           handleLoginSuccess(response);
-          console.log(response.user.Token);
         const messaging = getMessaging();
         getToken(messaging, { vapidKey: 'BK3q6ixBB6Nj0BUrfyKJlFCdXog6R5JLsV0TOaqKSQ_s7a8fNYjou18IdK5NrC-gQ01OwgS9A7swPW6TZY8k-Nk' }).then((currentToken) => {
         if (currentToken) {
             if(currentToken==response.user.Token){
-              console.log("same")
+              //console.log("same")
             }
             else{
                 setToken(currentToken);
@@ -77,8 +78,8 @@ function SignInForm() {
         }).catch((err) => {
         console.log('An error occurred while retrieving token. ', err);
         });
-           
-         navigate("/Main");
+        parameters.auth=true;
+         navigate("/main");
         } else {
             console.log("error");
         }

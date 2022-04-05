@@ -259,7 +259,7 @@ export default function AddApartmentModal() {
                         <Typography variant="body2"  component="p" gutterBottom>
                             <b>Images </b> 
                         </Typography> 
-                        <ImageUploading multiple value={imagesuploaded} onChange={stackImages} maxNumber={maxNumber} >
+                        <ImageUploading multiple value={imagesuploaded} onChange={stackImages} maxNumber={maxNumber} dataURLKey="data_url" >
                         {({imageList, onImageUpload, onImageRemove, isDragging, dragProps}) => (
                         <Tooltip title="Drag And Drop Images Here" disableInteractive>
                             
