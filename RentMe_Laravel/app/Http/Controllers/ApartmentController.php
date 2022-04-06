@@ -178,7 +178,7 @@ class ApartmentController extends Controller
     }
 
 
-    public function update(Request $request, apartments $apartments)
+    public function update(Request $request)
     {
         try {
             $validator = Validator::make($request->all(), [
@@ -205,7 +205,7 @@ class ApartmentController extends Controller
             $longitude = $request->get('longitude');
             $latitude = $request->get('latitude');
 
-            $apartment = Apartment::find(id);
+            $apartment = Apartment::find($id);
             $apartment->name = $name;
             $apartment->bedrooms = $bedrooms;
             $apartment->bathrooms = $bathrooms;
@@ -214,7 +214,7 @@ class ApartmentController extends Controller
             $apartment->description = $description;
             $apartment->longitude = $longitude;
             $apartment->latitude = $latitude;
-            $tour->save();
+            $apartment->save();
 
             return response()->json(['status'=>true,'message'=>"Info Edited Successfully!"],201);
        

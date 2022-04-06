@@ -37,7 +37,6 @@ function Profile() {
 
         try {
             const response = await axios.get("http://127.0.0.1:8000/api/apartment/show",config);
-             console.log(response);
 
              if(response.data){
                 setApartments(response.data.Apartments);
@@ -94,7 +93,7 @@ function Profile() {
                          else{
                             return(
                                 <Grid item xs={12} md={3} sm={6} style={{color:"white",display:"block"}}>
-                                    <ApartmentCard editable = {true} key={i} apartment_key={apartments.id} name={apartments.name} bedrooms={apartments.bedrooms} bathrooms={apartments.bathrooms} space={apartments.space} price={apartments.price}  description={apartments.description} image={apartments.apartment_images[0].image} />
+                                    <ApartmentCard editable = {true} key={i} apartment_key={apartments.id} name={apartments.name} bedrooms={apartments.bedrooms} bathrooms={apartments.bathrooms} space={apartments.space} price={apartments.price}  description={apartments.description} image={apartments.apartment_images[0].image} longitude={apartments.longitude} latitude={apartments.latitude} />
                                 </Grid>
                             ) 
                          }
