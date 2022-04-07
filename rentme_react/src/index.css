@@ -389,3 +389,20 @@ BiImageAdd{
   padding: 5% 20%;
   color: white;
 }
+
+
+
+/*Apartment card in profile page*/
+
+.editcard-field{
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+  padding: 8px 0px;
+
+
+}

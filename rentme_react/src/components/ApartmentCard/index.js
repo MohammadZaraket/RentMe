@@ -166,49 +166,48 @@ function ApartmentCard(props) {
         
           
           <CardContent>
-          <TextField  value={name} onInput={e => setName(e.target.value)} variant="outlined" required />
-          <Grid container spacing={1}>
+          <TextField  value={name} onInput={e => setName(e.target.value)} variant="outlined" required fullWidth />
+          <Grid container spacing={1} style={{padding:"16px 0px"}}>
                   <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary" style={{display: "flex", alignItems: "center"}}>
+                    <Typography variant="body2" color="text.secondary" className="editcard-field">
                         <Grid item xs={6}>
                             <TextField  value={bedrooms} onInput={e => setBedrooms(e.target.value)} variant="outlined" required /> 
                         </Grid>
-                        <Grid item xs={6}>
-                            <FaBed size={50}/>
+                        <Grid item xs={4}>
+                            <FaBed size={40}/>
                         </Grid>
                     </Typography>
                   </Grid>
         
                   <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary"  style={{display: "flex", alignItems: "center"}}>
+                    <Typography variant="body2" color="text.secondary" className="editcard-field">
                         <Grid item xs={6}>
                             <TextField  value={bathrooms} onInput={e => setBathrooms(e.target.value)} variant="outlined" required /> 
                         </Grid>
-                        <Grid item xs={6}>
-                            <FaBath size={50} />
+                        <Grid item xs={4}>
+                            <FaBath size={40} />
                         </Grid>
                     </Typography>
                   </Grid>
     
                   <Grid item xs={6}>
-                    <Typography variant="body2" className="apartment-space" style={{display: "flex", alignItems: "center"}}>
+                    <Typography variant="body2" className="editcard-field apartment-space">
                         <Grid item xs={6}>
                             <TextField  value={space} onInput={e => setSpace(e.target.value)} variant="outlined" required />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={4}>
                              m²
                         </Grid>
                     </Typography>
                   </Grid>
     
                   <Grid item xs={6}>
-                    <Typography variant="body2"  className="apartment-price" style={{display: "flex", alignItems: "center"}}>
+                    <Typography variant="body2" className="editcard-field apartment-price">
                         <Grid item xs={6}>
                             <TextField  value={price} onInput={e => setPrice(e.target.value)} variant="outlined" required />
                         </Grid>
-                        <Grid item xs={6}>
-                        $/Month
-                           
+                        <Grid item xs={5} style={{fontSize:"18px"}}>
+                        $/Month   
                         </Grid>
                     </Typography>
                   </Grid>
