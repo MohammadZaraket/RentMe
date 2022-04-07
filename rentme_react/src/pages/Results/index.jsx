@@ -87,7 +87,6 @@ async function  getAllApartments(){
    
 }
 
-
   return (
 
     <div className='Result-background'>
@@ -165,8 +164,7 @@ async function  getAllApartments(){
                 }
         
         </Grid>
-       
-        </div>
+    </div>
 
   );
 }

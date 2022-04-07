@@ -45,17 +45,14 @@ function Profile() {
                   tours.push(apartments[i].apartment_tours);
                 }
     */
-    
                 }
             else{
                 setApartments([{"status": false,"message": "No Apartments Uploaded Yet!"}]);
               }
-
             }catch (error) {
               console.log(error.response);
               return false;
             }
-
           }
     
 
@@ -82,31 +79,30 @@ function Profile() {
           </Grid>
 
           {
-                     apartments.map(function(apartments,i){
-                         if(apartments.message){
-                            return(
-                                <Grid item xs={12} md={3} sm={6} style={{color:"white",display:"block"}}>
-                                    <h1>{apartments.message}</h1>
-                                    </Grid>
-                            ) 
-                         }
-                         else{
-                            return(
-                                <Grid item xs={12} md={3} sm={6} style={{color:"white",display:"block"}}>
-                                    <ApartmentCard editable = {true} key={i} apartment_key={apartments.id} name={apartments.name} bedrooms={apartments.bedrooms} bathrooms={apartments.bathrooms} space={apartments.space} price={apartments.price}  description={apartments.description} image={apartments.apartment_images[0].image} longitude={apartments.longitude} latitude={apartments.latitude} />
-                                </Grid>
-                            ) 
-                         }
-                           
-                        })
+            apartments.map(function(apartments,i){
+             if(apartments.message){
+                return(
+                  <Grid item xs={12} md={3} sm={6} style={{color:"white",display:"block"}}>
+                    <h1>{apartments.message}</h1>
+                  </Grid>
+                  ) 
                 }
-          </Grid>
+             else{
+                return(
+                  <Grid item xs={12} md={3} sm={6} style={{color:"white",display:"block"}}>
+                    <ApartmentCard editable = {true} key={i} apartment_key={apartments.id} name={apartments.name} bedrooms={apartments.bedrooms} bathrooms={apartments.bathrooms} space={apartments.space} price={apartments.price}  description={apartments.description} image={apartments.apartment_images[0].image} longitude={apartments.longitude} latitude={apartments.latitude} />
+                  </Grid>
+                      ) 
+                   }
+                           
+             })
+          }
+        </Grid>
 
         </TabPanel>
 
         <TabPanel value="2">
 
-          
         <Grid container spacing={2}>
           <Grid item xs={12} style={{color:"white",display:"block"}}>
               <h1 className="result_title">Requested Tours</h1>
@@ -116,12 +112,8 @@ function Profile() {
         <Grid item xs={12} md={12} sm={12} style={{color:"white",display:"flex",padding:"5% 10%"}}>
           <TourTable tours={tours} />
          </Grid>
-                 
-
 
           </Grid>
-
-
         
         </TabPanel>
       </TabContext>

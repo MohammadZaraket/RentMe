@@ -7,8 +7,8 @@ import { getMessaging, getToken } from "firebase/messaging";
 import { useDispatch, useSelector } from 'react-redux';
 
 function SignInForm() { 
-    const parameters = useSelector(state => state.signin);
 
+    const parameters = useSelector(state => state.signin);
     var [alertStyle,setAlertStyle] = useState({display:'none'});
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
@@ -29,13 +29,10 @@ function SignInForm() {
 
       try {
          const response = await axios.post("http://127.0.0.1:8000/api/auth/update-token", data,config);
-          console.log(response.data);
-
         } catch (error) {
           console.log(error.response);
           return false;
         }
-    
       }
 
   async function doUserLogin(credentials) {
@@ -46,7 +43,6 @@ function SignInForm() {
       console.log(error.response.status);
       return false;
     }
-
   }
 
    async function login(event){
@@ -65,7 +61,6 @@ function SignInForm() {
         getToken(messaging, { vapidKey: 'BK3q6ixBB6Nj0BUrfyKJlFCdXog6R5JLsV0TOaqKSQ_s7a8fNYjou18IdK5NrC-gQ01OwgS9A7swPW6TZY8k-Nk' }).then((currentToken) => {
         if (currentToken) {
             if(currentToken==response.user.Token){
-              //console.log("same")
             }
             else{
                 setToken(currentToken);
@@ -93,7 +88,7 @@ function SignInForm() {
           <Typography gutterBottom variant="p">
             Welcome to <b>RentMe</b> 
           </Typography> 
-            <Typography gutterBottom variant="h4"  style={{margin:"20px 0 "}}>
+          <Typography gutterBottom variant="h4"  style={{margin:"20px 0 "}}>
               <b>Sign In</b> 
           </Typography> 
             <form style={{padding:"0px"}}>
@@ -102,7 +97,7 @@ function SignInForm() {
                 <Typography variant="body2"  component="p" gutterBottom>
                    <b>Email Address</b> 
                  </Typography> 
-                  <TextField style={{backgroundColor:"white", marginBottom:"10px", borderRadius:"10px", borderWidth:"0px"}} type="email" placeholder="Enter email" variant="outlined"  value={email} onInput={e => setEmail(e.target.value)} fullWidth required />
+                <TextField style={{backgroundColor:"white", marginBottom:"10px", borderRadius:"10px", borderWidth:"0px"}} type="email" placeholder="Enter email" variant="outlined"  value={email} onInput={e => setEmail(e.target.value)} fullWidth required />
                 </Grid>
                 <Grid item xs={12}>
                 <Typography variant="body2" component="p" gutterBottom>
