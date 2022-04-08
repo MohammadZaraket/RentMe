@@ -1,17 +1,15 @@
 import Navbar from '../../components/Navbar'
 import TourTable from '../../components/TourTable'
 import ApartmentCard from '../../components/ApartmentCard'
-import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
+import { Grid } from '@mui/material/';
 import React, { useState, useEffect} from 'react';
 import axios from "axios";
 import Box from '@mui/material/Box';
 import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { MdApartment,MdTour } from "react-icons/md";
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import './Profile.css'
 
 

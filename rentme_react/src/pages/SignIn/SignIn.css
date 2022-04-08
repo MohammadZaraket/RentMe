@@ -1,14 +1,5 @@
 .SignIn {
 
-    /*background-image: url("../../assets/test5.jpg");
-    background-size: "cover" !important;
-    height: 100vh;
-    margin-top: -70px;
-    background-repeat:no-repeat; 
-    color: black;*/
-
-
-
     background-image:linear-gradient(rgba(55, 50, 62, 0.7), rgba(55, 50, 62, 0.7)), url("../../assets/test.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,8 +8,6 @@
     background-position: 'center';
     background-color: rgba(55, 50, 62, 0.7);
     background-attachment: fixed;
-
-
 }
 
 

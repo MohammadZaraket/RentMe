@@ -10,7 +10,7 @@ import Profile from "./pages/Profile";
 import 'firebase/compat/messaging';
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 function App() {

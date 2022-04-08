@@ -1,18 +1,14 @@
 import Navbar from '../../components/Navbar'
 import ApartmentCard from '../../components/ApartmentCard'
-import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
-
+import { Grid, TextField, Button } from '@mui/material/';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
-import InputAdornment from '@mui/material/InputAdornment';
 import axios from "axios";
 import React, { useState, useEffect} from 'react';
-
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function Results() {
 
@@ -64,7 +60,7 @@ function Results() {
 async function getCoordinates(event) {
     event.preventDefault();
 
-    if(city==''){
+    if(city===''){
         getUserLocation();
     }
     else{
@@ -78,7 +74,7 @@ async function  getAllApartments(){
 
     const response = await axios.post("http://127.0.0.1:8000/api/apartment/search", credentials);
 
-    if(response.data.status==true){
+    if(response.data.status===true){
         setApartments(response.data.apartments);
         }
     else{

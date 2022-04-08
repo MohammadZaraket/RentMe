@@ -2,7 +2,6 @@ import { Grid, TextField, Button, Typography, Modal,Box } from '@mui/material/';
 import { GrClose } from "react-icons/gr";
 
 import React, { useState, useEffect} from 'react';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -55,7 +54,6 @@ export default function AddApartmentModal() {
     const [user_id, setUser_id] = useState(localStorage.getItem('access_token'));
     const [imagesuploaded, setImagesuploaded] = useState([]);
     var images=[];
-    const [value, setValue] = React.useState(null);
     const config = { headers: { Authorization: `Bearer ${user_id}` } };
 
     const API_KEY = process.env.API_KEY;

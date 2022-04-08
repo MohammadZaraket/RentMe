@@ -1,7 +1,7 @@
 import Navbar from '../../components/Navbar'
 import './Main.css'
-import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material/';
-import { FaFacebookSquare,FaInstagram,FaTwitterSquare,BsSearch } from "react-icons/fa";
+import { Grid, TextField, Button } from '@mui/material/';
+import { FaFacebookSquare,FaInstagram,FaTwitterSquare } from "react-icons/fa";
 import React, { useState, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function Main() {
 
@@ -48,7 +48,7 @@ function Main() {
       async function getCoordinates(event) {
         event.preventDefault();
 
-        if(city==''){
+        if(city===''){
             getUserLocation();
         }
         else{

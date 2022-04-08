@@ -99,16 +99,6 @@ body, html {
   cursor: pointer;
 }
 
-/*.addbtn{
-  background-color: #DEB841 !important;
-  color: white !important;
-  padding: -10px !important;
-  margin: 20px 0px !important;
-  font-weight: 600 !important;
-  padding: 0px 25px !important;
-  text-transform: capitalize;
-}*/
-
 #addbtn{
   background-color: #DEB841 ;
   color: white ;
