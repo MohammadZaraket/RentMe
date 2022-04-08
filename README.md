@@ -34,9 +34,9 @@
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that no finished template was used, all from scratch and using pure css modules
 
-| Home/Search  |
-| -----------------| -----|
-| ![Home/Search](https://github.com/MohammadZaraket/RentMe/blob/94e281b3e8aea8dca13a666e2eb9ea2f275d6a51/readme/main-page-figma.PNG) |
+| Main Page  |
+| -----------------|
+| ![Main Page ](https://github.com/MohammadZaraket/RentMe/blob/94e281b3e8aea8dca13a666e2eb9ea2f275d6a51/readme/main-page-figma.PNG) |
 
 | Apartments' Results  | Apartment's Details  |
 | -----------------| -----|
@@ -63,14 +63,14 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 > Using the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
-| Main Page  | Results  |
-| -----------------| -----|
-| ![Main Page](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/main-page-front.PNG) | ![Results](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/results-page-front.PNG) |
-
-
-| Details   |
+| Main Page  |
 | -----------------|
-| ![Details](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/details-page-front.PNG) | 
+| ![Main Page](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/main-page-front.PNG) | 
+
+
+| Details  | Results  |
+| -----------------| -----|
+| ![Details](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/details-page-front.PNG) | ![Results](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/results-page-front.PNG) |
 
 
 
