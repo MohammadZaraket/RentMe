@@ -36,11 +36,11 @@ Note that no finished template was used, all from scratch and using pure css mod
 
 | Home/Search  |
 | -----------------| -----|
-| ![Home/Search](https://github.com/MohammadZaraket/RentMe/tree/main/readme/main-page.PNG) |
+| ![Home/Search](https://github.com/MohammadZaraket/RentMe/tree/main/readme/main-page-figma.PNG) |
 
 | Apartments' Results  | Apartment's Details  |
 | -----------------| -----|
-| ![Apartments results](https://github.com/MohammadZaraket/RentMe/tree/main/readme/results-page.PNG) | ![Apartment's Details](https://github.com/MohammadZaraket/RentMe/tree/main/readme/details-page.PNG)|
+| ![Apartments results](https://github.com/MohammadZaraket/RentMe/tree/main/readme/results-page-figma.PNG) | ![Apartment's Details](https://github.com/MohammadZaraket/RentMe/tree/main/readme/details-page-figma.PNG)|
 
 
 <br><br>
@@ -65,11 +65,11 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Main Page  | Results  |
 | -----------------| -----|
-| ![Main Page]() | ![Results]() |
+| ![Main Page](https://github.com/MohammadZaraket/RentMe/tree/main/readme/main-page-front.PNG) | ![Results](https://github.com/MohammadZaraket/RentMe/tree/main/readme/results-page-front.PNG) |
 
 | Details   |
 | -----------------|
-| ![Details]() | 
+| ![Details](https://github.com/MohammadZaraket/RentMe/tree/main/readme/details-page-front.PNG) | 
 
 
 
