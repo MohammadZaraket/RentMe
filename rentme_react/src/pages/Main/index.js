@@ -89,7 +89,7 @@ function Main() {
                             <FormControl className='form-dropdown'  fullWidth >
                             <InputLabel><b>Min Bedrooms</b></InputLabel>
                                 <Select value={rooms} onChange={saveRooms} style={{backgroundColor:"#CCCCCC",padding:"6.5px 0"}}>
-                                <MenuItem value=""><em>None</em></MenuItem>
+                                <MenuItem value={0}><em>None</em></MenuItem>
                                 <MenuItem value={1}>1</MenuItem>
                                 <MenuItem value={2}>2</MenuItem>
                                 <MenuItem value={3}>3</MenuItem>
@@ -106,7 +106,7 @@ function Main() {
                             <FormControl className='form-dropdown' fullWidth>
                             <InputLabel> <b>Max Price</b></InputLabel>
                                 <Select value={price} onChange={savePrice} style={{backgroundColor:"#CCCCCC",padding:"6.5px 0"}}>
-                                <MenuItem value=""><em>None</em></MenuItem>
+                                <MenuItem value={100000}><em>None</em></MenuItem>
                                 <MenuItem value={100}>100</MenuItem>
                                 <MenuItem value={200}>200</MenuItem>
                                 <MenuItem value={300}>300</MenuItem>

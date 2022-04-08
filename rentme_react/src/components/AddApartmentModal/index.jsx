@@ -55,24 +55,34 @@ export default function AddApartmentModal() {
     const [user_id, setUser_id] = useState(localStorage.getItem('access_token'));
     const [imagesuploaded, setImagesuploaded] = useState([]);
     var images=[];
-
     const [value, setValue] = React.useState(null);
-    const config = {
-        headers: { Authorization: `Bearer ${user_id}` }
-    };
+    const config = { headers: { Authorization: `Bearer ${user_id}` } };
 
     const API_KEY = process.env.API_KEY;
 
+    function  getCurrentLocation() {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            setLongitude(position.coords.longitude);
+            setLatitude( position.coords.latitude);
+        });
+      }
+
 
     async function getLocation(){
-    try {
-        const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?access_token=${API_KEY}`);
-        setLongitude(response.data.features[0].geometry.coordinates[0]);    
-        setLatitude(response.data.features[0].geometry.coordinates[1]);
-      } catch (error) {
-        console.log(error.response.status);
-        return false;
-      }
+        if (city===""){
+            getCurrentLocation();
+        }
+        else{
+            try {
+                const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?access_token=${API_KEY}`);
+                setLongitude(response.data.features[0].geometry.coordinates[0]);    
+                setLatitude(response.data.features[0].geometry.coordinates[1]);
+                console.log(longitude,latitude)
+            } catch (error) {
+                console.log(error);
+                return false;
+            }
+        }
     }
 
     async function addApartment(){
@@ -87,19 +97,20 @@ export default function AddApartmentModal() {
             setAlertStyle({color: 'red', display:"flex"});
             return false;
         }
-       
-        const data ={name,bathrooms,bedrooms,price,space,description,longitude,latitude,date,from,to,images};
-        getLocation();
-
-         try {
-             const response = await axios.post("http://127.0.0.1:8000/api/apartment/add", data,config);
-            return response.data;
-             
-        } catch (error) {
-            console.error("Error", error.response);
-             return false;
+        else
+        {
+            const data ={name,bathrooms,bedrooms,price,space,description,longitude,latitude,date,from,to,images};
+            getLocation();
+    
+             try {
+                 const response = await axios.post("http://127.0.0.1:8000/api/apartment/add", data,config);
+                return response.data;
+                 
+            } catch (error) {
+                console.error("Error", error.response);
+                 return false;
+            }
         }
- 
     };
     
     const [open, setOpen] = useState(false);
