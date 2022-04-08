@@ -40,7 +40,7 @@ Note that no finished template was used, all from scratch and using pure css mod
 
 | Apartments' Results  | Apartment's Details  |
 | -----------------| -----|
-| ![Apartments results](https://github.com/MohammadZaraket/RentMe/tree/main/readme/results-page-figma.PNG) | ![Apartment's Details](https://github.com/MohammadZaraket/RentMe/tree/main/readme/details-page-figma.PNG)|
+| ![Apartments results](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/results-page-figma.PNG) | ![Apartment's Details](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/details-page-figma.PNG)|
 
 
 <br><br>
@@ -65,11 +65,12 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Main Page  | Results  |
 | -----------------| -----|
-| ![Main Page](https://github.com/MohammadZaraket/RentMe/tree/main/readme/main-page-front.PNG) | ![Results](https://github.com/MohammadZaraket/RentMe/tree/main/readme/results-page-front.PNG) |
+| ![Main Page](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/main-page-front.PNG) | ![Results](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/results-page-front.PNG) |
+
 
 | Details   |
 | -----------------|
-| ![Details](https://github.com/MohammadZaraket/RentMe/tree/main/readme/details-page-front.PNG) | 
+| ![Details](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/details-page-front.PNG) | 
 
 
 
