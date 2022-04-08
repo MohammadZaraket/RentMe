@@ -36,7 +36,7 @@ Note that no finished template was used, all from scratch and using pure css mod
 
 | Home/Search  |
 | -----------------| -----|
-| ![Home/Search](https://github.com/MohammadZaraket/RentMe/tree/main/readme/main-page-figma.PNG) |
+| ![Home/Search](https://github.com/MohammadZaraket/RentMe/blob/94e281b3e8aea8dca13a666e2eb9ea2f275d6a51/readme/main-page-figma.PNG) |
 
 | Apartments' Results  | Apartment's Details  |
 | -----------------| -----|
