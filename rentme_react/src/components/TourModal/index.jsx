@@ -8,6 +8,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Tooltip from '@mui/material/Tooltip';
 
+/*import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';*/
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/material.css'
+//                  <TextField className="modal-field" placeholder="Phone Number"  variant="outlined" onInput={e => setPhone(e.target.value)} fullWidth required />
 const style = {
   position: 'absolute',
   top: '50%',
@@ -189,7 +194,7 @@ export default function TourModal(props) {
                   <Typography variant="body2"  component="p" gutterBottom>
                     <b>Phone Number </b> 
                   </Typography> 
-                  <TextField className="modal-field" placeholder="Phone Number"  variant="outlined" onInput={e => setPhone(e.target.value)} fullWidth required />
+                  <PhoneInput  className="modal-field" defaultCountry="lebanon" value={phone} onChange={setPhone} fullWidth/>
                 </Grid>
                 <Grid item xs={12}>
                   <Typography variant="body2"  component="p" gutterBottom>

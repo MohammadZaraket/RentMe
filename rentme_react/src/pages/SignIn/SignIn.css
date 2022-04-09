@@ -1,12 +1,12 @@
 .SignIn {
 
-    background-image:linear-gradient(rgba(55, 50, 62, 0.7), rgba(55, 50, 62, 0.7)), url("../../assets/test.jpg");
+    background-image:linear-gradient(rgba(55, 50, 62, 0.8), rgba(55, 50, 62, 0.8)), url("../../assets/test.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
   
     background-position: 'center';
-    background-color: rgba(55, 50, 62, 0.7);
+    background-color: rgba(55, 50, 62, 0.8);
     background-attachment: fixed;
 }
 

@@ -396,3 +396,52 @@ BiImageAdd{
 
 
 }
+
+
+
+/*
+.PhoneInputInput{
+  font: inherit;
+    letter-spacing: inherit;
+    color: currentColor;
+    padding: 4px 0 5px;
+    border: 0;
+    box-sizing: content-box;
+    background: none;
+    height: 1.4375em;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    display: block;
+    min-width: 0;
+    width: 100%;
+    -webkit-animation-name: mui-auto-fill-cancel;
+    animation-name: mui-auto-fill-cancel;
+    -webkit-animation-duration: 10ms;
+    animation-duration: 10ms;
+    padding: 16.5px 14px;
+
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4375em;
+    letter-spacing: 0.00938em;
+    color: rgba(0, 0, 0, 0.87);
+
+    border-radius: 4px;
+}*/
+
+
+/*Phone Input Style*/
+
+
+.react-tel-input .country-list {
+  position: relative !important;
+}
+
+.react-tel-input .special-label {
+  display: none !important;
+}
+
+.react-tel-input .form-control {
+  width: 100% !important;
+}
