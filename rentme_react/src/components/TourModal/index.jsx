@@ -138,6 +138,7 @@ export default function TourModal(props) {
       saveTour();
 
     }).catch(e => console.log(e))
+
   }
 
   return (
