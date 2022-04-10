@@ -68,17 +68,21 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | ![Main Page](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/main-page-front.PNG) | 
 
 
-| Details  | Results  |
+| Results  | Details  |
 | -----------------| -----|
-| ![Details](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/details-page-front.PNG) | ![Results](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/results-page-front.PNG) |
+| ![Results](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/results-page-front.PNG) | ![Details](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/details-page-front.PNG) |
 
 <br>
 
 ### Demos
 
-| Details  | Results  |
+| Search  | Add Apartment  |
 | -----------------| -----|
-| ![Details](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/details-page-front.PNG) | ![Results](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/results-page-front.PNG) |
+| ![Search](https://github.com/MohammadZaraket/RentMe/blob/14ad72292144323848babc23be688d9aad7ffed8/readme/search-demo.gif) | ![Add Apartment](https://github.com/MohammadZaraket/RentMe/blob/14ad72292144323848babc23be688d9aad7ffed8/readme/add-demo.gif) |
+
+| Request Tour |
+| -----------------|
+| ![Request Tour](https://github.com/MohammadZaraket/RentMe/blob/14ad72292144323848babc23be688d9aad7ffed8/readme/request-demo.gif) | 
 
 
 <br><br>
