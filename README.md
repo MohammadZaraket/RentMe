@@ -72,6 +72,13 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | -----------------| -----|
 | ![Details](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/details-page-front.PNG) | ![Results](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/results-page-front.PNG) |
 
+<br>
+
+### Demos
+
+| Details  | Results  |
+| -----------------| -----|
+| ![Details](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/details-page-front.PNG) | ![Results](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/results-page-front.PNG) |
 
 
 <br><br>
@@ -108,6 +115,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
    ```
    ```sh
     npm install --save date-fns
+   ```
+      ```sh
+    npm i react-phone-input-2
    ```
 3. Get a free API Key at Google Maps API Services
 
