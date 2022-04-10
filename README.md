@@ -4,7 +4,7 @@
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
 
-**[PROJECT PHILOSOPHY](https://github.com/MohammadZaraket/RentMe#-project-philosophy) • [WIREFRAMES](https://github.com/MohammadZaraket/RentMe#-wireframes) • [TECH STACK](https://github.com/MohammadZaraket/RentMe#-tech-stack) • [IMPLEMENTATION](https://github.com/MohammadZaraket/RentMe#-impplementation) • [HOW TO RUN?](https://github.com/MohammadZaraket/RentMe#-how-to-run)**
+**[PROJECT PHILOSOPHY](#project-philosophy) • [WIREFRAMES](#wireframes) • [TECH STACK](#tech-stack) • [IMPLEMENTATION](#implementation) • [HOW TO RUN?](#how-to-run)**
 
 
 </div>
@@ -12,7 +12,7 @@
 <br><br>
 
 
-<img src="./readme/title2.svg"/>
+<img src="./readme/title2.svg" id="project-philosophy"/>
 
 > Rent Me is a Rental Property website where users can search for nearby apartments or apartments in a specific city.
 > 
@@ -29,7 +29,7 @@
 
 <br><br>
 
-<img src="./readme/title3.svg"/>
+<img src="./readme/title3.svg" id="wireframes"/>
 
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that no finished template was used, all from scratch and using pure css modules
@@ -45,7 +45,7 @@ Note that no finished template was used, all from scratch and using pure css mod
 
 <br><br>
 
-<img src="./readme/title4.svg"/>
+<img src="./readme/title4.svg" id="tech-stack"/>
 
 Here's a brief high-level overview of the tech stack the Well app uses:
 
@@ -59,7 +59,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 
 <br><br>
-<img src="./readme/title5.svg"/>
+<img src="./readme/title5.svg"  id="implementation"/>
 
 > Using the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
@@ -76,7 +76,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 <br><br>
 
-<img src="./readme/title6.svg"/>
+<img src="./readme/title6.svg" id="how-to-run"/>
 
 
 ### Prerequisites
