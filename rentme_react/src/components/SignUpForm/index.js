@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Box from '@mui/material/Box';
 
+//     <TextField style={{backgroundColor:"white", marginBottom:"5px", borderRadius:"10px", borderWidth:"0px"}} placeholder="Gender" label="Gender" variant="outlined" value={gender} onInput={e => setGender(e.target.value)} fullWidth required />
 function SignUpForm() { 
 
   const [first_name,setFirst_name] = useState("");
@@ -45,43 +51,51 @@ function SignUpForm() {
                 <Typography variant="body2" component="p" gutterBottom>
                    <b>First Name</b> 
                  </Typography> 
-                  <TextField style={{backgroundColor:"white", marginBottom:"5px", borderRadius:"10px", borderWidth:"0px"}} placeholder="First Name" label="First Name" variant="outlined" value={first_name} onInput={e => setFirst_name(e.target.value)} fullWidth required />
+                  <TextField style={{backgroundColor:"white", marginBottom:"5px", borderRadius:"10px", borderWidth:"0px"}} placeholder="First Name"  variant="outlined" value={first_name} onInput={e => setFirst_name(e.target.value)} fullWidth required />
                 </Grid>
                 <Grid item xs={6} >
                 <Typography variant="body2" component="p" gutterBottom>
                    <b>Last Name</b> 
                  </Typography> 
-                  <TextField style={{backgroundColor:"white", marginBottom:"5px", borderRadius:"10px", borderWidth:"0px"}}  placeholder="Last Name" label="Last Name" variant="outlined" value={last_name} onInput={e => setLast_name(e.target.value)} fullWidth required />
+                  <TextField style={{backgroundColor:"white", marginBottom:"5px", borderRadius:"10px", borderWidth:"0px"}}  placeholder="Last Name"  variant="outlined" value={last_name} onInput={e => setLast_name(e.target.value)} fullWidth required />
                 </Grid>
                 <Grid item xs={6} >
                 <Typography variant="body2" component="p" gutterBottom>
                    <b> Gender</b> 
                  </Typography> 
-                  <TextField style={{backgroundColor:"white", marginBottom:"5px", borderRadius:"10px", borderWidth:"0px"}} placeholder="Gender" label="Gender" variant="outlined" value={gender} onInput={e => setGender(e.target.value)} fullWidth required />
+                  <Box fullWidth>
+                            <FormControl fullWidth >
+                                <Select value={gender} onChange={e => setGender(e.target.value)} style={{backgroundColor:"white",padding:"6.5px 0",borderRadius:"10px"}}>
+                                <MenuItem value={"Male"}>Male</MenuItem>
+                                <MenuItem value={"Female"}>Female</MenuItem>
+                                <MenuItem value={"Other"}>Other</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
                 </Grid>
                 <Grid item xs={6} >
                 <Typography variant="body2" component="p" gutterBottom>
                    <b>Phone Number</b> 
                  </Typography> 
-                  <TextField style={{backgroundColor:"white", marginBottom:"5px", borderRadius:"10px", borderWidth:"0px"}}  placeholder="Phone Number" label="Phone Number" variant="outlined" value={phone_number} onInput={e => setPhone_number(e.target.value)} fullWidth required />
+                  <TextField style={{backgroundColor:"white", marginBottom:"5px", borderRadius:"10px", borderWidth:"0px"}}  placeholder="Phone Number" variant="outlined" value={phone_number} onInput={e => setPhone_number(e.target.value)} fullWidth required />
                 </Grid>
                 <Grid item xs={12} >
                 <Typography variant="body2" component="p" gutterBottom>
                    <b>Enter Your Email Address</b> 
                  </Typography> 
-                  <TextField style={{backgroundColor:"white", marginBottom:"5px", borderRadius:"10px", borderWidth:"0px"}} type="email" placeholder="Enter email" label="Email Address" variant="outlined" value={email} onInput={e => setEmail(e.target.value)}  fullWidth required />
+                  <TextField style={{backgroundColor:"white", marginBottom:"5px", borderRadius:"10px", borderWidth:"0px"}} type="email" placeholder="Enter email" variant="outlined" value={email} onInput={e => setEmail(e.target.value)}  fullWidth required />
                 </Grid>
                 <Grid item xs={6}>
                 <Typography variant="body2" component="p" gutterBottom>
                     <b>Enter Your Password</b>
                  </Typography> 
-                  <TextField  style={{backgroundColor:"white", marginBottom:"5px",  borderRadius:"10px" }} type="password" placeholder="Enter Password" label="password" variant="outlined" value={password} onInput={e => setPassword(e.target.value)} fullWidth required />
+                  <TextField  style={{backgroundColor:"white", marginBottom:"5px",  borderRadius:"10px" }} type="password" placeholder="Enter Password"  variant="outlined" value={password} onInput={e => setPassword(e.target.value)} fullWidth required />
                 </Grid>
                 <Grid item xs={6}>
                 <Typography variant="body2"  component="p" gutterBottom>
                     <b>Confirm Your Password</b>
                  </Typography> 
-                  <TextField  style={{backgroundColor:"white", marginBottom:"5px",  borderRadius:"10px" }} type="password" placeholder="Enter Password" label="password" variant="outlined" fullWidth value={password_confirmation} onInput={e => setPassword_confirmation(e.target.value)} required />
+                  <TextField  style={{backgroundColor:"white", marginBottom:"5px",  borderRadius:"10px" }} type="password" placeholder="Enter Password" variant="outlined" fullWidth value={password_confirmation} onInput={e => setPassword_confirmation(e.target.value)} required />
                 </Grid>
                 <Grid item xs={12}>
                   <Button className="signbtn" type="submit" variant="contained" color="primary" onClick={signUp}  fullWidth>Sign Up</Button>
