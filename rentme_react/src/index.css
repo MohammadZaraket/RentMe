@@ -90,7 +90,12 @@ body, html {
   color: #37323E;
 }
 
-
+.signup-field {
+  background-color: white ; 
+  margin-bottom: 5px !important;
+  border-radius: 10px; 
+  border-width: 0px !important;
+}
 
 .homebtn {
   color: #DEB841 !important;
