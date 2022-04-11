@@ -36,18 +36,19 @@ Note that no finished template was used, all from scratch and using pure css mod
 
 | Main Page  |
 | -----------------|
-| ![Main Page ](https://github.com/MohammadZaraket/RentMe/blob/94e281b3e8aea8dca13a666e2eb9ea2f275d6a51/readme/main-page-figma.PNG) |
+| ![Main Page ](https://github.com/MohammadZaraket/RentMe/blob/9db171b6cd9cae66be4aea7914b92b65cc5ecb4e/readme/main_page.png) |
+
 
 | Apartments' Results  | Apartment's Details  |
 | -----------------| -----|
-| ![Apartments results](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/results-page-figma.PNG) | ![Apartment's Details](https://github.com/MohammadZaraket/RentMe/blob/184ccd4bbdd8d6c0e9c70f81cfff0f8f131aad6d/readme/details-page-figma.PNG)|
+| ![Apartments results](https://github.com/MohammadZaraket/RentMe/blob/9db171b6cd9cae66be4aea7914b92b65cc5ecb4e/readme/results%20page.png) | ![Apartment's Details](https://github.com/MohammadZaraket/RentMe/blob/9db171b6cd9cae66be4aea7914b92b65cc5ecb4e/readme/details%20page.png)|
 
 
 <br><br>
 
 <img src="./readme/title4.svg" id="tech-stack"/>
 
-Here's a brief high-level overview of the tech stack the Well app uses:
+Here's a brief high-level overview of the tech stack the RentMe Website uses:
 
 - This project used Laravel - the PHP web framework- as a backend to implement different APIs.
 - For Frontend, the website uses React which is a JavaScript library for building user interfaces based on UI components.
@@ -61,7 +62,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 <br><br>
 <img src="./readme/title5.svg"  id="implementation"/>
 
-> Using the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
+> Using the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the website is shown as below, these are screenshots from the real Website
 
 | Main Page  |
 | -----------------|
